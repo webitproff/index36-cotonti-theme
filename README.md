@@ -61,6 +61,358 @@ Index36 is not just a theme, but a tool for creating professional Cotonti websit
 
 [**Permanent link to the latest source code on GitHub.**](https://github.com/webitproff/index36-cotonti-theme)
 
+
+
+**Installation instructions for the "Index36" theme on Cotonti Siena CMF**
+
+A theme in Cotonti is a set of files (`.tpl` templates, css, js, images and php files) that is responsible for the appearance and functionality of the site.
+
+> **Warnings:** make full backups of the site and store them on your local computer.  
+> The theme was created and tested on local and shared servers with PHP 8.4, MySQL 8.0, as well as on the latest current version of Cotonti Siena CMF from the repository as of 24.02.2026.  
+> **"Index36" is not a theme for beginners.** If you are just getting familiar with Cotonti, you should first study XTemplate (CoTemplate), especially the template code syntax in .tpl files.  
+> For educational purposes, beginners are recommended to start with the **CleanCot** theme [**repository link**](https://github.com/webitproff/cot-CleanCot).  
+> It contains detailed explanations of the purpose of templates, and the code is commented, which helps in understanding how Cotonti works with Bootstrap.
+
+### Step #1.
+
+Download the archive of the current version of the "Index36" theme from the repository [**GitHub - archive link**](https://github.com/webitproff/index36-cotonti-theme/archive/refs/heads/main.zip).  
+The archive file is less than 1 MB in size.
+
+### Step #2.
+
+Unpack the archive and open the `themes` folder, which contains the `index36` folder.  
+Copy the `index36` folder to the `themes/` directory of your Cotonti site. The path should look like, for example:
+
+```
+public_html/themes/index36/
+```
+
+### Step #3.
+
+Make sure all files and subfolders have been transferred without loss. It is best to use "FileZilla Client" or another file manager for remote access.  
+If you find any missing files, upload them again.
+
+### Step #4. Configuration file setup
+
+Open the `datas/config.php` file in the root of your Cotonti site (e.g. `public_html/datas/config.php`).  
+Find the line with the theme setting:
+
+```
+$cfg['defaulttheme'] = 'nemesis'; // or any other value you have instead of 'nemesis'
+```
+
+Replace it with:
+
+```
+$cfg['defaulttheme'] = 'index36';
+```
+
+Save the changes and upload the file back to the server.
+
+### Step #5. Activating the template
+
+Go to the admin panel:  
+**Site management** → **Configuration** → **Themes**
+
+1. In the first line "Force default theme for all users" select **Yes**.
+2. In the second line "Link to homepage in breadcrumb" select **Yes**.
+3. In the third line "Separator" leave the field empty.  
+   Configure the remaining options at your discretion.  
+   Don't forget to save the changes.
+
+### Step #6. Extrafields (optional)
+
+**6.1. User first and last name**  
+Go to **Site management** → **Miscellaneous** → **Extrafields** → **Table cot_users** (Users module).  
+At the bottom of the page in the new field form add:
+
+- Field name: `firstname`
+- Field description (_TITLE): "First name"
+- Field type: "input"  
+  Then click **Add**.
+
+Then add the next field:
+
+- Field name: `lastname`
+- Field description (_TITLE): "Last name"
+- Field type: "input"  
+  Do not change other parameters, click **Add**.
+
+### Step #7. Background image on user profile page
+
+Go to **Site management** → **Extensions** → **User Images** → **Administration**.  
+In the code field enter `background`, and in the "Width" and "Height" fields set:
+
+- Width: 1400
+- Height: 300  
+  Ratio: "Fit" (target dimensions: width:height).  
+  Click **Add/Update**.  
+
+Note: it is recommended to use images no larger than 1 MB (JPG/PNG).
+
+### Step #8. Connecting Font Awesome 7.2 icons
+
+Detailed instructions for connecting are available in the topic [**forum link**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36/topic185).
+
+### Step #9. Post-installation extensions
+
+Optionally install plugins, for example "Category Tree", or other extensions available in the [**Cotonti marketplace**](https://abuyfile.com/ru/market/cotonti).
+
+---
+
+The "Index36" theme is fully compatible with the out-of-the-box engine.  
+Happy installation and beautiful site on Cotonti!  
+If you encounter problems with specific errors, feel free to [**ask on the forum**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36) and describe the issue — I will help you figure it out.
+
+File map of the Index36 theme and main template for Cotonti Siena.  
+*(it's more correct to say “site theme”)*
+
+```
+index36/                         # Main folder of the Index36 theme
+├── assets/                      # Frontend static resources (libraries, styles, scripts)
+│   ├── fancybox/                # Lightbox / modal image gallery
+│   │   ├── fancybox.css
+│   │   └── fancybox.umd.js
+│   ├── jquery/                  # jQuery (base library)
+│   │   └── jquery.min.js        # (this file is NOT connected!) — connect it in /themes/index36/index36.rc.php
+│   ├── perfect-scrollbar/       # Custom scrollbar
+│   │   ├── js-perfect-scrollbar.js   # custom perfect-scrollbar scripts
+│   │   ├── perfect-scrollbar.css     # library styles
+│   │   ├── perfect-scrollbar.min.js  # library scripts
+│   │   └── styles-perfect-scrollbar.css  # custom perfect-scrollbar styles
+│   └── select2/                 # Beautiful dropdown list / multiselect
+│       ├── js-select2.js        # custom scripts for select2 (this file is used)
+│       ├── select2.min.css      # select2 library styles (this file is NOT connected!)
+│       ├── select2.min.js       # select2 library scripts (this file is NOT connected!)
+│       └── style-select2.css    # custom styles for select2 (this file is used)
+├── css/                         # Main theme styles
+│   ├── default.css              # Main stylesheet of the theme (basic set)
+│   ├── header.last.css          # Styles connected at the very end of <head> (overrides / last priority)
+│   ├── index.html               # Protection against directory listing
+│   └── modalbox.css             # Styles for Cotonti system modal windows
+├── img/                         # Images, icons, flags, placeholders
+│   ├── flags/                   # Language flags (webp format)
+│   │   ├── en.webp
+│   │   ├── gb.webp
+│   │   ├── ru.webp
+│   │   └── ua.webp
+│   ├── app-logo.svg
+│   ├── auth.svg
+│   ├── avatar-demo.jpg
+│   ├── cat-icon-default.svg
+│   ├── credit-card.svg
+│   ├── dashboard-meet.svg
+│   ├── help.svg
+│   ├── mobile-app.svg
+│   ├── online0.png
+│   ├── online1.png
+│   ├── page-default-image.jpg
+│   ├── queue-dark.svg
+│   ├── rocket.svg
+│   └── userimg_default_background.jpg
+├── inc/                         # Additional HTML inserts / blocks (not modules, not plugins)
+│   └── index.html               # Directory protection
+├── js/                          # Theme's own JavaScript files
+│   ├── header.first.js          # Scripts connected very early (in the beginning of <head>)
+│   ├── index.html               # Protection
+│   └── js.js                    # Main custom JS file of the theme
+├── modules/                     # Cotonti module templates
+│   ├── forums/                  # «Forums» module
+│   │   ├── forums.editpost.tpl          # editing a forum post
+│   │   ├── forums.newtopic.tpl          # creating a new forum topic
+│   │   ├── forums.posts.tpl             # viewing a topic + posts
+│   │   ├── forums.sections.tpl          # list of forum sections/categories
+│   │   └── forums.topics.tpl            # list of topics in a section
+│   ├── page/                    # «Pages / Articles» module
+│   │   ├── page.add.tpl                 # adding a new page/article
+│   │   ├── page.edit.tpl                # editing a page
+│   │   ├── page.enum.tpl                # enumeration / output by tags / etc.
+│   │   ├── page.list.tpl                # list of pages in a category
+│   │   ├── page.list.news.tpl           # extended template for news/articles list in category
+│   │   ├── page.list.unvalidated.tpl    # list of pages awaiting moderation
+│   │   ├── page.news.tpl                # extended single news/article template
+│   │   └── page.tpl                     # main full page template
+│   ├── pfs/                     # Personal File Space (user file manager)
+│   │   ├── pfs.edit.tpl                 # editing a file
+│   │   ├── pfs.editfolder.tpl           # editing a folder
+│   │   ├── pfs.tpl                      # main PFS interface
+│   │   └── pfs.view.tpl                 # viewing a single file
+│   ├── pm/                      # Private messages
+│   │   ├── pm.list.tpl                  # list of messages
+│   │   ├── pm.message.tpl               # viewing one message + reply form
+│   │   ├── pm.popUpNotification.tpl     # popup notification about new PM
+│   │   └── pm.send.tpl                  # message sending form
+│   ├── polls/                   # Polls / voting
+│   │   ├── polls.index.tpl              # poll(s) on the homepage
+│   │   └── polls.tpl                    # page with all polls / single poll view
+│   └── users/                   # Users, profiles, registration
+│       ├── users.details.tpl            # public user profile page
+│       ├── users.edit.tpl               # editing user profile by admin
+│       ├── users.passrecover.tpl        # password recovery
+│       ├── users.profile.tpl            # editing own profile
+│       ├── users.register.tpl           # new user registration
+│       └── users.tpl                    # list of users
+├── plugins/                     # Templates for popular plugins
+│   ├── attacher/                # File attachments to pages/posts
+│   │   ├── attacher.display.first.tpl      # first attached image for full article/page view
+│   │   └── attacher.display.listfirst.tpl  # first attached image for articles in lists
+│   ├── comments/                # Comments
+│   │   ├── comments.edit.tpl               # comment editing form
+│   │   ├── comments.recent.widget.tpl      # recent comments widget (admin area)
+│   │   └── comments.tpl                    # main comments block
+│   ├── contact/                 # Contact form / feedback
+│   │   └── contact.tpl                     # contact/feedback form
+│   ├── i18n/                    # Content multilanguage (pages + structure)
+│   │   ├── i18n.locales.tpl                # list of available languages
+│   │   ├── i18n.page.tpl                   # page localization
+│   │   └── i18n.structure.tpl              # categories/structure localization
+│   ├── indexnews/               # News/articles on homepage
+│   │   └── indexnews.tpl                   # news block on the main page
+│   ├── recentitems/             # Recent updates (pages + forum)
+│   │   ├── recentitems.forums.index.tpl    # latest forum topics on homepage
+│   │   ├── recentitems.forums.tpl          # latest forum topics
+│   │   ├── recentitems.pages.index.tpl     # latest pages on homepage
+│   │   ├── recentitems.pages.tpl           # latest pages
+│   │   └── recentitems.tpl                 # general recent items page
+│   ├── search/                  # Site search
+│   │   ├── _search.tpl                     # possible internal search sub-template
+│   │   └── search.tpl                      # main search page
+│   ├── statistics/              # Site statistics
+│   │   └── statistics.tpl                  # statistics page
+│   ├── tags/                    # Tags cloud / tag search
+│   │   └── tags.tpl                        # tags page / tag cloud
+│   ├── treecatspage/            # Tree view of page categories
+│   │   ├── treecatspage.page.tree.sidebar.tpl   # category tree in sidebar
+│   │   └── treecatspage.page.tree.tpl           # full category tree
+│   └── whosonline/              # Who is online
+│       └── whosonline.tpl                  # who is online list
+├── error.403.tpl                # 403 — Access denied error
+├── error.404.tpl                # 404 — Page not found error
+├── error.tpl                    # General critical error template
+├── footer.tpl                   # Page footer (bottom part)
+├── header.tpl                   # Page header (top part)
+├── index.tpl                    # Homepage of the site
+├── index36.en.lang.php          # English localization of the theme
+├── index36.functions.php        # Custom functions of the theme
+├── index36.php                  # Main theme file (entry point)
+├── index36.rc.php               # Connecting resources (css/js) via Cotonti Resources system
+├── index36.resources.php        # Overriding system strings / blocks of Cotonti
+├── index36.ru.lang.php          # Russian localization of the theme
+├── index36.ua.lang.php          # Ukrainian localization of the theme
+├── login.tpl                    # Login / authorization page
+├── message.tpl                  # System messages and modal confirmations
+├── plugin.tpl                   # Universal template for plugin pages
+├── popup.tpl                    # Content of popup windows
+└── warnings.tpl                 # Notices (errors, success, warnings)
+```
+
+
+___
+
+**Инструкция по установке темы "Index36" на Cotonti Siena CMF**
+
+Тема в Cotonti — это набор файлов (шаблоны `.tpl`, css, js, изображения и php-файлы), который отвечает за внешний вид и работу сайта.
+
+> **Предупреждения:** сделайте полные резервные копии сайта и сохраните их на локальном компьютере.  
+> Тема была создана и тестировалась на локальных и шеред-серверах с PHP 8.4, MySQL 8.0, а также на последней актуальной версии Cotonti Siena CMF из репозитория по состоянию на 24.02.2026.  
+> **"Index36" — это тема не для новичков.** Если вы только знакомитесь с Cotonti, вам следует сначала изучить XTemplate (CoTemplate), особенно синтаксис кода в .tpl-шаблонах.  
+> Для образовательных целей новичкам рекомендуется начать с темы **CleanCot** [**ссылка на репозиторий**](https://github.com/webitproff/cot-CleanCot).  
+> В ней подробно объясняется назначение шаблонов, а код прокомментирован, что помогает понять, как Cotonti работает с Bootstrap.
+
+### Шаг №1.
+
+Скачайте архив актуальной версии темы "Index36" из репозитория [**GitHub — ссылка на архив**](https://github.com/webitproff/index36-cotonti-theme/archive/refs/heads/main.zip).  
+Файл архива весит менее 1 МБ.
+
+### Шаг №2.
+
+Распакуйте архив и откройте папку `themes`, в которой будет папка `index36`.  
+Скопируйте папку `index36` в директорию `themes/` вашего сайта Cotonti. Путь должен выглядеть, например, так:
+
+```
+public_html/themes/index36/
+```
+
+### Шаг №3.
+
+Убедитесь, что все файлы и подпапки переданы без потерь. Лучше использовать "FileZilla Client" или другой FTP-менеджер для удалённого доступа.  
+Если обнаружите пропущенные файлы — закачайте их повторно.
+
+### Шаг №4. Настройка файла конфигурации
+
+Откройте файл `datas/config.php` в корне вашего сайта Cotonti (например, `public_html/datas/config.php`).  
+Найдите строку с настройкой темы:
+
+```php
+$cfg['defaulttheme'] = 'nemesis'; // или любое ваше значение вместо 'nemesis'
+```
+
+Замените на:
+
+```php
+$cfg['defaulttheme'] = 'index36';
+```
+
+Сохраните изменения и загрузите файл обратно на сервер.
+
+### Шаг №5. Активация шаблона
+
+Перейдите в админ-панель:  
+**Управление сайтом** → **Конфигурация** → **Темы**
+
+1. В первой строке «Принудительная установка темы по умолчанию для всех пользователей» выберите **Да**.
+2. Во второй строке «Ссылка на главную страницу в навигационной цепочке» выберите **Да**.
+3. В третьей строке «Разделитель» оставьте поле пустым.  
+   Остальные опции настройте по своему усмотрению.  
+   Не забудьте сохранить изменения.
+
+### Шаг №6. Экстраполя (опционально)
+
+**6.1. Имя и фамилия пользователя**  
+Перейдите в **Управление сайтом** → **Прочее** → **Экстраполя** → **Таблица cot_users** (модуль Users).  
+Внизу страницы в форме добавления нового поля добавьте:
+
+- Название поля: `firstname`
+- Описание поля (_TITLE): "Имя"
+- Тип поля: "input"  
+  Затем нажмите **Добавить**.
+
+Затем добавьте следующее поле:
+
+- Название поля: `lastname`
+- Описание поля (_TITLE): "Фамилия"
+- Тип поля: "input"  
+  Остальные параметры не трогайте, нажмите **Добавить**.
+
+### Шаг №7. Фоновый бэкграунд на странице пользователя
+
+Перейдите в **Управление сайтом** → **Расширения** → **User Images** → **Администрирование**.  
+В поле кода введите `background`, а в поля "Ширина" и "Высота" установите:
+
+- Ширина: 1400
+- Высота: 300  
+  Соотношение: "Подогнать" (целевые размеры: ширина:высота).  
+  Нажмите **Добавить/Обновить**.
+
+Примечание: рекомендуется использовать изображения размером не более 1 МБ (JPG/PNG).
+
+### Шаг №8. Подключение иконок Font Awesome 7.2
+
+Подробная инструкция по подключению доступна в теме [**ссылка на форум**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36/topic185).
+
+### Шаг №9. Постустановочные расширения
+
+По желанию установите плагины, например «Дерево категорий», или другие расширения, доступные в [**маркетплейсе Cotonti**](https://abuyfile.com/ru/market/cotonti).
+
+---
+
+Тема "Index36" полностью совместима с движком из коробки.  
+Удачной установки и красивого сайта на Cotonti!  
+Если возникнут проблемы с конкретными ошибками — не стесняйтесь [**обращаться на форум**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36) и описывать проблему — помогу разобраться.
+
+Карта файлов темы сайта и основного шаблона "Index36" для Cotonti Siena.  
+*(правильно говорить всё-таки именно “тема сайта”)*
+
 ```
 index36/                         # Главная папка темы Index36
 ├── assets/                      # Статические ресурсы фронтенда (библиотеки, стили, скрипты)
@@ -149,7 +501,7 @@ index36/                         # Главная папка темы Index36
 ├── plugins/                     # Шаблоны популярных плагинов
 │   ├── attacher/                # Прикрепление файлов к страницам/постам
 │   │   ├── attacher.display.first.tpl      # первый прикреплённый файл картинки для полной статьи/страницы
-│   │   └── attacher.display.listfirst.tpl  # первый прикреплённый файл картинки для для статей в списках
+│   │   └── attacher.display.listfirst.tpl  # первый прикреплённый файл картинки для статей в списках
 │   ├── comments/                # Комментарии
 │   │   ├── comments.edit.tpl               # форма редактирования комментария
 │   │   ├── comments.recent.widget.tpl      # виджет последних комментариев (админка)
@@ -198,8 +550,9 @@ index36/                         # Главная папка темы Index36
 ├── plugin.tpl                   # Универсальный шаблон для страниц плагинов
 ├── popup.tpl                    # Содержимое всплывающих окон (popup)
 └── warnings.tpl                 # Уведомления (ошибки, успех, предупреждения)
-
 ```
+
+___
 
  - Description: [https://abuyfile.com/ru/market/cotonti/themes/index36](https://abuyfile.com/ru/market/cotonti/themes/index36)
  - Extension: Core System Cotonti
