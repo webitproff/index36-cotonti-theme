@@ -201,9 +201,9 @@ index36/                         # Главная папка темы Index36
 
 ```
 	/********************************************************************************
-	* Description: https://abuyfile.com/ru/market/cotonti/themes/index36
+	* Description: [https://abuyfile.com/ru/market/cotonti/themes/index36](https://abuyfile.com/ru/market/cotonti/themes/index36)
 	* Extension: Core System Cotonti
-	* Compatibility: CMF/CMS Cotonti Siena v0.9.26[](https://github.com/Cotonti/Cotonti)
+	* Compatibility:[ CMF/CMS Cotonti Siena v0.9.26](https://github.com/Cotonti/Cotonti)
 	* Dependencies: 
 	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
 	* 		 Font Awesome Free 7.1[](https://fontawesome.com/)
@@ -213,7 +213,7 @@ index36/                         # Главная папка темы Index36
 	* Updated: 24 Feb 2026 
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
-	* Demo: https://freelance-script.abuyfile.com/
-	* Help and support: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
+	* Demo: [https://freelance-script.abuyfile.com](https://freelance-script.abuyfile.com)
+	* [Help and support](https://abuyfile.com/ru/forums/cotonti/original/skins/index36)
 	* License: BSD (Free distribution with saving Copyright (c) 2026 webitproff)  
 	********************************************************************************/
