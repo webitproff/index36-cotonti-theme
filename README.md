@@ -50,8 +50,8 @@ The user experience is enhanced with elements such as new message notifications,
 
 Index36 is fully compatible with Cotonti Siena version 0.9.26 and higher, running on PHP 8.4 and MySQL 8.0. The theme uses built-in Cotonti resources for library inclusion, minimizing dependencies and ensuring fast load times.
 
-- **Requirements**: Ensure your Cotonti installation is up to date. The theme supports legacy mode for compatibility with older plugins, but disabling it is recommended for optimal performance.
-- **Installation**: Download the theme from the author's GitHub repository and place it in the themes directory. Activate it in the Cotonti admin panel. For customization, edit localization and style files following the documentation.
+- **Requirements**: The theme does NOT support legacy mode for compatibility with old tags. If you are building a new website, there is nothing to worry about. If your engine version is outdated, it is long overdue for an upgrade.
+- **Installation**: Installation guide for the “Index36” theme - see more in this page.
 
 The developer provides support through the community forum and GitHub, including free consultations and paid enhancements.
 
