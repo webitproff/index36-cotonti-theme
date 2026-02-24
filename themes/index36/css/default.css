@@ -1,0 +1,147 @@
+/* 0. Elements
+-------------------------------------------------- */
+
+
+
+code, pre {
+	font-family: Monaco, Menlo, Consolas, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+}
+
+code, kbd {
+	margin: 0 2px;
+	padding: 2px 4px;
+	border-radius: 3px;
+	background-color: rgba(149, 119, 80, 0.06)
+}
+
+code {
+	color: #f17e32;
+}
+
+pre {
+	color: #333;
+	background: #fafafa;
+	padding: 6px 10px 8px;
+	line-height: normal;
+	overflow: auto;
+	margin: 5px;
+	border: 1px solid #eee;
+	border-left: .25em solid #d0d7de;
+	position: relative;
+}
+
+/* Tags
+-------------------------------------------------- */
+.tag_cloud	  { text-align:center; }
+.tag_cloud li { display:inline-block; } /* do not touch! */
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+/* ===================================================== */
+/* ТАБЛИЦЫ */
+/* ===================================================== */
+
+table {                                          /* выбираем ВСЕ таблицы на сайте */
+    border-collapse: separate;                   /* разрешаем отдельные границы и скругления (вместо collapse) */
+    border-spacing: none;                        /* на всякий случай сбрасываем старое значение */
+    border-spacing: 0;                           /* убираем стандартные зазоры между ячейками */
+    border-radius: 12px;                         /* скругляем углы всей таблицы на 12 пикселей */
+    overflow: hidden;                            /* обрезаем всё, что вылезает за скруглённые углы */
+        display: block;                          /* чтобы можно было скроллить горизонтально */
+        overflow-x: auto;                        /* включаем горизонтальную прокрутку */
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);       /* добавляем лёгкую тень под таблицу */
+    margin: 1.5rem 0;                            /* отступ 1.5rem сверху и снизу от таблицы */
+    background: rgba(255,255,255,.04);           /* едва заметный белый фон в светлой теме */
+}
+
+/* ────────────────── ШАПКА ТАБЛИЦЫ ────────────────── */
+table thead th {                                 /* выбираем все ячейки в <thead> */
+    background: rgba(0,0,0,.06);                 /* лёгкий серый фон шапки в светлой теме */
+    padding: 14px 16px;                          /* внутренние отступы: 14px сверху/снизу, 16px слева/справа */
+    border-bottom: 2px solid rgba(0,0,0,.15);    /* толстая линия под всей шапкой */
+    font-weight: 600;                            /* полужирный текст */
+    text-align: left;                            /* выравнивание текста по левому краю */
+    font-size: .95rem;                           /* размер шрифта чуть меньше стандартного */
+}
+
+/* ────────────────── ОБЫЧНЫЕ ЯЧЕЙКИ ────────────────── */
+table td {                                       /* выбираем все обычные ячейки */
+    padding: 14px 16px;                          /* такие же отступы, как в шапке */
+    border-bottom: 1px solid rgba(0,0,0,.1);     /* тонкая горизонтальная линия между строками */
+    background: transparent;                    /* фон ячейки полностью прозрачный */
+}
+
+/* ───────────── ВЕРТИКАЛЬНЫЕ ГРАНИЦЫ МЕЖДУ КОЛОНКАМИ ───────────── */
+table th,                                        /* выбираем ячейки шапки */
+table td {                                       /* и обычные ячейки */
+    border-right: 1px solid rgba(0,0,0,.08);     /* тонкая вертикальная линия справа от каждой ячейки (светлая тема) */
+}
+table th:last-child,                             /* последняя ячейка в шапке */
+table td:last-child {                            /* последняя ячейка в строке */
+    border-right: none;                          /* убираем правую границу, чтобы не было двойной линии снаружи */
+}
+
+/* ────────────────── ЗЕБРА (чередуем строки) ────────────────── */
+table tbody tr:nth-child(even) {                 /* выбираем чётные строки в теле таблицы */
+    background: rgba(0,0,0,.03);                 /* делаем их чуть темнее */
+}
+
+/* ────────────────── ХОВЕР (при наведении мыши) ────────────────── */
+table tbody tr:hover {                           /* когда курсор над строкой */
+    background: rgba(0,0,0,.07);                 /* строка становится ещё чуть темнее */
+}
+
+/* ─────────────────────── ТЁМНАЯ ТЕМА ─────────────────────── */
+[data-bs-theme="dark"] table {                   /* если на странице включена тёмная тема */
+    background: rgba(255,255,255,.05);           /* лёгкий белый фон таблицы */
+}
+
+[data-bs-theme="dark"] table thead th {          /* шапка в тёмной теме */
+    background: rgba(255,255,255,.08);           /* чуть светлее остальных ячеек */
+    border-bottom-color: rgba(255,255,255,.2);   /* линия под шапкой — светлее */
+}
+
+[data-bs-theme="dark"] table td {                /* обычные ячейки в тёмной теме */
+    border-bottom-color: rgba(255,255,255,.12);  /* горизонтальные линии — светлее */
+}
+
+[data-bs-theme="dark"] table th,                 /* вертикальные линии в шапке */
+[data-bs-theme="dark"] table td {                /* и в обычных ячейках */
+    border-right-color: rgba(255,255,255,.1);    /* делаем их светлыми */
+}
+
+[data-bs-theme="dark"] table tbody tr:nth-child(even) {
+    background: rgba(255,255,255,.04);           /* зебра в тёмной теме */
+}
+
+[data-bs-theme="dark"] table tbody tr:hover {
+    background: rgba(255,255,255,.09);           /* ховер в тёмной теме */
+}
+
+/* ─────────────────────── МОБИЛЬНАЯ ВЕРСИЯ ─────────────────────── */
+@media (max-width: 767px) {                      /* если ширина экрана 767px и меньше (телефоны) */
+    table {                                      /* превращаем таблицу в блок */
+        display: block;                          /* чтобы можно было скроллить горизонтально */
+        overflow-x: auto;                        /* включаем горизонтальную прокрутку */
+        -webkit-overflow-scrolling: touch;       /* плавный скролл на iOS */
+        white-space: nowrap;                     /* текст в ячейках не переносится на новую строку */
+    }
+    table thead,                                 /* шапка таблицы */
+    table tbody,                                 /* тело таблицы */
+    table tr,                                    /* строки */
+    table th,                                    /* ячейки шапки */
+    table td {                                   /* обычные ячейки */
+        display: revert;                         /* возвращаем им нормальное табличное поведение внутри скроллящегося блока */
+    }
+}
+
+/* Когда подкатегория раскрыта *//* Стрелка поворачивается */
+.toggle-subcats[aria-expanded="true"] i.fa-chevron-left {
+  transform: rotate(180deg); 
+} 
+
