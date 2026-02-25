@@ -65,7 +65,7 @@ if ($ext === 'index') {
     $langSkStr['indexDwnApA3'] = 'Плагины и модули, шаблоны сайтов и их актуальный исходный код собраны в репозиториях на <a href="https://github.com/webitproff?tab=repositories" target="_blank" class="fw-bold" title="Скачать плагины и модули, шаблоны и скрипты для Cotonti CMF">GitHub</a></p>';
     $langSkStr['indexDwnApQ4'] = '<i class="fa-solid fa-headset fa-xl me-3"></i> Поддержка пользователей Cotonti Siena';
     $langSkStr['indexDwnApA4'] = '<p>Вам обязательно помогут и бесплатно. Нужно лишь потрудиться составить предметный и обстоятельный вопрос, чтобы задать его  <a href="https://abuyfile.com/ru/forums/cotonti" target="_blank" class="fw-bold" title="форум поддержки пользователей и помощь по Cotonti">на форуме сообщества на нашем сайте!</a></p>';
-    $langSkStr['indexDwnApQ5'] = '<i class="fa-solid fa-book-atlas fa-xl me-3"></i> Рукодство пользователя и документация по Cotonti CMF';
+    $langSkStr['indexDwnApQ5'] = '<i class="fa-solid fa-book-atlas fa-xl me-3"></i> Руководство пользователя и документация по Cotonti CMF';
     $langSkStr['indexDwnApA5'] = '<p><i class="fa-solid fa-building-circle-arrow-right fa-xl me-3 text-success"></i>Пользовательская обновляемая документация <a href="https://abuyfile.com/ru/cotonti" target="_blank" class="fw-bold" title="Документация Cotonti"> на сайте частных разработчиков и энтузиастов, активно поддерживающих Котонти!</a></p><hr><i class="fa-solid fa-building-flag fa-xl me-3"></i><p>Официальная документация <a href="https://www.cotonti.com/docs/" target="_blank" class="fw-bold" title="форум и документация официального Cotonti"> на официальном сайте от первых разработчиков</a>, которые никак не связаны с текущей командой!</p>';
 }
 
@@ -184,5 +184,6 @@ $langSkStr['blank_temporary_example_desc'] = '
 $L['msg404_title'] = 'Упс. Страница не найдена. (404)';
 $L['msg404_body'] = 'Страница, которую вы ищете, вероятно устарела и более недоступна. Пожалуйста, вернитесь на главную или воспользуйтесь поиском';
 $langSkStr['BackToHome'] = 'На Главную';
+
 
 
