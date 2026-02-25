@@ -306,18 +306,22 @@
 											<i class="fa fa-list me-2"></i> {PHP.langSkStr.forumStructureCats}
 										</a>
 									</li>
+									<!-- IF {PHP.db_x} -->
 									<li>
-										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields&n={PHP.db_forum_topics}')}" 
+										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields', '&n={PHP.db_x}forum_topics')}" 
 										title="{PHP.langSkStr.forumTopicExtrafieldsAdmin}">
 											<i class="fa fa-magic me-2"></i> {PHP.langSkStr.forumTopicExtrafields}
 										</a>
 									</li>
+									<!-- ENDIF -->
+									<!-- IF {PHP.db_x} -->
 									<li>
-										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields&n={PHP.db_forum_posts}')}" 
+										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields', '&n={PHP.db_x}forum_posts')}" 
 										title="{PHP.langSkStr.forumPostExtrafieldsAdmin}">
 											<i class="fa fa-magic me-2"></i> {PHP.langSkStr.forumPostExtrafields}
 										</a>
 									</li>
+									<!-- ENDIF -->
 								</ul>
 							</div>
 						</li>
@@ -516,4 +520,5 @@
 		
 		<main>
 			<!-- END: HEADER -->
+
 				
