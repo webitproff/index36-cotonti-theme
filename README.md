@@ -76,7 +76,7 @@ A theme in Cotonti is a set of files (`.tpl` templates, css, js, images and php 
 
 # Requirements Before Installation
 
-Before proceeding with the installation, you must complete two simple steps. Without them, there is no point in starting the installation.
+**Before proceeding with the installation, you must complete two simple steps. Without them, there is no point in starting the installation.**
 
 ---
 
@@ -192,7 +192,7 @@ Save the changes and upload the file back to the server.
 Already completed.
 
 
-### Step #6. Extrafields (optional)
+## Step #6. Extrafields (optional)
 
 **6.1. User first and last name**  
 Go to **Site management** → **Miscellaneous** → **Extrafields** → **Table cot_users** (Users module).  
@@ -210,7 +210,7 @@ Then add the next field:
 - Field type: "input"  
   Do not change other parameters, click **Add**.
 
-### Step #7. Background image on user profile page
+## Step #7. Background image on user profile page
 
 Go to **Site management** → **Extensions** → **User Images** → **Administration**.  
 In the code field enter `background`, and in the "Width" and "Height" fields set:
@@ -222,11 +222,11 @@ In the code field enter `background`, and in the "Width" and "Height" fields set
 
 Note: it is recommended to use images no larger than 1 MB (JPG/PNG).
 
-### Step #8. Connecting Font Awesome 7.2 icons
+## Step #8. Connecting Font Awesome 7.2 icons
 
 Detailed instructions for connecting are available in the topic [**forum link**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36/topic185).
 
-### Step #9. Post-installation extensions
+## Step #9. Post-installation extensions
 
 Optionally install plugins, for example "Category Tree", or other extensions available in the [**Cotonti marketplace**](https://abuyfile.com/ru/market/cotonti).
 
@@ -394,7 +394,7 @@ ___
 
 ## Требования перед установкой
 
-Перед тем как приступить к установке, необходимо выполнить два простых шага. Без них начинать установку не имеет смысла.
+**Перед тем как приступить к установке, необходимо выполнить два простых шага. Без них начинать установку не имеет смысла.**
 
 ---
 
