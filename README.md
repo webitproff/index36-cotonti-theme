@@ -73,52 +73,124 @@ A theme in Cotonti is a set of files (`.tpl` templates, css, js, images and php 
 > For educational purposes, beginners are recommended to start with the **CleanCot** theme [**repository link**](https://github.com/webitproff/cot-CleanCot).  
 > It contains detailed explanations of the purpose of templates, and the code is commented, which helps in understanding how Cotonti works with Bootstrap.
 
-### Step #1.
 
-Download the archive of the current version of the "Index36" theme from the repository [**GitHub - archive link**](https://github.com/webitproff/index36-cotonti-theme/archive/refs/heads/main.zip).  
-The archive file is less than 1 MB in size.
+# Requirements Before Installation
 
-### Step #2.
+Before proceeding with the installation, you must complete two simple steps. Without them, there is no point in starting the installation.
 
-Unpack the archive and open the `themes` folder, which contains the `index36` folder.  
-Copy the `index36` folder to the `themes/` directory of your Cotonti site. The path should look like, for example:
+---
+
+## 1. Install **Font Awesome** 7.2 Icons
+
+With future updates of existing templates and the creation of new ones in mind — including templates for the admin panel — the icon library should now be placed directly in `/lib/fontawesome`. However, you do not need to upload the entire package.
+
+Only **four files** are required. Place them exactly as shown below:
+
+```
+/lib/fontawesome/css/all.min.css
+/lib/fontawesome/webfonts/fa-brands-400.woff2
+/lib/fontawesome/webfonts/fa-regular-400.woff2
+/lib/fontawesome/webfonts/fa-solid-900.woff2
+```
+
+Download **Font Awesome Free Version 7.2.0** (current at the time of writing) and select **“Download Free for Web.”**
+
+**Note:**
+When attempting to download, you will be prompted to enter your email address.
+
+Ignore everything. At the very bottom right of the modal window, click the link:
+
+> “Never mind. Continue with downloading Font Awesome Free”
+
+Click it and proceed.
+
+Unzip the downloaded archive on your computer.
+
+On the server, in your website root directory, locate the `lib` folder. Inside it, create a folder named `fontawesome`, then create the necessary subfolders and upload the files exactly as shown in the list above.
+
+---
+
+## 2. Force the Default Theme for All Users (Admin Panel)
+
+Go to the admin panel:
+
+**Site Management → Configuration → Themes**
+
+In the first row, find:
+
+**“Force the default theme for all users”**
+
+Select **“Yes”** (Mandatory!)
+
+After this, proceed to the theme installation.
+
+---
+
+# Theme Installation Process (Step by Step)
+
+## Step 1
+
+Download the latest version archive of the **Index36** theme from the **GitHub** repository (archive link).
+
+The archive file size is less than 1 MB.
+
+---
+
+## Step 2
+
+Extract the archive and open the `themes` folder. Inside it, you will find a folder named `index36`.
+
+Copy the `index36` folder into your Cotonti website’s `themes/` directory.
+
+The path should look like this:
 
 ```
 public_html/themes/index36/
 ```
 
-### Step #3.
+---
 
-Make sure all files and subfolders have been transferred without loss. It is best to use "FileZilla Client" or another file manager for remote access.  
-If you find any missing files, upload them again.
+## Step 3
 
-### Step #4. Configuration file setup
+Ensure that all files and subfolders were transferred correctly.
 
-Open the `datas/config.php` file in the root of your Cotonti site (e.g. `public_html/datas/config.php`).  
-Find the line with the theme setting:
+It is recommended to use **FileZilla Client** or another remote file manager.
+
+If you detect any missing files, re-upload them.
+
+---
+
+## Step 4 — Configure the Settings File
+
+Open the file:
 
 ```
-$cfg['defaulttheme'] = 'nemesis'; // or any other value you have instead of 'nemesis'
+datas/config.php
+```
+
+located in the root of your Cotonti site
+(for example: `public_html/datas/config.php`).
+
+Find the line that defines the theme:
+
+```php
+$cfg['defaulttheme'] = 'nemesis'; // or any other value instead of 'nemesis'
 ```
 
 Replace it with:
 
-```
+```php
 $cfg['defaulttheme'] = 'index36';
 ```
 
 Save the changes and upload the file back to the server.
 
-### Step #5. Activating the template
+---
 
-Go to the admin panel:  
-**Site management** → **Configuration** → **Themes**
+## Step 5 — Theme Activation
 
-1. In the first line "Force default theme for all users" select **Yes**.
-2. In the second line "Link to homepage in breadcrumb" select **Yes**.
-3. In the third line "Separator" leave the field empty.  
-   Configure the remaining options at your discretion.  
-   Don't forget to save the changes.
+Already completed.
+
 
 ### Step #6. Extrafields (optional)
 
@@ -318,6 +390,126 @@ ___
 > **"Index36" — это тема не для новичков.** Если вы только знакомитесь с Cotonti, вам следует сначала изучить XTemplate (CoTemplate), особенно синтаксис кода в .tpl-шаблонах.  
 > Для образовательных целей новичкам рекомендуется начать с темы **CleanCot** [**ссылка на репозиторий**](https://github.com/webitproff/cot-CleanCot).  
 > В ней подробно объясняется назначение шаблонов, а код прокомментирован, что помогает понять, как Cotonti работает с Bootstrap.
+
+
+## Требования перед установкой
+
+Перед тем как приступить к установке, необходимо выполнить два простых шага. Без них начинать установку не имеет смысла.
+
+---
+
+### 1. Установка иконок Font Awesome 7.2
+
+С учётом будущих обновлений старых шаблонов и создания новых, включая шаблоны для админ-панели, библиотеку иконок теперь необходимо размещать напрямую в `/lib/fontawesome`. При этом загружать весь пакет полностью не требуется.
+
+Необходимо всего четыре файла. Разместите их строго по следующим путям:
+
+```
+/lib/fontawesome/css/all.min.css
+/lib/fontawesome/webfonts/fa-brands-400.woff2
+/lib/fontawesome/webfonts/fa-regular-400.woff2
+/lib/fontawesome/webfonts/fa-solid-900.woff2
+```
+
+Скачайте **Font Awesome Free Version 7.2.0** (актуальную на момент написания) и выберите пункт **«Download Free for Web»**.
+
+**Примечание:**
+При попытке скачивания будет предложено ввести адрес электронной почты.
+
+Игнорируйте это требование. В самом низу модального окна справа нажмите ссылку:
+
+> “Never mind. Continue with downloading Font Awesome Free”
+
+Нажмите на неё и продолжайте загрузку.
+
+Распакуйте скачанный архив на своём компьютере.
+
+На сервере, в корневой директории сайта, найдите папку `lib`. Внутри неё создайте папку `fontawesome`, затем создайте необходимые подпапки и загрузите файлы строго в соответствии со списком выше.
+
+---
+
+### 2. Принудительная установка темы по умолчанию для всех пользователей (админ-панель)
+
+Перейдите в админ-панель:
+
+**Управление сайтом → Конфигурация → Темы**
+
+В первой строке найдите параметр:
+
+**«Принудительная установка темы по умолчанию для всех пользователей»**
+
+Выберите значение **«Да»** (обязательно).
+
+После этого переходите к установке темы.
+
+---
+
+## Процесс установки темы (пошагово)
+
+### Шаг 1
+
+Скачайте архив актуальной версии темы **Index36** из репозитория GitHub (ссылка на архив).
+
+Размер архива — менее 1 МБ.
+
+---
+
+### Шаг 2
+
+Распакуйте архив и откройте папку `themes`. Внутри неё находится папка `index36`.
+
+Скопируйте папку `index36` в директорию `themes/` вашего сайта Cotonti.
+
+Путь должен выглядеть следующим образом:
+
+```
+public_html/themes/index36/
+```
+
+---
+
+### Шаг 3
+
+Убедитесь, что все файлы и подпапки были переданы корректно.
+
+Рекомендуется использовать **FileZilla Client** или другой менеджер файлов для удалённого доступа.
+
+Если обнаружены отсутствующие файлы — загрузите их повторно.
+
+---
+
+### Шаг 4 — Настройка файла конфигурации
+
+Откройте файл:
+
+```
+datas/config.php
+```
+
+Он находится в корне сайта Cotonti
+(например: `public_html/datas/config.php`).
+
+Найдите строку, определяющую тему:
+
+```php
+$cfg['defaulttheme'] = 'nemesis'; // или любое другое значение вместо 'nemesis'
+```
+
+Замените её на:
+
+```php
+$cfg['defaulttheme'] = 'index36';
+```
+
+Сохраните изменения и загрузите файл обратно на сервер.
+
+---
+
+### Шаг 5 — Активация темы
+
+Уже выполнено.
+
+
 
 ### Шаг №1.
 
