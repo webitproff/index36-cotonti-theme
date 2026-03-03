@@ -224,7 +224,7 @@ Note: it is recommended to use images no larger than 1 MB (JPG/PNG).
 
 ## Step #8. Connecting Font Awesome 7.2 icons
 
-Detailed instructions for connecting are available in the topic [**forum link**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36/topic185).
+**Should already be completed before starting the installation**
 
 ## Step #9. Post-installation extensions
 
@@ -590,7 +590,7 @@ $cfg['defaulttheme'] = 'index36';
 
 ### Шаг №8. Подключение иконок Font Awesome 7.2
 
-Подробная инструкция по подключению доступна в теме [**ссылка на форум**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36/topic185).
+Это должно быть уже сделано до начала установки. Подробная инструкция по подключению доступна в теме [**ссылка на форум**](https://abuyfile.com/ru/forums/cotonti/original/skins/index36/topic185).
 
 ### Шаг №9. Постустановочные расширения
 
