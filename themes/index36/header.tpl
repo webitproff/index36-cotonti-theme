@@ -253,8 +253,8 @@
 						<!-- ENDIF -->
 					</ul>
 					<hr class="my-2">
-					<!-- IF {PHP|function_exists('cot_build_structure_page_tree')} AND {PHP|cot_auth('page', 'any', 'R')} -->
-					{PHP|cot_build_structure_page_tree('', '', 0, 'sidebar')}
+					<!-- IF {PHP|function_exists('cot_treecatspage_build_structure_page_tree')} AND {PHP|cot_auth('page', 'any', 'R')} -->
+					{PHP|cot_treecatspage_build_structure_page_tree('', '', 0, 'sidebar')}
 					<!-- ENDIF -->
 				</div>
 			</div>
@@ -522,3 +522,4 @@
 			<!-- END: HEADER -->
 
 				
+
