@@ -1,22 +1,22 @@
 <!--
-/********************************************************************************
- * File: i18n.page.tpl
- * Extension: plugin 'i18n'
- * Description: HTML template for i18n plugin.
- * Compatibility: CMF/CMS Cotonti Siena v0.9.26[](https://github.com/Cotonti/Cotonti)
- * Dependencies: 
- * 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
- * 		 Font Awesome Free 7.1[](https://fontawesome.com/)
- * Theme: Index36  
- * Version: 1.0.2 
- * Created: 01 Feb 2026 
- * Updated: 23 Feb 2026 
- * Copyright (c) 2026 webitproff | https://github.com/webitproff
- * Source: https://github.com/webitproff/index36-cotonti-theme
- * Demo : https://freelance-script.abuyfile.com/ 
- * Help and support: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
- * License: BSD (Free distribution with saving Copyright (c) 2026 webitproff)  
- ********************************************************************************/
+	/********************************************************************************
+	* File: i18n.page.tpl
+	* Extension: plugin 'i18n'
+	* Description: HTML template for i18n plugin.
+	* Compatibility: CMF/CMS Cotonti Siena v0.9.26[](https://github.com/Cotonti/Cotonti)
+	* Dependencies: 
+	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
+	* 		 Font Awesome Free 7.1[](https://fontawesome.com/)
+	* Theme: Index36  
+	* Version: 1.0.2 
+	* Created: 01 Feb 2026 
+	* Updated: 23 Feb 2026 
+	* Copyright (c) 2026 webitproff | https://github.com/webitproff
+	* Source: https://github.com/webitproff/index36-cotonti-theme
+	* Demo : https://freelance-script.abuyfile.com/ 
+	* Help and support: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
+	* License: BSD (Free distribution with saving Copyright (c) 2026 webitproff)  
+	********************************************************************************/
 -->
 <!-- BEGIN: MAIN -->
 
@@ -42,19 +42,10 @@
         <div class="row mb-5">
             <div class="col-12">
                 <div class="row g-0 align-items-stretch">
-                    <div class="col-12 col-md-6">
-                        <div class="p-3 mb-0 mb-md-0 bg-success text-white rounded-start fw-bold text-center text-md-start h-100 d-flex align-items-center justify-content-center justify-content-md-start">
-                            {PHP.L.i18n_original} ({I18N_ORIGINAL_LANG})
-						</div>
+					<div class="p-3 mb-0 mb-md-0 bg-success text-white rounded-3 fw-bold text-center text-md-start h-100 d-flex align-items-center justify-content-center justify-content-md-start">
+						{PHP.L.i18n_original} ({I18N_ORIGINAL_LANG})
 					</div>
-                    <div class="col-12 col-md-6 d-none d-md-block">
-                        <div class="p-3 mb-0 bg-warning text-dark rounded-end fw-bold text-center text-md-start h-100 d-flex align-items-center justify-content-center justify-content-md-start">
-                            <div class="row g-0 w-100">
-                                <div class="col-6 d-none d-md-block">{PHP.L.i18n_localized}</div>
-                                <div class="col-12 col-md-6">{I18N_LOCALIZED_LANG}</div>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -91,12 +82,7 @@
                     <!-- Локализация (правая колонка) -->
                     <div class="col-12 col-md-6 bg-warning-subtle p-3 p-md-5">
 						
-                        <!-- На мобильных показываем язык перевода крупно сверху -->
-                        <div class="d-block d-md-none mb-4">
-                            <div class="p-3 bg-warning text-dark rounded fw-bold text-center">
-                                Перевод на: {I18N_LOCALIZED_LANG}
-							</div>
-						</div>
+						
 						
                         <div class="py-2">
                             <label class="form-label fw-semibold">{PHP.L.Title}</label>
@@ -121,10 +107,15 @@
                             <label class="form-label fw-semibold">{PHP.L.Text}</label>
                             <div class="form-floating">
                                 {I18N_IPAGE_TEXT}
-                                <label for="ipage-text">Локализованный текст</label>
+                                <label for="ipage-text">{PHP.L.i18n_localized}</label>
 							</div>
 						</div>
-						
+                        <div class="p-3 mb-0 bg-warning text-dark ">
+                            <div class="row g-0 w-100">
+                                <div class="col-12 col-md-6">{PHP.L.i18n_locale_selection}</div>
+                                <div class="col-12 col-md-6">{I18N_LOCALIZED_LANG}</div>
+							</div>
+						</div>						
                         <div class="col-12 text-center py-5 mt-5">
                             <button type="submit" class="btn btn-primary btn-lg px-5 py-3">
                                 <i class="fa-solid fa-floppy-disk me-2"></i>{PHP.L.Submit}
