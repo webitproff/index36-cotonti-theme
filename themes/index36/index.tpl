@@ -24,9 +24,7 @@
 		<div class="position-absolute top-0 end-0 d-none d-lg-block pe-4 mt-n4">
 			<img src="{PHP.cfg.themes_dir}/{PHP.cfg.defaulttheme}/img/help.svg" class="img-fluid" style="max-width:260px" alt="">
 		</div>
-		
 		<h2 class="mt-4 fs-4 fw-medium text-secondary">{PHP.langSkStr.indexWeCanHelp}</h2>
-		
 		<!-- IF {PHP|cot_plugin_active('search')} -->	
 		<div class="card mx-auto border-0 shadow-sm rounded-5 p-2 mt-4" style="max-width:420px">
 			<form id="search" action="{PHP|cot_url('search')}" method="GET" class="w-100 d-flex">
@@ -34,8 +32,9 @@
 					<!-- Hidden input required for URL editor compatibility -->
 					<!-- IF {PHP.cfg.plugin.urleditor.preset} !== 'handy' -->
 					<input type="hidden" name="e" value="search" />
+					<input type="hidden" name="l" value="{PHP.lang}" />
 					<!-- ENDIF -->
-					<input type="text" name="sq" class="rounded-start-5 form-control" placeholder="{PHP.L.Search}..." />
+					<input id="searchInput" type="text" name="sq" class="rounded-start-5 form-control" placeholder="{PHP.L.Search}..." />
 					<button type="submit" class="btn btn-primary rounded-end-5 " title="{PHP.L.Search}">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
@@ -45,13 +44,20 @@
 		<!-- ENDIF -->
 		<div class="mt-3 d-flex flex-wrap justify-content-center align-items-center gap-2">
 			<span class="text-muted me-2">{PHP.langSkStr.indexPopularSearched}:</span>
-			<span class="badge rounded-pill bg-info bg-opacity-10 text-info">{PHP.langSkStr.blank_temporary_example}</span>
-			<span class="badge rounded-pill bg-danger bg-opacity-10 text-danger">Developers</span>
-			<span class="badge rounded-pill bg-primary bg-opacity-10 text-primary">Repair</span>
-			<span class="badge rounded-pill bg-success bg-opacity-10 text-success">Billing</span>
-			<span class="badge rounded-pill bg-warning bg-opacity-10 text-warning">Cotonti</span>
+			<span class="popular btn badge rounded-pill bg-info bg-opacity-10 text-info">AI</span>
+			<span class="popular btn badge rounded-pill bg-danger bg-opacity-10 text-danger">Developers</span>
+			<span class="popular btn badge rounded-pill bg-primary bg-opacity-10 text-primary">Repair</span>
+			<span class="popular btn badge rounded-pill bg-success bg-opacity-10 text-success">Billing</span>
+			<span class="popular btn badge rounded-pill bg-warning bg-opacity-10 text-warning">Cotonti</span>
 		</div>
 	</div>
+	<script>
+	document.querySelectorAll('.popular').forEach(el => {
+		el.addEventListener('click', function () {
+			document.getElementById('searchInput').value = this.textContent.trim();
+		});
+	});
+	</script>
 </div>	
 <div class="container-xl py-4">
 	<!-- Content -->
@@ -312,3 +318,4 @@
 	<!-- ENDIF -->
 </div>
 <!-- END: MAIN -->
+
