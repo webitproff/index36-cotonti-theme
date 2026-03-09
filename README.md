@@ -9,7 +9,17 @@
 
 ## [LIVE DEMO](https://freelance-script.abuyfile.com/)
 
+___
 
+## ▶️ Watch the demo video
+
+<a href="https://www.youtube.com/watch?v=FKt5SQu4890">
+  <img src="https://img.youtube.com/vi/FKt5SQu4890/maxresdefault.jpg" width="600">
+</a>
+
+___
+
+#### Picture illustation
 ![index-36_pict_3](https://github.com/user-attachments/assets/0bbd7b83-6e90-41ec-8e37-a2d9626b704f)
 
 
