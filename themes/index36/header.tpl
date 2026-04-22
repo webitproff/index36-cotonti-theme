@@ -10,7 +10,7 @@
 	* Theme: Index36  
 	* Version: 1.0.2 
 	* Created: 01 Feb 2026 
-	* Updated: 23 Feb 2026 
+	* Updated: 22 Apr 2026 
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Demo : https://freelance-script.abuyfile.com/ 
@@ -20,7 +20,12 @@
 -->
 <!-- BEGIN: HEADER -->
 <!DOCTYPE html>
-<html lang="{PHP.usr.lang}" data-bs-theme="light">
+	<!-- IF {HTML_LANG} -->
+	<html lang="{HTML_LANG}" data-bs-theme="light">
+	<!-- ELSE -->
+	<html lang="{PHP.usr.lang}" data-bs-theme="light">
+	<!-- ENDIF -->
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +33,18 @@
 		<!-- IF {HEADER_META_DESCRIPTION} -->
 		<meta name="description" content="{HEADER_META_DESCRIPTION}" />
 		<!-- ENDIF -->
-		<meta http-equiv="content-type" content="{HEADER_META_CONTENTTYPE}; charset=UTF-8" />
+		<!-- IF {HEADER_BASEHREF} -->
+		{HEADER_BASEHREF}
+		<!-- ENDIF -->
+		<!-- IF {HEADER_CANONICAL_URL} -->
+		<link rel="canonical" href="{HEADER_CANONICAL_URL}" />
+		<!-- ENDIF -->
+		<!-- IF {ALTERNATE_TAGS} -->
+		{ALTERNATE_TAGS}
+		<!-- ENDIF -->
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="icon" href="{PHP.cfg.themes_dir}/{PHP.theme}/img/icon.webp" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 		<!-- IF {PHP.out.meta} -->
 		{PHP.out.meta}
 		<!-- ENDIF -->
@@ -40,11 +56,7 @@
 				document.documentElement.setAttribute('data-bs-theme', defaultTheme);
 			})();
 		</script>
-		{HEADER_BASEHREF}
 		{HEADER_HEAD}
-		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="icon" href="{PHP.cfg.themes_dir}/{PHP.theme}/img/app-logo.svg" type="image/svg+xml">
-		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 	</head>
 	<body class="sidebar-closed">
 		<header class="navbar navbar-expand-lg shadow-sm fixed-top" style="background-color: var(--bs-header-bg);" data-bs-theme="inherit"> 
