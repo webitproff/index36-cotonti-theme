@@ -3,17 +3,18 @@
 	* File: header.tpl
 	* Extension: Core'
 	* Description: HTML template for header.tpl.
-	* Compatibility: CMF/CMS Cotonti Siena v0.9.26[](https://github.com/Cotonti/Cotonti)
+	* Compatibility: CMF/CMS Cotonti v.1.0.0. (https://github.com/Cotonti/Cotonti)
 	* Dependencies: 
-	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
-	* 		 Font Awesome Free 7.1[](https://fontawesome.com/)
+	* 		 Bootstrap 5.3.+ (https://getbootstrap.com/); 
+	* 		 Font Awesome Free 7.3 (https://fontawesome.com/)
 	* Theme: Index36  
-	* Version: 1.0.2 
+	* Version: 1.0.3 
 	* Created: 01 Feb 2026 
-	* Updated: 22 Apr 2026 
+	* Updated: 18 Sep 2026 
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
-	* Demo : https://freelance-script.abuyfile.com/ 
+	* Page in Marcetplace : https://abuyfile.com/ru/market/cotonti/themes/index36
+	* YouTube : https://www.youtube.com/watch?v=FKt5SQu4890
 	* Help and support: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
 	* License: BSD (Free distribution with saving Copyright (c) 2026 webitproff)  
 	********************************************************************************/
@@ -145,13 +146,13 @@
 					
 					<button class="btn p-0 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#profileRightOffcanvas" aria-controls="profileRightOffcanvas" title="Аккаунт"> 
 						<!-- IF {PHP|cot_plugin_active('userimages')} -->
-						<!-- IF {PHP.usr.profile.user_avatar} -->
-						<img class="rounded-circle me-2 bg-white profile-img" src="{PHP.usr.profile.user_avatar}" alt="{PHP.usr.name}" width="36" height="36" style="object-fit: cover;">
+							<!-- IF {PHP.usr.profile.user_avatar} -->
+							<img class="rounded-circle me-2 bg-white profile-img" src="{PHP.usr.profile.user_avatar}" alt="{PHP.usr.name}" width="36" height="36" style="object-fit: cover;">
+							<!-- ELSE -->
+							<img class="rounded-circle me-2 profile-img" src="{PHP.R.userimg_default_avatar}" alt="{PHP.usr.name}" width="36" height="36" style="object-fit: cover;">
+							<!-- ENDIF -->
 						<!-- ELSE -->
-						<img class="rounded-circle me-2 profile-img" src="{PHP.R.userimg_default_avatar}" alt="{PHP.usr.name}" width="36" height="36" style="object-fit: cover;">
-						<!-- ENDIF -->
-						<!-- ELSE -->
-						<img class="rounded-circle me-2 profile-img" src="{PHP.R.userimg_default_avatar}" alt="{PHP.usr.name}" width="36" height="36" style="object-fit: cover;">
+							<img class="rounded-circle me-2 profile-img" src="{PHP.R.userimg_default_avatar}" alt="{PHP.usr.name}" width="36" height="36" style="object-fit: cover;">
 						<!-- ENDIF -->
 					</button>
 					
@@ -253,20 +254,24 @@
 											<i class="fa fa-list me-2"></i> {PHP.langSkStr.pageStructureCats}
 										</a>
 									</li>
+									<!-- IF {PHP.db_pages} -->
 									<li>
 										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields&n={PHP.db_pages}')}" 
 										title="{PHP.langSkStr.pageExtrafieldsAdmin}">
 											<i class="fa fa-magic me-2"></i> {PHP.langSkStr.pageExtrafields}
 										</a>
 									</li>
+									<!-- ENDIF -->
 								</ul>
 							</div>
 						</li>
 						<!-- ENDIF -->
 					</ul>
 					<hr class="my-2">
+					<!-- IF {PHP|cot_plugin_active('treecatspage')} -->
 					<!-- IF {PHP|function_exists('cot_treecatspage_build_structure_page_tree')} AND {PHP|cot_auth('page', 'any', 'R')} -->
 					{PHP|cot_treecatspage_build_structure_page_tree('', '', 0, 'sidebar')}
+					<!-- ENDIF -->
 					<!-- ENDIF -->
 				</div>
 			</div>
@@ -318,17 +323,17 @@
 											<i class="fa fa-list me-2"></i> {PHP.langSkStr.forumStructureCats}
 										</a>
 									</li>
-									<!-- IF {PHP.db_x} -->
+									<!-- IF {PHP.db_forum_topics} -->
 									<li>
-										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields', '&n={PHP.db_x}forum_topics')}" 
+										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields&n={PHP.db_forum_topics}')}" 
 										title="{PHP.langSkStr.forumTopicExtrafieldsAdmin}">
 											<i class="fa fa-magic me-2"></i> {PHP.langSkStr.forumTopicExtrafields}
 										</a>
 									</li>
 									<!-- ENDIF -->
-									<!-- IF {PHP.db_x} -->
+									<!-- IF {PHP.db_forum_posts} -->
 									<li>
-										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields', '&n={PHP.db_x}forum_posts')}" 
+										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields&n={PHP.db_forum_posts}')}" 
 										title="{PHP.langSkStr.forumPostExtrafieldsAdmin}">
 											<i class="fa fa-magic me-2"></i> {PHP.langSkStr.forumPostExtrafields}
 										</a>
@@ -388,12 +393,14 @@
 											<i class="fa fa-cog me-2"></i>{PHP.langSkStr.userConfigModule}
 										</a>
 									</li>
+									<!-- IF {PHP.db_users} -->
 									<li>
 										<a class="nav-link" href="{PHP|cot_url('admin', 'm=extrafields&n={PHP.db_users}')}" 
 										title="{PHP.langSkStr.userExtrafieldsAdmin}">
 											<i class="fa fa-magic me-2"></i> {PHP.langSkStr.userExtrafields}
 										</a>
 									</li>
+									<!-- ENDIF -->
 								</ul>
 							</div>
 						</li>
@@ -532,6 +539,4 @@
 		
 		<main>
 			<!-- END: HEADER -->
-
 				
-
