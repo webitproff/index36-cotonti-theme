@@ -9,6 +9,16 @@
 
 ## [LIVE DEMO](https://freelance-script.abuyfile.com/)
 
+Updated and reworked version of the website theme. Recommended only for a new (clean) installation on a new site built on CMF Cotonti v.1.0.0. It can be installed on a working site, but you must first make a backup of your site and database. If something doesn't work out, write on the **[forum](https://abuyfile.com/ru/forums/cotonti/original/skins/index36)** or reach out via **[private messages](https://github.com/webitproff)**.
+
+Обновленная и переработанная версия темы сайта. Рекомендуется только для новой (чистой) установки на новый сайт на CMF Cotonti v.1.0.0. Можно устанавливать на работающий сайт, но обязательно, предварительно выполнив резервное копирование своего сайта и БД. Если что-то не получается - пишите на **[форуме](https://abuyfile.com/ru/forums/cotonti/original/skins/index36)** или стучите в **[личные сообщения](https://github.com/webitproff)**.
+
+<img width="1903" height="2164" alt="CMS Freelance Market Script AChG Engine light" src="https://github.com/user-attachments/assets/75e1ada9-169b-4a65-a79c-dc696ca4d9fa" />
+
+--
+
+
+<img width="1903" height="2164" alt="CMS Freelance Market Script AChG Engine" src="https://github.com/user-attachments/assets/d39198d8-aa1a-4306-8f2d-6848201c84be" />
 
 ___
 
