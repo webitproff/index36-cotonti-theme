@@ -1,6 +1,6 @@
 # Index36: Modern Theme for Cotonti CMF
 
-[![Version](https://img.shields.io/badge/version-1.0.3-green.svg)](https://github.com/webitproff/index36-cotonti-theme/releases)
+[![Version](https://img.shields.io/badge/version-2.0.1-green.svg)](https://github.com/webitproff/index36-cotonti-theme/releases)
 [![Cotonti Compatibility](https://img.shields.io/badge/Cotonti-v.1.0-orange.svg)](https://github.com/Cotonti/Cotonti)
 [![PHP](https://img.shields.io/badge/PHP-8.5-purple.svg)](https://www.php.net/ChangeLog-8.php#PHP_8_5)
 [![MySQL](https://img.shields.io/badge/MySQL-8.4-blue.svg)](https://www.mysql.com/)
