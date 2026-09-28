@@ -1695,3 +1695,85 @@ a:hover {
 .fancybox__container {
   z-index: 1250;
 }
+
+
+/* ============================================
+   Цитаты на форуме (blockquote)
+   ============================================ */
+
+/* Общий контейнер цитаты */
+blockquote {
+  /* Внешние отступы: сверху и снизу — воздух, слева/справа — на всю ширину */
+  margin: 1rem 0;
+  /* Внутренние отступы: слева больше — под вертикальную линию */
+  padding: 0.85rem 1rem 0.85rem 1.1rem;
+  /* Фон — слегка приглушённый, чтобы цитата отделялась от обычного текста */
+  background: var(--bg-tertiary);
+  /* Акцентная вертикальная линия слева */
+  border-left: 3px solid var(--accent);
+  /* Скругление правых углов; левые остаются прямыми — линия читается чище */
+  border-radius: 0 10px 10px 0;
+  /* Цвет текста — вторичный, чтобы визуально отличался от обычного абзаца */
+  color: var(--text-secondary);
+  /* Курсив убираем — в тёмной теме он плохо читается */
+  font-style: normal;
+  /* Размер шрифта — как у обычного текста, не мельче */
+  font-size: 0.95rem;
+  /* Межстрочный интервал чуть свободнее для читаемости */
+  line-height: 1.55;
+  /* Позиция для возможного декоративного элемента */
+  position: relative;
+}
+
+/* Внутренние <p> внутри цитаты — сжимаем вертикальные отступы */
+blockquote p {
+  margin: 0 0 0.5rem;
+}
+
+/* Последний абзац без нижнего отступа */
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Ссылка-якорь (#444) в начале цитаты — плашка автора */
+blockquote > p:first-child a:first-child {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-right: 0.5rem;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+/* Ховер на якорь — мягкое затемнение */
+blockquote > p:first-child a:first-child:hover {
+  color: #fff;
+  filter: brightness(1.1);
+  text-decoration: none;
+}
+
+/* Имя автора после якоря */
+blockquote > p:first-child strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* Вложенные цитаты — уменьшаем акцент, чтобы не рябило */
+blockquote blockquote {
+  background: var(--bg-secondary);
+  border-left-color: var(--text-muted);
+  margin: 0.5rem 0 0;
+}
+
+/* Мобильный: минимальные отступы и без скругления справа */
+@media (max-width: 600px) {
+  blockquote {
+    padding: 0.7rem 0.8rem 0.7rem 0.9rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9rem;
+  }
+}
