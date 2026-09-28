@@ -1691,3 +1691,7 @@ a:hover {
 .modal-backdrop {
   z-index: 1205;
 }
+
+.fancybox__container {
+  z-index: 1250;
+}
