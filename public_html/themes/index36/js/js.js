@@ -9,3 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+// для закладок, если в статье есть оглавление со ссылками на разделы
+document.addEventListener('DOMContentLoaded', function() {
+	const path = window.location.pathname.replace(/^\//, ''); // текущий путь без начального слеша
+	document.querySelectorAll('a[href^="#"]').forEach(link => {
+		link.href = path + link.getAttribute('href');
+	});
+});
