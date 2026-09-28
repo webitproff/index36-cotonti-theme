@@ -548,7 +548,16 @@
 			});
 		}
 	</script>
-
+    <script>
+	Fancybox.bind('[data-fancybox="video"]', {
+	  Toolbar: {
+		display: ["close"]
+	  },
+	  iframe: {
+		preload: false
+	  }
+	});
+    </script>
 	
 </body>
 </html>
