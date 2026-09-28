@@ -1664,3 +1664,30 @@ a:hover {
   border-color: var(--border-color);
   opacity: 0.5;
 }
+/* ============================================
+   Offcanvas поверх шапки
+   ============================================ */
+
+/* Bootstrap offcanvas по умолчанию z-index: 1045,
+   а у .header — 1100. Из-за этого шапка перекрывает панель.
+   Поднимаем offcanvas и его затемнение выше шапки. */
+
+/* Сам offcanvas */
+.offcanvas {
+  z-index: 1200;
+}
+
+/* Затемняющая подложка (появляется при открытии offcanvas) */
+.offcanvas-backdrop {
+  z-index: 1190;
+}
+
+/* Модалки Bootstrap (authModal и прочие) — тоже выше шапки */
+.modal {
+  z-index: 1210;
+}
+
+/* Затемнение модалки */
+.modal-backdrop {
+  z-index: 1205;
+}
