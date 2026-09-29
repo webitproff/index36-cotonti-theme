@@ -135,7 +135,7 @@
 					</div>
 					
 					<div class="col-md-9 col-lg-10">
-						<div class="mb-3">
+						<div class="text-content mb-4">
 							{FORUMS_POSTS_ROW_TEXT}
 						</div>
 						

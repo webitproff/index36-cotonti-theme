@@ -180,7 +180,6 @@
 				<div class="card h-100 border-0 shadow-sm overflow-hidden blog-card">
 					<div class="row g-0 flex-lg-row">
 						<div class="col-12">
-							<div class="ratio ratio-4x3 ratio-lg-1x1 image-container">
 								<!-- IF {PHP|cot_plugin_active('attacher')} -->
 								<!-- IF {LIST_ROW_ID|att_count('page', $this, '', 'images')} > 0 --> 
 								{LIST_ROW_ID|att_display('page',$this,'','attacher.display.listfirst','images',1)}
@@ -190,8 +189,6 @@
 								<!-- ELSE -->
 								<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{PAGE_TITLE}">
 								<!-- ENDIF --> 
-								
-							</div>
 						</div>
 						<div class="col-12">
 							<div class="card-body d-flex flex-column h-100 p-4">

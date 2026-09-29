@@ -76,7 +76,7 @@
 			
 			<article class="card shadow-sm mb-4">
 				<div class="card-body">
-					<div class="content">
+					<div class="text-content mb-4">
 						{PAGE_TEXT}
 					</div>
 					<!-- BEGIN: PAGE_FILE -->
@@ -165,55 +165,55 @@
 </div>
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "url": "{PHP.cfg.mainurl}/{PAGE_URL}",
-      "@id": "{PHP.cfg.mainurl}/{PAGE_URL}#webpage",
-      "name": "{PAGE_TITLE}",
-	  "description": "{PAGE_TEXT|strip_tags($this)|mb_substr($this,0,1999,'UTF-8')|preg_replace('/([\"\\\\])/u','\\$1',$this)|preg_replace('/\\s+/u',' ',$this)}",
-      "headline": "{PAGE_TITLE}",
-      "inLanguage": "{PHP.usr.lang}",
-      "relatedLink": [
-        "{PHP.cfg.mainurl}/{PAGE_CAT_URL}",
-        "{PHP.cfg.mainurl}/contact"
-      ],
-      "isPartOf": {
-        "@type": "WebSite",
-        "@id": "{PHP.cfg.mainurl}/#website",
-        "url": "{PHP.cfg.mainurl}/"
-      },
-      "breadcrumb": {
-        "@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "{PHP.L.Main}",
-          "item": "{PHP.cfg.mainurl}"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "{PAGE_CAT_TITLE}",
-          "item": "{PHP.cfg.mainurl}/{PAGE_CAT_URL}"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "{PAGE_TITLE}",
-          "item": "{PHP.cfg.mainurl}/{PAGE_URL}"
-        }
-      ]
-    }
-  ]
-}
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+		{
+			"@type": "WebPage",
+			"url": "{PHP.cfg.mainurl}/{PAGE_URL}",
+			"@id": "{PHP.cfg.mainurl}/{PAGE_URL}#webpage",
+			"name": "{PAGE_TITLE}",
+			"description": "{PAGE_TEXT|strip_tags($this)|mb_substr($this,0,1999,'UTF-8')|preg_replace('/([\"\\\\])/u','\\$1',$this)|preg_replace('/\\s+/u',' ',$this)}",
+			"headline": "{PAGE_TITLE}",
+			"inLanguage": "{PHP.usr.lang}",
+			"relatedLink": [
+			"{PHP.cfg.mainurl}/{PAGE_CAT_URL}",
+			"{PHP.cfg.mainurl}/contact"
+			],
+			"isPartOf": {
+				"@type": "WebSite",
+				"@id": "{PHP.cfg.mainurl}/#website",
+				"url": "{PHP.cfg.mainurl}/"
+			},
+			"breadcrumb": {
+				"@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb"
+			}
+		},
+		{
+			"@type": "BreadcrumbList",
+			"@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb",
+			"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "{PHP.L.Main}",
+				"item": "{PHP.cfg.mainurl}"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "{PAGE_CAT_TITLE}",
+				"item": "{PHP.cfg.mainurl}/{PAGE_CAT_URL}"
+			},
+			{
+				"@type": "ListItem",
+				"position": 3,
+				"name": "{PAGE_TITLE}",
+				"item": "{PHP.cfg.mainurl}/{PAGE_URL}"
+			}
+			]
+		}
+		]
+	}
 </script>
 <!-- END: MAIN -->

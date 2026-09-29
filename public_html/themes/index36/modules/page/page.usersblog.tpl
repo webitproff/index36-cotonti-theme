@@ -211,21 +211,37 @@
 						</span>
 					</div>
 					<!-- ENDIF -->
-				</div>				
+				</div>	
 				<div class="mb-4">
 					<!-- IF {PHP|cot_plugin_active('attacher')} -->
-					<!-- IF {PAGE_ID|att_count('page', $this, '', 'images')} > 0 --> 
-					{PAGE_ID|att_display('page',$this,'','attacher.display.first','images',1)}
-					<!-- ELSE -->
-					<img src="{PHP.R.page_default_image}" class="img-fluid rounded" style="height:320px;width:100%;object-fit:cover;" alt="{PAGE_TITLE}">
+					<!-- IF {PAGE_ID|att_count('page', $this, '', 'images')} > 0 -->
+					<!-- IF {PAGE_ID|att_count('page', $this, '', 'images')} > 0 -->
+					<div class="mb-3">{PAGE_ID|att_display('page', $this, '', 'attacher.display.grid.first', 'images', '1')}</div>
+					<!-- ENDIF -->
+					<!-- IF {PAGE_ID|att_count('page', $this, '', 'images')} > 1 -->
+					<div class="mb-3">{PAGE_ID|att_display('page', $this, '', 'attacher.display.grid.other', 'images', '')}</div>
 					<!-- ENDIF -->
 					<!-- ELSE -->
-					<img src="{PHP.R.page_default_image}" class="img-fluid rounded" style="height:320px;width:100%;object-fit:cover;" alt="{PAGE_TITLE}">
-					<!-- ENDIF -->      
+					<div class="position-relative overflow-hidden rounded-5 shadow-bottom" style="aspect-ratio: 2 / 1; background-image: url('{PHP.R.page_default_image}'); background-size: cover; background-position: center;"></div>
+					<!-- ENDIF -->
+					<!-- ENDIF -->
 				</div>
-				<div class="mb-4">
-					{PAGE_TEXT}
-				</div>	
+				<div class="readmore-block mb-3" id="protected-block">
+					<div class="readmore-body text-content mb-4">
+						{PAGE_TEXT}
+					</div>
+					<div class="d-flex align-items-center my-4">
+						<hr class="flex-grow-1">
+						<button type="button"
+						class="readmore-btn d-none"
+						id="readMoreBtn"
+						data-read-more="{PHP.L.market_read_more}"
+						data-collapse="{PHP.L.market_collapse}">
+							{PHP.L.market_read_more}
+						</button>
+						<hr class="flex-grow-1">
+					</div>
+				</div>
 			</div>		
 			<div class="d-flex justify-content-between align-items-center mb-3">
 				<span class="small">
@@ -253,9 +269,9 @@
 		<!-- SIDEBAR -->
 		<div class="col-12 col-lg-4">		
 			<div class="position-sticky" style="top: 2rem;">
-
+				
 				<div class="card border-0 shadow-sm mb-5 overflow-hidden">
-			    <img src="{PHP.R.page_default_image}" class="card-img-top" style="height:112px; object-fit:cover;" alt="{PAGE_OWNER_NICKNAME}">
+					<img src="{PHP.R.page_default_image}" class="card-img-top" style="height:112px; object-fit:cover;" alt="{PAGE_OWNER_NICKNAME}">
 					<div class="card-body text-center pt-5 position-relative">
 						<!-- IF {PHP|cot_plugin_active('userimages')} -->	
 						<!-- IF {PAGE_OWNER_AVATAR_SRC} -->
@@ -390,55 +406,55 @@
 </div>
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "url": "{PHP.cfg.mainurl}/{PAGE_URL}",
-      "@id": "{PHP.cfg.mainurl}/{PAGE_URL}#webpage",
-      "name": "{PAGE_TITLE}",
-	   "description": "{PAGE_TEXT|strip_tags($this)|mb_substr($this,0,1999,'UTF-8')|preg_replace('/([\"\\\\])/u','\\$1',$this)|preg_replace('/\\s+/u',' ',$this)}", 
-      "headline": "{PAGE_TITLE}",
-      "inLanguage": "{PHP.usr.lang}",
-      "relatedLink": [
-        "{PHP.cfg.mainurl}/{PAGE_CAT_URL}",
-        "{PHP.cfg.mainurl}/contact"
-      ],
-      "isPartOf": {
-        "@type": "WebSite",
-        "@id": "{PHP.cfg.mainurl}/#website",
-        "url": "{PHP.cfg.mainurl}/"
-      },
-      "breadcrumb": {
-        "@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "{PHP.L.Main}",
-          "item": "{PHP.cfg.mainurl}"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "{PAGE_CAT_TITLE}",
-          "item": "{PHP.cfg.mainurl}/{PAGE_CAT_URL}"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "{PAGE_TITLE}",
-          "item": "{PHP.cfg.mainurl}/{PAGE_URL}"
-        }
-      ]
-    }
-  ]
-}
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+		{
+			"@type": "WebPage",
+			"url": "{PHP.cfg.mainurl}/{PAGE_URL}",
+			"@id": "{PHP.cfg.mainurl}/{PAGE_URL}#webpage",
+			"name": "{PAGE_TITLE}",
+			"description": "{PAGE_TEXT|strip_tags($this)|mb_substr($this,0,1999,'UTF-8')|preg_replace('/([\"\\\\])/u','\\$1',$this)|preg_replace('/\\s+/u',' ',$this)}", 
+			"headline": "{PAGE_TITLE}",
+			"inLanguage": "{PHP.usr.lang}",
+			"relatedLink": [
+			"{PHP.cfg.mainurl}/{PAGE_CAT_URL}",
+			"{PHP.cfg.mainurl}/contact"
+			],
+			"isPartOf": {
+				"@type": "WebSite",
+				"@id": "{PHP.cfg.mainurl}/#website",
+				"url": "{PHP.cfg.mainurl}/"
+			},
+			"breadcrumb": {
+				"@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb"
+			}
+		},
+		{
+			"@type": "BreadcrumbList",
+			"@id": "{PHP.cfg.mainurl}/{PAGE_URL}#breadcrumb",
+			"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "{PHP.L.Main}",
+				"item": "{PHP.cfg.mainurl}"
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"name": "{PAGE_CAT_TITLE}",
+				"item": "{PHP.cfg.mainurl}/{PAGE_CAT_URL}"
+			},
+			{
+				"@type": "ListItem",
+				"position": 3,
+				"name": "{PAGE_TITLE}",
+				"item": "{PHP.cfg.mainurl}/{PAGE_URL}"
+			}
+			]
+		}
+		]
+	}
 </script>
 <!-- END: MAIN -->

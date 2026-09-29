@@ -174,7 +174,7 @@
 				<div class="card-body">
 					<!-- BEGIN: USERS_DETAILS_ADMIN -->  [ {USERS_DETAILS_ADMIN_EDIT} ]<!-- END: USERS_DETAILS_ADMIN -->
 					<div class="table-responsive">
-						<table class="cells">
+						<table class="table table-striped table-hover">
 							<!-- IF {PHP|cot_module_active('pm')} -->
 							<tr>
 								<td>{PHP.L.users_sendpm}:</td>
