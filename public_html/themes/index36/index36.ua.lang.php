@@ -97,6 +97,7 @@ $langSkStr['footer_creation_time'] = 'Час генерації';
 $langSkStr['footer_hooks_fired'] = 'Запущено хуків';
 $langSkStr['footer_sql_statistics'] = 'Статистика SQL';
 $langSkStr['footer_download_index36'] = 'Шаблон сайту <strong>«Index36»</strong> завантажити безкоштовно';
+$langSkStr['footer_download_index36_title'] = 'Шаблон сайту «Index36» завантажити безкоштовно';
 
 $langSkStr['pageInformation'] = 'Інформація про сторінку';
 $langSkStr['pageDateCreated'] = 'Сторінка створена';
