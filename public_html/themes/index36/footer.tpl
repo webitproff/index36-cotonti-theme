@@ -360,12 +360,12 @@
 	<div class="row">
 		<div class="col-12 col-lg-4 mb-2">
 			<small>
-				<span class="fw-semibold" style="color: var(--accent);">© 2026 <!-- IF {PHP.cfg.maintitle} -->{PHP.cfg.maintitle}<!-- ELSE -->{PHP.cfg.market.marketlist_default_title}<!-- ENDIF --></span>
+				<span class="fw-semibold" style="color: var(--accent);"> © 2012 - {PHP.sys.now|cot_date('d-m-Y', $this)} <!-- IF {PHP.cfg.maintitle} -->{PHP.cfg.maintitle}<!-- ELSE -->{PHP.cfg.market.marketlist_default_title}<!-- ENDIF --></span>
 			</small>
 		</div>
 		<div class="col-12 col-lg-4">
 			<small>
-				<a href="https://github.com/Cotonti/Cotonti" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-title="{PHP.L.footer_cotonti_tooltip}" title="{PHP.L.footer_cotonti_tooltip}">
+				<a href="https://github.com/Cotonti/Cotonti" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-title="{PHP.langSkStr.footer_cotonti_tooltip}" title="{PHP.langSkStr.footer_cotonti_tooltip}">
 					<span class="me-1">{PHP.langSkStr.footer_engine}</span>
 					<img src="{PHP.cfg.mainurl}/favicon-32x32.png" width="27" height="27" alt="Cotonti CMF">
 					<span class="ms-1">{PHP.langSkStr.footer_cotonti} v.{PHP.cfg.version}</span>
@@ -374,7 +374,7 @@
 		</div>
 		<div class="col-12 col-lg-4">
 			<small>
-				<a href="https://github.com/webitproff/index36-cotonti-theme/tree/main" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-title="{PHP.langSkStr.footer_download_index36}" title="{PHP.langSkStr.footer_download_index36}">
+				<a href="https://github.com/webitproff/index36-cotonti-theme/tree/main" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-title="{PHP.langSkStr.footer_download_index36_title}" title="{PHP.langSkStr.footer_download_index36_title}">
 					<span>{PHP.langSkStr.footer_download_index36} </span>
 				</a>
 			</small>
