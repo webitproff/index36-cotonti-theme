@@ -11,6 +11,8 @@
 
 Updated and reworked version of the website theme. Recommended only for a new (clean) installation on a new site built on CMF Cotonti v.1.0.0. It can be installed on a working site, but you must first make a backup of your site and database. If something doesn't work out, write on the **[forum](https://abuyfile.com/ru/forums/cotonti/original/skins/index36)** or reach out via **[private messages](https://github.com/webitproff)**.
 
+Полное **описание на русском <a title="ABOUT_RU.MD" aria-label="ABOUT_RU.MD, (File)" class="Link--primary" href="/webitproff/index36-cotonti-theme/blob/main/ABOUT_RU.MD" data-discover="true">ABOUT_RU.MD</a>**. 
+
 Обновленная и переработанная версия темы сайта. Рекомендуется только для новой (чистой) установки на новый сайт на CMF Cotonti v.1.0.0. Можно устанавливать на работающий сайт, но обязательно, предварительно выполнив резервное копирование своего сайта и БД. Если что-то не получается - пишите на **[форуме](https://abuyfile.com/ru/forums/cotonti/original/skins/index36)** или стучите в **[личные сообщения](https://github.com/webitproff)**.
 
 <img width="1903" height="2164" alt="CMS Freelance Market Script AChG Engine light" src="https://github.com/user-attachments/assets/75e1ada9-169b-4a65-a79c-dc696ca4d9fa" />
@@ -69,13 +71,13 @@ ___
 
 Unlike most Cotonti themes, Index36 is not just a set of templates. It is a full-fledged **user interface ecosystem** that covers all key scenarios of interaction with the site: navigation, search, content management, profile handling, purchases, comments, and administration.
 
-Current theme version: **2.0.1**.
-Last updated: **September 29, 2026**.
-Demo site: [https://freelance-script.abuyfile.com](https://freelance-script.abuyfile.com).
-Source code: [https://github.com/webitproff/index36-cotonti-theme](https://github.com/webitproff/index36-cotonti-theme).
-Cotonti Marketplace page: [https://abuyfile.com/ru/market/cotonti/themes/index36](https://abuyfile.com/ru/market/cotonti/themes/index36).
-Support forum: [https://abuyfile.com/ru/forums/cotonti/original/skins/index36](https://abuyfile.com/ru/forums/cotonti/original/skins/index36).
-YouTube overview: [https://www.youtube.com/watch?v=FKt5SQu4890](https://www.youtube.com/watch?v=FKt5SQu4890).
+- Current theme version: **2.0.1**.
+- Last updated: **September 29, 2026**.
+- Demo site: [https://freelance-script.abuyfile.com](https://freelance-script.abuyfile.com).
+- Source code: [https://github.com/webitproff/index36-cotonti-theme](https://github.com/webitproff/index36-cotonti-theme).
+- Cotonti Marketplace page: [https://abuyfile.com/ru/market/cotonti/themes/index36](https://abuyfile.com/ru/market/cotonti/themes/index36).
+- Support forum: [https://abuyfile.com/ru/forums/cotonti/original/skins/index36](https://abuyfile.com/ru/forums/cotonti/original/skins/index36).
+- YouTube overview: [https://www.youtube.com/watch?v=FKt5SQu4890](https://www.youtube.com/watch?v=FKt5SQu4890).
 
 ---
 
