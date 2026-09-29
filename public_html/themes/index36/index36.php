@@ -16,7 +16,8 @@ Schemes=default:Default
  * Placement: /themes/index36/index36.php 
  * Description: Entry point for request parameters, global vars & etc. 
  * Created: 01 Feb 2026  
- * Updated: 28 Sep 2026 
+ * Updated: 29 Sep 2026 
+ * Item on Cotonti extentions MarketPlace: https://abuyfile.com/ru/market/cotonti/themes/index36
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  * 
@@ -92,7 +93,7 @@ $R['breadcrumbs_link'] = '<a href="{$url}" title="{$title}">{$title}</a>';
 $R['breadcrumbs_plain'] = '{$title}';
 $R['breadcrumbs_crumb'] = '{$crumb}';
 $R['breadcrumbs_first'] = '{$crumb}';
-$R['breadcrumbs_last'] = '<span class="text-truncate" style="max-width: 350px;">{$crumb}</span>';
+$R['breadcrumbs_last'] = '<span class="breadcrumb-last">{$crumb}</span>';
 
 
 // Для полей rs[...] — БЕЗ form-select (Select2)

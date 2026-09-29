@@ -10,7 +10,7 @@
 	* Theme: Index36
 	* Version: 2.0.1
 	* Created: 01 Feb 2026
-	* Updated: 28 Sep 2026
+	* Updated: 29 Sep 2026
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Page in Marcetplace : https://abuyfile.com/ru/market/cotonti/themes/index36
@@ -190,21 +190,17 @@
 					<!-- BEGIN: I18N_LANG -->
 					<div class="dropdown">
 						<a class="btn-icon dropdown-toggle" data-bs-toggle="dropdown" style="cursor:pointer;" title="{PHP.i18n_locale}">
-							<!-- IF {PHP.i18n_locale} == 'ru' -->
-							<img src="{PHP.cfg.themes_dir}/{PHP.cfg.defaulttheme}/img/flags/ru.webp" alt="ru" width="22" height="22">
-							<!-- ENDIF -->
-							<!-- IF {PHP.i18n_locale} == 'en' -->
-							<img src="{PHP.cfg.themes_dir}/{PHP.cfg.defaulttheme}/img/flags/en.webp" alt="en" width="22" height="22">
-							<!-- ENDIF -->
-							<!-- IF {PHP.i18n_locale} == 'ua' -->
-							<img src="{PHP.cfg.themes_dir}/{PHP.cfg.defaulttheme}/img/flags/ua.webp" alt="ua" width="22" height="22">
-							<!-- ENDIF -->
+							<i class="fa-solid fa-language me-2"></i>
+							<small>
+							<!-- IF {PHP.i18n_locale} == 'ru' -->RU<!-- ENDIF -->
+							<!-- IF {PHP.i18n_locale} == 'en' -->EN<!-- ENDIF -->
+							<!-- IF {PHP.i18n_locale} == 'ua' -->UA<!-- ENDIF -->
+							</small>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<!-- BEGIN: I18N_LANG_ROW -->
 							<li>
-								<a class="dropdown-item" href="{I18N_LANG_ROW_URL}">
-									<img src="{PHP.cfg.themes_dir}/{PHP.cfg.defaulttheme}/img/flags/{I18N_LANG_ROW_FLAG}.webp" class="me-2" alt="" width="24" height="24">
+								<a class="dropdown-item" href="{I18N_LANG_ROW_URL}" title="{I18N_LANG_ROW_TITLE}">
 									{I18N_LANG_ROW_TITLE}
 								</a>
 							</li>

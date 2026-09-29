@@ -97,6 +97,7 @@ $langSkStr['footer_db_version']        = 'Database Version';
 $langSkStr['footer_creation_time']     = 'Generation Time';
 $langSkStr['footer_hooks_fired']       = 'Hooks Fired';
 $langSkStr['footer_sql_statistics']    = 'SQL Statistics';
+$langSkStr['footer_download_index36'] = 'Website theme <strong>“Index36”</strong> — download for free';
 
 $langSkStr['pageInformation']             = 'Page Information';
 $langSkStr['pageDateCreated']             = 'Page Created';

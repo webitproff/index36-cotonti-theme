@@ -38,10 +38,8 @@ Resources::addFile(Cot::$cfg['themes_dir'] . '/' . Cot::$cfg['defaulttheme'] . '
 // perfect-scrollbar customizations
 Resources::linkFileFooter(Cot::$cfg['themes_dir'] . '/' . Cot::$cfg['defaulttheme'] . '/assets/perfect-scrollbar/perfect-scrollbar.min.js');
 Resources::linkFileFooter(Cot::$cfg['themes_dir'] . '/' . Cot::$cfg['defaulttheme'] . '/assets/perfect-scrollbar/js-perfect-scrollbar.js'); 
-// fancybox 
 Resources::addFile(Cot::$cfg['themes_dir'] . '/' . Cot::$cfg['defaulttheme'] . '/assets/fancybox/fancybox.css');
 Resources::addFile(Cot::$cfg['themes_dir'] . '/' . Cot::$cfg['defaulttheme'] . '/assets/fancybox/fancybox.umd.js');
-
 // SELECT2 
 // from base libraries (lib) of directory site Cotonti
 Resources::linkFileFooter(Resources::SELECT2);

@@ -59,7 +59,7 @@
 /* Светлая тема: переменные переопределяются при data-bs-theme="light" */
 [data-bs-theme="light"] {
   /* Фон всей страницы */
-  --bg-primary: #f8f9fa;
+  --bg-primary: #e9eef5;
   /* Вторичный фон (карточки, сайдбар) */
   --bg-secondary: #ffffff;
   /* Третичный фон (мягкие блоки) */
@@ -76,10 +76,10 @@
   --border-color: #dee2e6;
   /* Акцент (зелёный) */
   --accent: #137C54;
-  /* Дополнительный акцент (синий) */
+  /* Дополнительный акцент  */
   --accent-light: #ff5100;
   /* Фон шапки */
-  --header-bg: #e9ecef;
+  --header-bg: #ffffff;
   /* Тень элементов */
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
   /* Фон чипсов */
@@ -1184,23 +1184,64 @@ a:hover {
 }
 
 /* Изображение в карточке блога */
-.blog-card img {
-  /* На всю ширину */
+.card-img {
   width: 100%;
-  /* Автоматическая высота */
   height: auto;
-  /* Максимальная высота */
-  max-height: 160px;
-  /* Обрезать и заполнить */
+  max-height: 236px;
   object-fit: cover;
 }
-
+img { max-width: 100%; height: auto; }
 /* Тело карточки блога */
 .blog-card-body {
   /* Внутренние отступы */
   padding: 1rem;
 }
+/* ============================================
+   Текстовый контент (статьи, описания, посты)
+   ============================================ */
 
+/* Контейнер текстового контента */
+.text-content {
+  /* Базовый цвет текста берём из темы */
+  color: var(--text-primary);
+}
+
+/* Ссылки внутри текстового контента — акцентный цвет темы */
+.text-content a {
+  color: var(--accent);
+  /* Убираем подчёркивание — оно появится при наведении */
+  text-decoration: none;
+  /* Плавный переход цвета */
+  transition: color 0.15s;
+}
+
+/* Ссылки при наведении — hot-акцент (оранжевый) */
+.text-content a:hover {
+  color: var(--accent-light);
+  /* Подчёркивание при наведении, чтобы ссылку было легко опознать */
+  text-decoration: underline;
+}
+
+/* Таблица внутри .text-content не выходит за пределы родителя */
+.text-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  table-layout: auto;
+}
+
+/* На мобильном — уменьшаем шрифт в таблице ещё сильнее */
+@media (max-width: 600px) {
+  .text-content table th,
+  .text-content table td {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.82rem;
+  }
+  .text-content pre,
+  .text-content .code-toolbar pre {
+    font-size: 0.75rem;
+  }
+}
 /* ============================================
    ФУТЕР
    ============================================ */
@@ -1696,7 +1737,6 @@ a:hover {
   z-index: 1250;
 }
 
-
 /* ============================================
    Цитаты на форуме (blockquote)
    ============================================ */
@@ -1776,4 +1816,169 @@ blockquote blockquote {
     border-radius: 0 8px 8px 0;
     font-size: 0.9rem;
   }
+}
+
+/* ============================================
+   Хлебные крошки
+   ============================================ */
+
+.breadcrumb {
+  /* Строка без переноса */
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  /* Убираем отступы и маркеры */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Не выходим за родителя */
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Ссылки и сепараторы — фиксированные.
+   При сжатии окна НЕ трогаются, никогда не обрезаются. */
+.breadcrumb > a,
+.breadcrumb > span.mx-2 {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Последний пункт (текущая страница).
+   Единственный, кто может сжиматься и показывать многоточие. */
+.breadcrumb > .breadcrumb-last {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Цвет ссылок и ховер */
+.breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.breadcrumb a:hover {
+  color: var(--link-hover);
+  text-decoration: none;
+}
+
+/* Мобильный — уменьшаем шрифт */
+@media (max-width: 600px) {
+  .breadcrumb {
+    font-size: 0.78rem;
+  }
+}
+/* ============================================
+   Блок «Читать далее» — универсальный
+   Применяется в статьях, товарах, форумах и любых карточках
+   ============================================ */
+
+/* Обёртка блока — позиционируется относительно градиента */
+.readmore-block {
+  position: relative;
+}
+
+/* Тело с текстом — при переполнении обрезается */
+
+.readmore-body {
+  position: relative;
+  overflow: hidden;
+  /* Плавное схлопывание/раскрытие.
+     height анимируется между двумя конкретными значениями,
+     поэтому переход мягкий (в отличие от max-height: none). */
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Начальное состояние — задаётся JS */
+  height: auto;
+}
+
+/* Свёрнутое состояние — ограничиваем высоту */
+.readmore-body.collapsed {
+  max-height: 680px;
+}
+
+/* Раскрытое состояние — высота не ограничена */
+.readmore-body.expanded {
+  max-height: none;
+}
+
+/* Градиент внизу блока — «затухание» текста.
+   Цвет совпадает с фоном карточки, поэтому выглядит естественно. */
+.readmore-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--card-bg, var(--bg-secondary, #fff))
+  );
+  /* Не перехватывает клики по тексту под ним */
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* В раскрытом состоянии градиент скрыт */
+.readmore-body.expanded .readmore-fade {
+  opacity: 0;
+}
+
+/* Кнопка «Читать далее» — базовые свойства */
+.readmore-btn {
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* Кнопка в светлой теме — фон #dee2e6, тёмный текст */
+[data-bs-theme="light"] .readmore-btn {
+  background-color: #dee2e6;
+  color: #212529;
+  border-color: #dee2e6;
+}
+
+/* Наведение в светлой теме — фон темнее, рамка в тон */
+[data-bs-theme="light"] .readmore-btn:hover {
+  background-color: #c8cdd3;
+  border-color: #c8cdd3;
+  color: #212529;
+}
+
+/* Кнопка в тёмной теме — приглушённый тёмно-серый */
+[data-bs-theme="dark"] .readmore-btn {
+  background-color: #2a2e35;
+  color: #e9ecef;
+  border-color: #373b41;
+}
+
+/* Наведение в тёмной теме — фон светлее, заметная рамка */
+[data-bs-theme="dark"] .readmore-btn:hover {
+  background-color: #3a3e45;
+  border-color: #4a4e55;
+  color: #ffffff;
+}
+
+/* Разделитель <hr> вокруг кнопки */
+.readmore-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.readmore-actions hr {
+  flex: 1 1 auto;
+  margin: 0;
+  border-color: var(--border-color);
+  opacity: 0.5;
 }
