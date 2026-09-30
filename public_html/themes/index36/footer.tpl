@@ -557,10 +557,6 @@
 
 {FOOTER_RC}
 <!-- Скрипты темы -->
-<script defer src="{PHP.cfg.themes_dir}/{PHP.theme}/js/theme.js"></script>
-<script defer src="{PHP.cfg.themes_dir}/{PHP.theme}/js/sidebar.js"></script>
-<script defer src="{PHP.cfg.themes_dir}/{PHP.theme}/js/tabs.js"></script>
-
 <script>
 	// Кнопка «наверх»
 	var backToTopButton = document.getElementById("btn-back-to-top");
