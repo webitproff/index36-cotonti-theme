@@ -593,3 +593,6 @@ $R['notices_container'] = '{$notices}';           // без лишних обё�
 $R['notices_separator'] = '';                    // разделитель не нужен
 $R['notices_link']      = '<li><a class="nav-link" href="{$url}" title="{$title}"><i class="fa-solid fa-circle-info me-2"></i>{$title}</a></li>';
 $R['notices_plain']     = '<li class="nav-link disabled">{$title}</li>';   // если вдруг без ссылки
+
+
+
