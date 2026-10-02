@@ -19,81 +19,126 @@
 	********************************************************************************/
 -->
 <!-- BEGIN: MAIN -->
-
-<!-- BEGIN: PAGE_ROW -->
-<div class="card mb-3 border-0 shadow-sm rounded-4">
-	<div class="card-body position-relative">
-		
-		<!-- IF {PHP|cot_plugin_active('comments')} -->
-		<div class="position-absolute bottom-0 end-0 mb-2 me-2">
-			<span class="badge bg-primary rounded-pill px-3 py-2 fs-6 d-flex align-items-center gap-2 shadow">
-				<i class="fa-solid fa-comment-dots"></i>
-				{PAGE_ROW_COMMENTS_COUNT}
-			</span>
-		</div>
-		<!-- ENDIF -->
-		<h3 class="h5 mb-3 pe-5 pe-md-0">
-			<a href="{PAGE_ROW_URL}" class="text-decoration-none">
-				{PAGE_ROW_TITLE}
-			</a>
-		</h3>
-		
-		<div class="d-flex flex-column flex-md-row justify-content-between mb-2 small">
-			<!-- IF {PHP|cot_plugin_active('tags')} -->
-			<div>
-				<strong>{PHP.L.Tags}:</strong>
-				<!-- BEGIN: PAGE_TAGS -->
-				<!-- BEGIN: PAGE_TAGS_ROW -->
-				<!-- IF {PAGE_TAGS_ROW_TAG_COUNT} > 0 -->  <!-- ENDIF -->
-				<a href="{PAGE_TAGS_ROW_URL}" title="{PAGE_TAGS_ROW_TAG}" rel="nofollow" class="text-decoration-none">
-					<span class="badge rounded-pill bg-info bg-opacity-10 text-info">{PAGE_TAGS_ROW_TAG}</span>
-				</a>
-				<!-- END: PAGE_TAGS_ROW -->
-				<!-- END: PAGE_TAGS -->
-				
-				<!-- BEGIN: PAGE_NO_TAGS -->
-				{PHP.L.tags_Tag_cloud_none}
-				<!-- END: PAGE_NO_TAGS -->
+<div class="row row-cols-1 row-cols-xxl-4 row-cols-lg-3 row-cols-md-2 g-3 g-lg-4">
+	<!-- BEGIN: PAGE_ROW -->
+	<div class="col">
+		<div class="card h-100 border-0 shadow-sm overflow-hidden blog-card">
+			<div class="row g-0 flex-lg-row">
+				<div class="col-12">
+					<a href="{PAGE_ROW_URL}" class="text-decoration-none" title="{PAGE_ROW_TITLE}">
+						<!-- IF {PHP|cot_plugin_active('attacher')} -->
+						<!-- IF {PAGE_ROW_ID|att_count('page', $this, '', 'images')} > 0 --> 
+						{PAGE_ROW_ID|att_display('page',$this,'','attacher.display.listfirst','images',1)}
+						<!-- ELSE -->
+						<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{PAGE_TITLE}">
+						<!-- ENDIF -->
+						<!-- ELSE -->
+						<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{PAGE_TITLE}">
+						<!-- ENDIF --> 
+					</a>
+				</div>
+				<div class="col-12">
+					<div class="card-body d-flex flex-column h-100 p-4">
+						<div class="d-flex justify-content-between align-items-center mb-2">
+							<span class="badge bg-info-subtle text-info px-2 py-1">{PAGE_ROW_HITS}</span><span class="badge bg-info-subtle text-info px-2 py-1">{PAGE_ROW_CREATED}</span>
+							<!-- IF {PHP.usr.isadmin} OR {PHP.usr.id} === {PAGE_ROW_OWNER_ID} -->
+							<div class="dropdown">
+								<button class="btn btn-outline-warning btn-lg rounded-circle d-flex align-items-center justify-content-center shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:32px;height:32px;">
+									<i class="fa-solid fa-ellipsis-v"></i>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end border shadow-sm p-3" style="min-width:280px;">
+									<!-- IF {PAGE_ROW_ADMIN_EDIT} -->
+									<li>
+										<a class="dropdown-item py-2 px-4" 
+										href="{PAGE_ROW_ADMIN_EDIT_URL}">
+											{PHP.L.Edit}
+										</a>
+									</li>
+									<!-- ENDIF -->
+									<!-- IF {PAGE_ROW_ADMIN_CLONE} -->
+									<li>
+										<a class="dropdown-item py-2 px-4" 
+										href="{PAGE_ROW_ADMIN_CLONE_URL}">
+											{PHP.L.page_clone}
+										</a>
+									</li>
+									<!-- ENDIF -->
+									<!-- IF {PAGE_ROW_ADMIN_DELETE} -->
+									<li>
+										<a class="dropdown-item py-2 px-4" 
+										href="{PAGE_ROW_ADMIN_DELETE_URL}">
+											{PHP.L.Delete}
+										</a>
+									</li>
+									<!-- ENDIF -->
+									<!-- IF {PAGE_ROW_ADMIN_UNVALIDATE} -->
+									<li>
+										<a class="dropdown-item py-2 px-4" 
+										href="{PAGE_ROW_ADMIN_UNVALIDATE_URL}">
+											{PHP.L.Putinvalidationqueue}
+										</a>
+									</li>
+									<!-- ENDIF -->
+								</ul>
+							</div>
+							<!-- ENDIF -->
+						</div>
+						<h5 class="card-title fs-6 mb-2">
+							<a href="{PAGE_ROW_URL}" class="text-decoration-none" title="{PAGE_ROW_TITLE}">{PAGE_ROW_TITLE}</a>
+						</h5>
+						<div class="d-none d-xl-block">
+							<!-- IF {PAGE_ROW_DESCRIPTION} -->
+							<div class="card-text text-muted small flex-grow-1">
+								{PAGE_ROW_DESCRIPTION|strip_tags($this)|mb_substr($this,0,120,'UTF-8')}...
+							</div>
+							<!-- ELSE -->
+							<div class="card-text text-muted small flex-grow-1">
+								{PAGE_ROW_TEXT_CUT|strip_tags($this)|mb_substr($this,0,120,'UTF-8')}...
+							</div>
+							<!-- ENDIF -->
+						</div>
+						<!-- IF {PAGE_ROW_COMMENTS_COUNT} > 0 -->
+						<div class="position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="tooltip" data-bs-title="{PHP.L.2wd_Comments}">
+							<span class="badge bg-primary">{PAGE_ROW_COMMENTS_COUNT}</span>
+						</div>
+						<!-- ENDIF -->								
+						<div class="d-flex align-items-center small text-muted mt-3">
+							<!-- IF {PHP|cot_plugin_active('userimages')} -->	
+							<!-- IF {PAGE_ROW_OWNER_AVATAR_SRC} -->
+							<img src="{PAGE_ROW_OWNER_AVATAR_SRC}" alt="{PAGE_ROW_OWNER_NICKNAME}" class="img-fluid rounded-circle overflow-hidden" width="36" height="36" />
+							<!-- ELSE -->
+							<img src="{PHP.R.userimg_default_avatar}" alt="{PAGE_ROW_OWNER_NICKNAME}" class="img-fluid rounded-circle overflow-hidden" width="36" height="36" />
+							<!-- ENDIF -->	
+							<!-- ENDIF -->
+							<span class="mx-2">·</span>
+							<span>{PAGE_ROW_OWNER_NAME}</span>
+						</div>
+						<div class="mt-3 text-end">
+							<a href="{PAGE_ROW_URL}" class="btn btn-sm btn-outline-primary text-uppercase">{PHP.L.ReadMore}</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<!-- ENDIF -->
-			
-			<div class="text-md-end">
-			<!-- IF {PHP.usr.isadmin} -->
-			<span class="me-3 small">[ {PAGE_ROW_ADMIN_EDIT} ]</span>
-			<!-- ENDIF -->
-				<strong>{PHP.L.Filedunder}:</strong>
-				<span class="text-decoration-none">{PAGE_ROW_CAT_PATH}</span>
-			</div>
 		</div>
-		
-		<div class="page-text">
-            <!-- IF {PAGE_ROW_DESCRIPTION} -->
-            <p class="mb-1">
-                {PAGE_ROW_DESCRIPTION}
-			</p>
-            <!-- ELSE -->
-			{PAGE_ROW_TEXT_CUT|strip_tags($this)}
-			<!-- IF {PAGE_ROW_TEXT_IS_CUT} -->
-			<div class="mt-1">
-				{PAGE_ROW_MORE}
-			</div>
-			<!-- ENDIF -->
-			<!-- ENDIF -->
-		</div>
-		
-	</div>
+	</div> 
+	<!-- END: PAGE_ROW -->
 </div>
-<!-- END: PAGE_ROW -->
 
-<!-- IF {PAGINATION} -->
-<div class="col-12">
-  <nav aria-label="Page Pagination" class="mt-3">
-    <div class="text-center mb-2">{PHP.L.Page} {CURRENT_PAGE} {PHP.L.Of} {TOTAL_PAGES}</div>
-    <ul class="pagination pagination-sm justify-content-center">
-      {PAGINATION}
-    </ul>
-  </nav>
-</div>
-<!-- ENDIF -->
 
 <!-- END: MAIN -->
+
+
+
+пагинацию, кому нужно, вставить сразу после блока END: PAGE_ROW
+<!-- IF {PAGINATION} -->
+<nav aria-label="Page Pagination" class="mt-5">
+	<ul class="pagination pagination-sm justify-content-center">
+		{PREVIOUS_PAGE}
+		{PAGINATION}
+		{NEXT_PAGE}
+	</ul>
+</nav>
+<div class="text-center">
+	{PHP.L.Page} {CURRENT_PAGE} {PHP.L.Of} {TOTAL_PAGES}
+</div>
+<!-- ENDIF -->	

@@ -25,7 +25,7 @@
 		
 		<!-- BEGIN: ATTACHER_ROW -->
 		<!-- IF {ATTACHER_ROW_NUM} == '1' -->
-				<img src="{ATTACHER_ROW_URL}" alt="{ATTACHER_ROW_TITLE} - {ATTACHER_ROW_FILENAME}" title="{ATTACHER_ROW_TITLE} - {ATTACHER_ROW_FILENAME}"  class="card-img object-fit-cover" >
+				<img src="{ATTACHER_ROW_URL}" alt="{ATTACHER_ROW_TITLE} - {ATTACHER_ROW_FILENAME}" title="{ATTACHER_ROW_TITLE}"  class="card-img object-fit-cover" >
 		<!-- ENDIF -->
 		<!-- END: ATTACHER_ROW -->
 		

@@ -142,16 +142,16 @@
                 <!-- IF {VENDOR_LAST_SEEN} -->
                 <p class="mb-2 text-muted">{PHP.L.Lastlogged}: {VENDOR_LAST_SEEN}</p>
                 <!-- ENDIF -->
-					<!-- IF {PHP|cot_plugin_active('xtradbrowusers')} -->
-					<!-- IF {VENDOR_USER_XTRA_X020_ABOUT_VENDOR_TEXT} -->
-					<div class="mb-3">
-						<div>
-							<div class="contact-label">{VENDOR_USER_XTRA_X020_ABOUT_VENDOR_TEXT_TITLE}</div>
-							<div class="contact-value">{VENDOR_USER_XTRA_X020_ABOUT_VENDOR_TEXT}</div>
-						</div>
+				<!-- IF {PHP|cot_plugin_active('xtradbrowusers')} -->
+				<!-- IF {VENDOR_USER_XTRA_X020_ABOUT_VENDOR_TEXT} -->
+				<div class="mb-3">
+					<div>
+						<div class="contact-label">{VENDOR_USER_XTRA_X020_ABOUT_VENDOR_TEXT_TITLE}</div>
+						<div class="contact-value">{VENDOR_USER_XTRA_X020_ABOUT_VENDOR_TEXT}</div>
 					</div>
-					<!-- ENDIF -->
-					<!-- ENDIF -->
+				</div>
+				<!-- ENDIF -->
+				<!-- ENDIF -->
                 <div class="d-flex flex-wrap gap-3 small">
                     <span>
                         <i class="bi bi-box-seam"></i>
@@ -173,7 +173,29 @@
 	</div>
 	
     <div class="row">
-		
+			<div class="card card-body mb-4">
+				<!-- Форма поиска -->
+				<form method="get" action="{VENDOR_SEARCH_ACTION_URL}" class="row g-2">
+					<div class="col-lg-5">{VENDOR_SEARCH_SQ}</div>
+					<div class="col-lg-3">{VENDOR_SEARCH_IN_SELECT}</div>
+					<div class="col-lg-2">
+						<div class="row g-1">
+							<div class="col-6">
+								<button type="submit" class="btn btn-primary w-100" title="{PHP.L.Search}">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+							</div>
+							<div class="col-6">
+								<a class="btn btn-outline-danger w-100"
+								title="{PHP.L.marketprofilter_reset}"
+								href="{VENDOR_MAIN_URL}">
+									<i class="fa-solid fa-filter-circle-xmark"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>		
         <!-- ==================== ЛЕВАЯ КОЛОНКА: КАТЕГОРИИ ==================== -->
 		
 		<aside class="col-md-3">
@@ -190,53 +212,45 @@
 		
         <!-- ==================== ПРАВАЯ КОЛОНКА: ТОВАРЫ ==================== -->
         <div class="col-md-9">
-			
-            <!-- Форма поиска -->
-            <form method="get" action="{VENDOR_SEARCH_ACTION_URL}" class="row g-2 mb-4">
-                <div class="col-md-5">{VENDOR_SEARCH_SQ}</div>
-                <div class="col-md-3">{VENDOR_SEARCH_IN_SELECT}</div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">{PHP.L.Search}</button>
-				</div>
-			</form>
-			
+
             <!-- Сетка товаров -->
-            <div class="row g-4">
-				
-                <!-- BEGIN: LIST_ROW -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-				<div class="col-12">
-					<div class="ratio ratio-4x3 ratio-lg-1x1 image-container">
-						<!-- IF {PHP|cot_plugin_active('attacher')} -->
-						<!-- IF {LIST_ROW_ID|att_count('market', $this, '', 'images')} > 0 --> 
-						{LIST_ROW_ID|att_display('market',$this,'','attacher.display.marketlist','images',1)}
-						<!-- ELSE -->
-						<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{PAGE_TITLE}">
-						<!-- ENDIF -->
-						<!-- ELSE -->
-						<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{PAGE_TITLE}">
-						<!-- ENDIF --> 
-					</div>
-				</div>
-                        <div class="card-body">
-                            <div class="card-title">
-                                <a href="{LIST_ROW_URL}">{LIST_ROW_TITLE}</a>
+			<div class="row row-cols-1 row-cols-xxl-3 row-cols-lg-2 row-cols-md-2 g-3 g-lg-4">
+				<!-- BEGIN: LIST_ROW -->
+				<div class="col">
+					<div class="card h-100 border-0 shadow-sm overflow-hidden blog-card">
+						<div class="row g-0 flex-lg-row">
+							<div class="col-12">
+								<!-- IF {PHP|cot_plugin_active('attacher')} -->
+								<!-- IF {LIST_ROW_ID|att_count('market', $this, '', 'images')} > 0 --> 
+								{LIST_ROW_ID|att_display('market',$this,'','attacher.display.marketlist','images',1)}
+								<!-- ELSE -->
+								<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{LIST_ROW_TITLE}">
+								<!-- ENDIF -->
+								<!-- ELSE -->
+								<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{LIST_ROW_TITLE}">
+								<!-- ENDIF --> 
 							</div>
-                            <p class="small text-muted">{LIST_ROW_DESCRIPTION_OR_TEXT_CUT}</p>
-                            <div class="fw-bold">{LIST_ROW_COSTDFLT}</div>
+							<div class="col-12">
+								<div class="card-body d-flex flex-column h-100 p-4">
+									<div class="card-title">
+										<a href="{LIST_ROW_URL}" title="{LIST_ROW_TITLE}">{LIST_ROW_TITLE}</a>
+									</div>
+									<p class="small text-muted">{LIST_ROW_DESCRIPTION_OR_TEXT_CUT}</p>
+									<div class="fw-bold">{LIST_ROW_COSTDFLT}</div>
+									
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-                <!-- END: LIST_ROW -->
-				
-                <!-- BEGIN: LIST_EMPTY -->
-                <div class="col-12">
-                    <div class="alert alert-info">{PHP.L.market_vendor_empty}</div>
-				</div>
-                <!-- END: LIST_EMPTY -->
-				
+				</div> 
+				<!-- END: LIST_ROW -->
+			</div>			
+			
+			<!-- BEGIN: LIST_EMPTY -->
+			<div class="col-12">
+				<div class="alert alert-info">{PHP.L.market_vendor_empty}</div>
 			</div>
+			<!-- END: LIST_EMPTY -->
 			
 			<!-- IF {PAGINATION} -->
 			<nav class="mt-5">

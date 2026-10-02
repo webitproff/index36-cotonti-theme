@@ -199,7 +199,7 @@
 										<button class="btn btn-outline-warning btn-lg rounded-circle d-flex align-items-center justify-content-center shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:32px;height:32px;">
 											<i class="fa-solid fa-ellipsis-v"></i>
 										</button>
-										<ul class="dropdown-menu dropdown-menu-end border shadow-sm py-2" style="min-width:280px;">
+										<ul class="dropdown-menu dropdown-menu-end border shadow-sm p-3" style="min-width:280px;">
 											<!-- IF {LIST_ROW_ADMIN_EDIT} -->
 											<li>
 												<a class="dropdown-item py-2 px-4" 
