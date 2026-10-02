@@ -53,7 +53,7 @@
 		</div>
 	</div>
 </div>	
-<div class="container-xl py-4">
+<div class="container-xl py-5">
 	<!-- Content -->
 	<div class="mt-5 d-flex flex-column">
 		
@@ -295,7 +295,7 @@
 	{FILE "{PHP.cfg.themes_dir}/{PHP.theme}/warnings.tpl"}
 	<!-- IF {PHP.out.whosonline} -->
 	<div class="card border-0 shadow-sm mt-4">
-		<div class="card-header" style="background-color: var(--bs-header-bg);">
+		<div class="card-header">
 			{PHP.L.Online}
 		</div>
 		<div class="card-body">

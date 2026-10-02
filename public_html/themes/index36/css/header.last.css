@@ -2018,3 +2018,89 @@ blockquote blockquote {
   border-color: var(--border-color);
   opacity: 0.5;
 }
+/* ============================================
+   Пагинация (Bootstrap 5) — в стиле темы
+   ============================================ */
+
+/* Ссылка страницы в обычном состоянии */
+.pagination .page-link {
+  /* Фон — как у пунктов сайдбара */
+  background: var(--header-bg);
+  /* Цвет текста — вторичный, как у ссылок сайдбара */
+  color: var(--text-secondary);
+  /* Тонкая рамка из цвета темы */
+  border: 1px solid var(--border-color);
+  /* Внутренние отступы */
+  padding: 0.45rem 0.85rem;
+  /* Скругление как у элементов сайдбара */
+  border-radius: 8px;
+  /* Плавный переход */
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* Наведение и фокус на ссылке */
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+  /* Фон при наведении как в сайдбаре */
+  background: var(--button-hover);
+  /* Текст становится основным */
+  color: var(--text-primary);
+  /* Рамка под цвет фона */
+  border-color: var(--button-hover);
+  /* Убираем дефолтную Bootstrap-тень фокуса */
+  box-shadow: none;
+}
+
+/* Активная страница */
+.pagination .page-item.active .page-link {
+  /* Акцентный фон, как у активного чипса/пункта в сайдбаре */
+  background: var(--accent-light);
+  /* Белый текст */
+  color: #fff;
+  /* Рамка в тон */
+  border-color: var(--accent-light);
+}
+
+/* Активная страница при наведении — не меняем цвет */
+.pagination .page-item.active .page-link:hover,
+.pagination .page-item.active .page-link:focus {
+  background: var(--accent-light);
+  color: var(--text-primary);
+  border-color: var(--accent-light);
+}
+
+/* Отключённая страница */
+.pagination .page-item.disabled .page-link {
+  /* Приглушённый фон */
+  background: transparent;
+  /* Приглушённый текст */
+  color: var(--text-muted);
+  /* Едва заметная рамка */
+  border-color: var(--border-color);
+  /* Пониженная прозрачность */
+  opacity: 0.5;
+}
+
+/* Отключённая при наведении — ничего не меняется */
+.pagination .page-item.disabled .page-link:hover {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border-color);
+}
+
+/* Расстояние между кнопками (Bootstrap сам делает отрицательный margin — компенсируем) */
+.pagination {
+  gap: 0.35rem;
+}
+
+/* Убираем дефолтное слияние границ у соседних элементов */
+.pagination .page-item .page-link {
+  margin-left: 0;
+}
+
+/* Компактная пагинация (форум, pagination-sm) — уменьшаем паддинг */
+.pagination-sm .page-link {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+}

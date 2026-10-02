@@ -197,7 +197,7 @@
 							<!-- IF {PHP.i18n_locale} == 'ua' -->UA<!-- ENDIF -->
 							</small>
 						</a>
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu dropdown-menu-end border shadow-sm p-3">
 							<!-- BEGIN: I18N_LANG_ROW -->
 							<li>
 								<a class="dropdown-item" href="{I18N_LANG_ROW_URL}" title="{I18N_LANG_ROW_TITLE}">

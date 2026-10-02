@@ -18,7 +18,7 @@ Schemes=default:Default
  *              string overrides of the Index36 theme. Consolidates all resource
  *              overrides in a single file.
  * Created: 01 Feb 2026
- * Updated: 02 Oct 2026
+ * Updated: 01 Oct 2026
  * Item on Cotonti Extensions Marketplace: https://abuyfile.com/ru/market/cotonti/themes/index36
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
@@ -481,7 +481,7 @@ $R['input_select_rtags'] = '<select name="{$name}"{$attrs}>{$options}</select>';
 $R['input_select_rpagecat'] = '<select name="{$name}"{$attrs}>{$options}</select>{$error}';
 
 // Со стандартным Bootstrap 5 form-select — для всех остальных select.
-$R['input_select'] = '<select class="form-select" name="{$name}"{$attrs}>{$options}</select>';
+$R['input_select'] = '<select class="form-select form-control-lg rounded-5" name="{$name}"{$attrs}>{$options}</select>';
 
 // Отдельный тег <option> — используется внутри select.
 $R['input_select_option'] = '<option value="{$value}"{$selected}>{$title}</option>';
@@ -512,7 +512,7 @@ $R['input_radio_separator'] = ' ';
  * ===================================================================== */
 
 // Универсальное текстовое поле.
-$R['input_text'] = '<input class="form-control" type="text" name="{$name}" value="{$value}" {$attrs} />{$error}';
+$R['input_text'] = '<input class="form-control form-control-lg rounded-5" type="text" name="{$name}" value="{$value}" {$attrs} />{$error}';
 
 // Поле ввода по умолчанию (для нестандартных типов).
 $R['input_default'] = '<input class="form-control" type="{$type}" name="{$name}" value="{$value}"{$attrs} />{$error}';
@@ -567,13 +567,13 @@ $R['input_date_short'] = '<div class="row g-2">
  * ===================================================================== */
 
 // Текущий пароль при смене.
-$R['input_password_roldpass'] = '<input class="form-control" type="password" name="{$name}" placeholder="' . $L['langSkStr_passCurrent'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_roldpass'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . $L['langSkStr_passCurrent'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Новый пароль.
-$R['input_password_rnewpass1'] = '<input class="form-control" type="password" name="{$name}" placeholder="' . $L['langSkStr_passNew'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rnewpass1'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . $L['langSkStr_passNew'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Повтор нового пароля.
-$R['input_password_rnewpass2'] = '<input class="form-control" type="password" name="{$name}" placeholder="' . $L['langSkStr_passNewRepeat'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rnewpass2'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . $L['langSkStr_passNewRepeat'] . '" value="{$value}" {$attrs} />{$error}';
 
 /* =====================================================================
  * ГОСТЬ: ФОРМА ВХОДА
@@ -588,29 +588,29 @@ $R['form_guest_remember_forced'] = '<input class="form-check-input" type="checkb
 $R['form_guest_remember'] = '<input class="form-check-input " type="checkbox" id="rememberMe" name="rremember" /><div class="flex-grow-1"><label class="form-check-label ms-3 small" for="rememberMe">' . $L['users_rememberme'] . '</label></div>';
 
 // Поле пароля для формы входа.
-$R['form_guest_password'] = '<input class="form-control ps-3" type="password" name="rpassword" size="12" maxlength="32" />';
+$R['form_guest_password'] = '<input class="form-control form-control-lg rounded-5 ps-3" type="password" name="rpassword" size="12" maxlength="32" />';
 
 // Поле логина для формы входа (модальное окно или шапка).
-$R['input_text_rusername'] = '<input class="form-control ps-5" type="text" name="rusername" placeholder="' . $L['langSkStr_Username'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_text_rusername'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="text" name="rusername" placeholder="' . $L['langSkStr_Username'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Поле пароля для формы входа (отдельный тег, отличный от form_guest_password).
-$R['input_password_rpassword'] = '<input class="form-control ps-5" type="password" name="rpassword" placeholder="' . $L['langSkStr_passkey'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rpassword'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword" placeholder="' . $L['langSkStr_passkey'] . '" value="{$value}" {$attrs} />{$error}';
 
 /* =====================================================================
  * РЕГИСТРАЦИЯ
  * ===================================================================== */
 
 // Поле email при регистрации.
-$R['input_text_ruseremail'] = '<input class="form-control ps-5" type="text" name="ruseremail" placeholder="' . $L['langSkStr_emailCurrentOnly'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_text_ruseremail'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="text" name="ruseremail" placeholder="' . $L['langSkStr_emailCurrentOnly'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Поле ответа на капчу.
-$R['input_text_rverify'] = '<input class="form-control" type="text" name="rverify" placeholder="' . $L['langSkStr_captchaAnswer'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_text_rverify'] = '<input class="form-control form-control-lg rounded-5" type="text" name="rverify" placeholder="' . $L['langSkStr_captchaAnswer'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Пароль при регистрации.
-$R['input_password_rpassword1'] = '<input class="form-control ps-5" type="password" name="rpassword1" placeholder="' . $L['Password'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rpassword1'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword1" placeholder="' . $L['Password'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Подтверждение пароля при регистрации.
-$R['input_password_rpassword2'] = '<input class="form-control ps-5" type="password" name="rpassword2" placeholder="' . $L['users_confirmpass'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rpassword2'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword2" placeholder="' . $L['users_confirmpass'] . '" value="{$value}" {$attrs} />{$error}';
 
 /* =====================================================================
  * ТЕГИ (TAGS)
