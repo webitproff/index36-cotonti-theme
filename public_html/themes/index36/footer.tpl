@@ -422,9 +422,9 @@
 			</div>
 			<ul class="nav flex-column">
 				<li class="nav-item mt-2"><p class="small">{PHP.L.langSkStr_footer_core_version}: v.{PHP.cfg.version}</p></li>
-				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_db_version}: v.{PHP|getRevisionValue()}</p></li>
-				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_php_version}: {PHP|custom_php_version()}</p></li>
-				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_legacy_mode}: {PHP|getLegacyModeStatus()}</p></li>
+				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_db_version}: v.{PHP|index36_get_revision()}</p></li>
+				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_php_version}: {PHP|index36_php_version()}</p></li>
+				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_legacy_mode}: {PHP|index36_legacy_mode_status()}</p></li>
 			</ul>
 		</div>
 	</div>
