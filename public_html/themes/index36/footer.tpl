@@ -8,9 +8,9 @@
 	* 		 Bootstrap 5.3.+ (https://getbootstrap.com/);
 	* 		 Font Awesome Free 7.3 (https://fontawesome.com/)
 	* Theme: Index36
-	* Version: 2.0.1
+	* Version: 2.1.0
 	* Created: 01 Feb 2026
-	* Updated: 29 Sep 2026
+	* Updated: 02 Oct 2026
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Demo : https://freelance-script.abuyfile.com
@@ -421,10 +421,27 @@
 				</h6>
 			</div>
 			<ul class="nav flex-column">
-				<li class="nav-item mt-2"><p class="small">{PHP.L.langSkStr_footer_core_version}: v.{PHP.cfg.version}</p></li>
-				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_db_version}: v.{PHP|index36_get_revision()}</p></li>
-				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_php_version}: {PHP|index36_php_version()}</p></li>
-				<li class="nav-item"><p class="small">{PHP.L.langSkStr_footer_legacy_mode}: {PHP|index36_legacy_mode_status()}</p></li>
+				<li class="nav-item mt-2">
+					<p class="small">{PHP.L.langSkStr_footer_core_version}: v.{PHP.cfg.version}</p>
+				</li>
+				
+				<!-- IF {PHP|function_exists('index36_get_revision')} -->
+				<li class="nav-item">
+					<p class="small">{PHP.L.langSkStr_footer_db_version}: v.{PHP|index36_get_revision()}</p>
+				</li>
+				<!-- ENDIF -->
+				
+				<!-- IF {PHP|function_exists('index36_php_version')} -->
+				<li class="nav-item">
+					<p class="small">{PHP.L.langSkStr_footer_php_version}: {PHP|index36_php_version()}</p>
+				</li>
+				<!-- ENDIF -->
+				
+				<!-- IF {PHP|function_exists('index36_legacy_mode_status')} -->
+				<li class="nav-item">
+					<p class="small">{PHP.L.langSkStr_footer_legacy_mode}: {PHP|index36_legacy_mode_status()}</p>
+				</li>
+				<!-- ENDIF -->
 			</ul>
 		</div>
 	</div>
