@@ -8,9 +8,9 @@
 	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
 	* 		 Font Awesome Free 7.3[](https://fontawesome.com/)
 	* Theme: Index36  
-	* Version=2.0.1 
+	* Version=2.1.1 
 	* Created: 01 Feb 2026 
-	* Updated: 24 Feb 2026 
+	* Updated: 03 Oct 2026 
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Demo : https://freelance-script.abuyfile.com 
@@ -56,9 +56,14 @@
                 <!-- END: MESSAGE_CONFIRM -->
 			</div>
 		</div>
+		<!-- Кнопку «Закрыть» показываем только во всплывающем окне
+			(jqModal). На отдельной странице /message она не нужна —
+		там пользователь уходит по кнопкам Да/Нет или браузером. -->
+		<!-- IF {PHP.env.ext} != 'message' -->
 		<div class="card-footer">
 			<button type="button" class="btn btn-danger jqmClose">{PHP.L.Close}</button>
 		</div>
+		<!-- ENDIF -->
 	</div>
 </div>
 <!-- ENDIF -->
