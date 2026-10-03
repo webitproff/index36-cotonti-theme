@@ -277,6 +277,14 @@ Resources::addFile($themeDir . '/assets/perfect-scrollbar/styles-perfect-scrollb
 // оформление отдельных блоков. Подключается ДО основных стилей.
 Resources::addFile($themeDir . '/css/default.css', 'css', 800);
 
+/*  
+ * modalbox.css — стили окон с запросом подтверждения «опасных» действий
+ * (удаление темы форума, снятие страницы с публикации, отправка в очередь
+ * на утверждение и т.п.). 
+ * смотреть мой файл /themes/index36/css/modalbox.css
+ */
+Resources::addFile($themeDir . '/css/modalbox.css', 'css', 800);
+
 // header.last.css — главный стилевой файл темы. Самый высокий
 // $order (900), подключается ПОСЛЕ всех библиотек и плагинов,
 // поэтому может свободно их переопределять.

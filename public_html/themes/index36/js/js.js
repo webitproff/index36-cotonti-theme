@@ -112,3 +112,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+// === jqModal: закрытие окна подтверждения по клику на оверлей ===
+// По умолчанию jqModal должен закрывать окно при клике по затемнению,
+// но в некоторых сборках этот обработчик отваливается (мешает что-то выше).
+// Дублируем поведение вручную — клик по .jqmOverlay = закрыть окно.
+document.addEventListener('click', function (e) {
+    // Реагируем только на клик по оверлею
+    if (!e.target.classList.contains('jqmOverlay')) return;
+
+    // Закрываем все открытые окна через API jqModal (jQuery)
+    if (window.jQuery && jQuery.fn.jqmHide) {
+        jQuery('.jqmWindow').jqmHide();
+    } else {
+        // Фолбэк, если jQuery недоступен: прячем руками
+        document.querySelectorAll('.jqmWindow').forEach(function (w) {
+            w.style.display = 'none';
+        });
+    }
+
+    // Убираем сам оверлей (jqModal делает это при своём close,
+    // но если мы закрыли вручную — подчищаем)
+    e.target.remove();
+});

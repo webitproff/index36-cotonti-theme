@@ -1,54 +1,230 @@
-/* The Window's CSS z-index value is respected (takes priority). If none is supplied,
-	the Window's z-index value will be set to 3000 by default (via jqModal.js). */
+/* =====================================================================
+ * МОДАЛЬНЫЕ ОКНА ПОДТВЕРЖДЕНИЯ (jqModal)
+ * =====================================================================
+ *
+ * modalbox.css — стили окон с запросом подтверждения «опасных» действий
+ * (удаление темы форума, снятие страницы с публикации, отправка в очередь
+ * на утверждение и т.п.).
+ *
+ * Где живёт логика:
+ *   - public_html/message.php — серверный рендер страницы подтверждения
+ *     и всплывающего окна поверх текущей страницы. Управляется GET-параметром
+ *     ?msg=920 (диалог подтверждения). Шаблон вывода — themes/{theme}/message.tpl.
+ *   - public_html/js/jqModal.min.js — клиентская библиотека, которая:
+ *       • создаёт <div class="jqmOverlay"> и вставляет его в начало <body>
+ *         (position: fixed, затемнение фона, z-index 2999);
+ *       • превращает блок #confirmBox в модальное окно .jqmWindow
+ *         с z-index 3000;
+ *       • ПИШЕТ В INLINE-СТИЛЬ ОКНА margin-left и margin-top
+ *         для псевдо-центрирования. Эти inline-стили перебивают
+ *         любой внешний CSS без !important.
+ *       • при закрытии удаляет overlay и скрывает окно.
+ *
+ * Две схемы вызова — важно понимать обе:
+ *
+ *   1. Standalone-страница подтверждения.
+ *      URL вида: /ru/message?msg=920&m=page&lng=page_confirm_unvalidate&redirect=...
+ *      Тело страницы получает data-ext="message". Окно НЕ всплывает —
+ *      это обычная страница с карточкой внутри <main>. Используется,
+ *      когда пользователь перешёл по прямой ссылке на подтверждение.
+ *
+ *   2. Всплывающее окно поверх текущей страницы.
+ *      URL вида: /ru/forums/...?a=delete&q=...&x=...
+ *      Cotonti через message.php рендерит блок #confirmBox в самом начале
+ *      <body>, ДО <header>. jqModal превращает его в модальное окно.
+ *      Тело страницы сохраняет свой data-ext (forums, page, market...).
+ *
+ * КРИТИЧЕСКИ ВАЖНО (иначе окно съедет влево/вверх или растянется):
+ *
+ *   - jqModal пишет inline margin-left: -640px и margin-top: -106px.
+ *     Их НЕЛЬЗЯ победить без !important — inline-стили всегда выигрывают
+ *     у внешнего CSS. Поэтому в header.last.css правила для .jqmWindow
+ *     заданы как margin: 0 !important и позиционируются через
+ *     top: 50%; left: 50%; transform: translate(-50%, -50%).
+ *
+ *   - .jqmOverlay вставляется в начало <body> — то есть ДО <header>.
+ *     Без position: fixed он сдвинул бы всю страницу вниз. Поэтому
+ *     в header.last.css он тоже прописан как fixed !important.
+ *
+ *   - Ограничение ширины окна — width: min(90vw, 640px). Иначе на
+ *     мобильном окно уедет за пределы экрана.
+ *
+ *   - Правила для standalone-страницы (body[data-ext="message"])
+ *     НЕ должны применяться к всплывающему окну, потому что при
+ *     всплытии body имеет другой data-ext (forums / page / market).
+ *     Разделение достигается именно через этот селектор — не путать.
+ *
+ * Порядок загрузки CSS (важно):
+ *
+ *   modalbox.css    → order 800
+ *   header.last.css → order 900  ← грузится ПОСЛЕ, перебивает modalbox
+ *
+ *   Стили jqModal в header.last.css продублированы намеренно, чтобы
+ *   иметь итоговый контроль: те правила с !important, которые нужны
+ *   для победы над inline-стилями jqModal.
+ *
+ * Что НЕ надо делать:
+ *
+ *   - Убирать !important из правил .jqmWindow / .jqmOverlay в
+ *     header.last.css — окно сразу съедет.
+ *   - Переопределять .jqmWindow в modalbox.css новыми margin — они
+ *     всё равно проиграют inline-стилям скрипта.
+ *   - Писать rules для .message-card без body[data-ext="message"] —
+ *     они зацепят любые карточки с этим классом на других страницах.
+ *   - Убирать из message.tpl обёртки d-flex/min-height-50vh внутри
+ *     блока ELSE — центрирование уже обеспечивает CSS .jqmWindow.
+ *
+ * Связанные файлы:
+ *   /themes/{theme}/message.tpl
+ *   /themes/{theme}/css/modalbox.css
+ *   /themes/{theme}/css/header.last.css   (правила .jqmWindow / .jqmOverlay)
+ *   /public_html/message.php
+ *   /public_html/js/jqModal.min.js
+ * ===================================================================== */
+/* Resources::addFile($themeDir . '/css/modalbox.css', 'css', 800); */
 
+/* ============================================
+   jqModal — окно подтверждения Cotonti
+   Перебиваем inline margin-left/margin-top, которые
+   дописывает скрипт, и делаем окно адаптивным
+   ============================================ */
+
+/* Оверлей — фиксированный, во весь экран */
+.jqmOverlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 2999;
+}
+
+/* Само окно — фиксированное, по центру экрана */
 .jqmWindow {
-    display: none;
-
-    position: fixed;
-    top: 50%;
-    left: 50%;
-	
-	overflow: auto;
-
+    /* Гасим inline-сдвиги, которые ставит jqModal */
+    margin: 0 !important;
+    /* Центрируем через transform */
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    /* Адаптивные размеры — не шире и не выше вьюпорта */
+    width: min(90vw, 640px) !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    /* Скролл, если контент не влезает */
+    overflow: auto;
+    /* Оформление */
     background-color: #EEE;
     color: #333;
     border: 3px solid white;
+    border-radius: 12px;
     padding: 7px;
-	text-align: center;
+    text-align: center;
+    z-index: 3000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
 }
 
+/* Тёмная тема — подстраиваем фон окна */
+[data-bs-theme="dark"] .jqmWindow {
+    background-color: #1b1e22;
+    color: #e9ecef;
+    border-color: #373b41;
+}
+
+/* Заголовок внутри окна */
 .jqmWindow h4 {
-	border-bottom: 1px dotted #b0c4de;
-	font-size: 14px;
-	margin: 0 0 7px 0;
-	padding: 0 0 5px 0;
-	text-align: left;
-	color: #3E606F;
+    border-bottom: 1px dotted #b0c4de;
+    font-size: 14px;
+    margin: 0 0 7px 0;
+    padding: 0 0 5px 0;
+    text-align: left;
+    color: #3E606F;
 }
 
-.jqmWindow p{
-	text-align: right;
-	margin: 15px 0 0 0;
-	font-size: x-small;
-	text-transform: lowercase;
+/* Мелкий текст внизу окна */
+.jqmWindow p {
+    text-align: right;
+    margin: 15px 0 0 0;
+    font-size: x-small;
+    text-transform: lowercase;
 }
 
-.jqmOverlay { background-color: #000; }
-
-/* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
-* iframe.jqm {
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:-1;
-	width: expression(this.parentNode.offsetWidth+'px');
-	height: expression(this.parentNode.offsetHeight+'px');
+/* Карточка внутри окна — снимаем возможные ограничения Bootstrap */
+.jqmWindow .card {
+    margin: 0 !important;
+    border: 0;
+    background: transparent;
 }
 
-/* Fixed posistioning emulation for IE6
-     Star selector used to hide definition from browsers other than IE6
-     For valid CSS, use a conditional include instead */
-* html .jqmWindow {
-     position: absolute;
-     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+.jqmWindow .card-header {
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+}
+
+.jqmWindow .card-body {
+    padding: 1rem;
+}
+
+/* На мобильном — уменьшаем отступы и не растягиваем */
+@media (max-width: 600px) {
+    .jqmWindow {
+        width: 92vw !important;
+        max-width: 92vw !important;
+        padding: 4px;
+    }
+    .jqmWindow .card-body {
+        padding: 0.75rem;
+    }
+    .jqmWindow .card-header {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* ============================================
+   Standalone-страница системного сообщения
+   Cotonti рендерит её через message.php,
+   при этом <body> получает data-ext="message".
+   Карточка прижата к шапке — отодвигаем её
+   на четверть высоты экрана.
+   ============================================ */
+
+/* Отступ сверху для карточки, лежащей прямо в main */
+body[data-ext="message"] .main-content > .card {
+    margin-top: 25vh;
+    margin-bottom: 2rem;
+}
+
+/* Вариант с обёрткой .container (для сообщения 930 и подобных) */
+body[data-ext="message"] .main-content > .container > .card {
+    margin-top: 15vh;
+}
+
+/* На мобильном — меньше, чтобы карточка не улетала вниз */
+@media (max-width: 600px) {
+    body[data-ext="message"] .main-content > .card {
+        margin-top: 12vh;
+    }
+    body[data-ext="message"] .main-content > .container > .card {
+        margin-top: 8vh;
+    }
+}
+
+/* ============================================
+   Standalone-страница сообщения Cotonti
+   body[data-ext="message"] — ограничиваем ширину
+   карточки и центрируем её на больших экранах
+   ============================================ */
+
+/* Карточка сообщения на странице message.php.
+   Никакие другие страницы не затрагиваются — работает
+   только когда body имеет data-ext="message". */
+body[data-ext="message"] .message-card {
+    /* Ограничение ширины: на широких экранах не растягивается */
+    max-width: 720px;
+    /* На всю ширину на маленьких экранах */
+    width: 100%;
+    /* Центрирование по горизонтали */
+    margin-left: auto;
+    margin-right: auto;
 }
