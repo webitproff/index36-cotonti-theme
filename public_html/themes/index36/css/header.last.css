@@ -728,55 +728,6 @@ a:hover {
   color: #fff;
 }
 
-/* Поисковый блок внутри сайдбара */
-.search-block {
-  /* Flex-колонка */
-  display: flex;
-  /* Направление сверху вниз */
-  flex-direction: column;
-  /* Расстояние между строками */
-  gap: 0.5rem;
-}
-
-/* Строка поиска (поле ввода с иконкой) */
-.search-row {
-  /* Flex-строка */
-  display: flex;
-  /* Вертикальное центрирование */
-  align-items: center;
-  /* Фон поля */
-  background: var(--bg-input);
-  /* Рамка */
-  border: 1px solid var(--border-color);
-  /* Скругление углов */
-  border-radius: 8px;
-  /* Внутренние отступы */
-  padding: 0.2rem 0.5rem;
-}
-
-/* Иконка внутри строки поиска */
-.search-row i {
-  /* Цвет иконки */
-  color: var(--text-muted);
-  /* Отступы по бокам */
-  margin: 0 0.3rem;
-}
-
-/* Поле ввода в строке поиска */
-.search-row input {
-  /* Занимает всё доступное пространство */
-  flex: 1;
-  /* Прозрачный фон */
-  background: transparent;
-  /* Без рамки */
-  border: none;
-  /* Внутренние отступы */
-  padding: 0.6rem 0;
-  /* Цвет текста */
-  color: var(--text-primary);
-  /* Убираем обводку при фокусе */
-  outline: none;
-}
 
 /* Кнопка обмена местами в сайдбаре */
 .swap-sidebar-btn {
@@ -1174,6 +1125,57 @@ a:hover {
   cursor: pointer;
 }
 
+
+/* Поисковый блок внутри сайдбара */
+.search-block {
+  /* Flex-колонка */
+  display: flex;
+  /* Направление сверху вниз */
+  flex-direction: column;
+  /* Расстояние между строками */
+  gap: 0.5rem;
+}
+
+/* Строка поиска (поле ввода с иконкой) */
+.search-row {
+  /* Flex-строка */
+  display: flex;
+  /* Вертикальное центрирование */
+  align-items: center;
+  /* Фон поля */
+  background: var(--bg-input);
+  /* Рамка */
+  border: 1px solid var(--border-color);
+  /* Скругление углов */
+  border-radius: 8px;
+  /* Внутренние отступы */
+  padding: 0.2rem 0.5rem;
+}
+
+/* Иконка внутри строки поиска */
+.search-row i {
+  /* Цвет иконки */
+  color: var(--text-muted);
+  /* Отступы по бокам */
+  margin: 0 0.3rem;
+}
+
+/* Поле ввода в строке поиска */
+.search-row input {
+  /* Занимает всё доступное пространство */
+  flex: 1;
+  /* Прозрачный фон */
+  background: transparent;
+  /* Без рамки */
+  border: none;
+  /* Внутренние отступы */
+  padding: 0.6rem 0;
+  /* Цвет текста */
+  color: var(--text-primary);
+  /* Убираем обводку при фокусе */
+  outline: none;
+}
+
 /* ============================================
    БЛОГ
    ============================================ */
@@ -1208,7 +1210,7 @@ a:hover {
 .card-img {
   width: 100%;
   height: auto;
-  max-height: 236px;
+  max-height: 207px;
   object-fit: cover;
 }
 img { max-width: 100%; height: auto; }
@@ -1757,29 +1759,48 @@ img { max-width: 100%; height: auto; }
    а у .header — 1100. Из-за этого шапка перекрывает панель.
    Поднимаем offcanvas и его затемнение выше шапки. */
 
-/* Сам offcanvas */
+/* ============================================
+   Z-INDEX — упорядоченные слои
+   Снизу вверх:
+     1000  .sidebar
+     1050  .sidebar-overlay
+     1060  .sidebar (mobile)
+     1090  .mega-menu
+     1100  .header
+     1140  .modal-backdrop
+     1150  .offcanvas-backdrop
+     1160  .offcanvas
+     1250  .fancybox__container
+     1300  .modal
+   ============================================ */
+
+/* Offcanvas: панель выше своего затемнения и шапки */
 .offcanvas {
-  z-index: 1200;
+  z-index: 1160;
 }
 
-/* Затемняющая подложка (появляется при открытии offcanvas) */
+/* Затемнение offcanvas: выше шапки, ниже панели */
 .offcanvas-backdrop {
-  z-index: 1190;
+  z-index: 1150;
 }
 
-/* Модалки Bootstrap (authModal и прочие) — тоже выше шапки */
+/* Модалки: верхний слой для модалок в body */
 .modal {
-  z-index: 1210;
+  z-index: 1300;
 }
 
-/* Затемнение модалки */
+/* Затемнение модалки: НИЖЕ offcanvas.
+   Иначе модалка, открытая внутри offcanvas,
+   окажется под своим же backdrop. */
 .modal-backdrop {
-  z-index: 1205;
+  z-index: 1140;
 }
 
 .fancybox__container {
   z-index: 1250;
 }
+
+
 
 /* ============================================
    Цитаты на форуме (blockquote)
@@ -2111,4 +2132,247 @@ blockquote blockquote {
   padding: 0.3rem 0.6rem;
   font-size: 0.85rem;
   border-radius: 6px;
+}
+
+/* Пагинация: разрешаем перенос и центрируем. */
+.pagination {
+  /* Ключевое: без этого длинный ряд не переносится и уезжает вправо. */
+  flex-wrap: wrap !important;
+  /* По центру в каждой строке. */
+  justify-content: center !important;
+}
+
+/* На узких экранах — компактнее и без «вылета» за край. */
+@media (max-width: 600px) {
+  .pagination {
+    /* Меньше зазор между кнопками. */
+    /* gap: 0.25rem !important; */
+  }
+  .pagination .page-link {
+    /* Меньше паддинг — больше элементов влезает в строку. */
+    /* padding: 0.3rem 0.55rem !important; */
+    /* Меньше шрифт. */
+    /* font-size: 0.8rem !important; */
+  }
+}
+
+
+/* ============================================
+   Offcanvas формы фильтров marketprofilter
+   ============================================ */
+
+/* Ширина offcanvas — шире дефолтной (400px),
+   чтобы длинные подписи параметров влезали без переносов */
+#marketFilterOffcanvas {
+    --bs-offcanvas-width: 420px;
+}
+
+/* Футер с кнопкой «Закрыть» — не сжимается,
+   фон как у вторичной поверхности темы */
+#marketFilterOffcanvas .offcanvas-footer {
+    /* Запрет сжатия — всегда виден внизу панели */
+    flex-shrink: 0;
+    /* Фон футера совпадает с вторичным фоном темы */
+    background: var(--bg-secondary);
+}
+
+/* Обнуляем карточку внутри offcanvas —
+   форма должна быть содержимым панели,
+   а не «карточкой в карточке» */
+#marketFilterOffcanvas .card {
+    /* Убираем рамку */
+    border: 0 !important;
+    /* Убираем фон */
+    background: transparent !important;
+    /* Убираем тень */
+    box-shadow: none !important;
+    /* Убираем внутренние отступы */
+    padding: 0 !important;
+    /* Убираем внешние отступы */
+    margin: 0 !important;
+    /* Убираем скругление */
+    border-radius: 0 !important;
+}
+
+/* Тело offcanvas — контекст для absolute-элементов формы
+   (например, кнопка «?» с position: absolute top-0 end-0) */
+#marketFilterOffcanvas .offcanvas-body {
+    /* Фиксируем контекст позиционирования */
+    position: relative;
+}
+
+/* На узких экранах offcanvas занимает почти всю ширину */
+@media (max-width: 500px) {
+    #marketFilterOffcanvas {
+        /* 92% ширины вьюпорта */
+        --bs-offcanvas-width: 92vw;
+    }
+}
+/* ============================================
+   Карточка товара в списке Market
+   ============================================ */
+
+/* Обёртка-карточка.
+   overflow: hidden — обрезает картинку по скруглённым углам карточки,
+   верхние углы закругляются автоматически, нижние остаются прямыми. */
+.product-card {
+    /* Рамка вокруг карточки */
+    border: 1px solid var(--border-color);
+    /* Скругление углов карточки */
+    border-radius: 12px!important;
+    /* Обрезка содержимого по скруглённым углам */
+    overflow: hidden;
+    /* Плавный подъём и тень при наведении */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* Фон карточки из переменной темы */
+    background: var(--card-bg);
+}
+
+/* Состояние при наведении на карточку */
+.product-card:hover {
+    /* Лёгкий подъём вверх */
+    transform: translateY(-4px);
+    /* Усиленная тень */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Ссылка-обёртка вокруг изображения */
+.product-card-img-link {
+    /* Контекст для absolute-элементов (бейдж статуса) */
+    position: relative;
+    /* Блочный элемент, чтобы занимал всю ширину карточки */
+    display: block;
+    /* Обрезка картинки при зуме по границам ссылки */
+    overflow: hidden;
+    /* Фон-заглушка, пока картинка не загрузилась */
+    background: var(--bg-tertiary);
+}
+
+/* Изображение товара */
+.product-card-img {
+
+    /* На всю ширину карточки */
+    width: 100%;
+    /* Фиксированная высота для единообразия карточек */
+    height: auto;
+    max-height: 207px;
+    /* height: 220px; */
+    /* Обрезка и заполнение области без искажений */
+    object-fit: cover;
+    /* Блочный элемент — убирает нижний отступ у inline-img */
+    display: block;
+    /* Плавный зум при наведении на карточку */
+    transition: transform 0.3s;
+    /* Только верхние углы закруглены, нижние прямые */
+    border-radius: 12px 12px 0 0 !important;
+}
+
+/* Зум изображения при наведении на карточку */
+.product-card:hover .product-card-img {
+    /* Увеличение на 4% */
+    transform: scale(1.04);
+}
+
+/* Бейдж статуса (например, «На модерации») поверх изображения */
+.product-card-status {
+    /* Абсолютное позиционирование относительно .product-card-img-link */
+    position: absolute;
+    /* Отступ сверху */
+    top: 10px;
+    /* Отступ слева */
+    left: 10px;
+    /* Мелкий шрифт */
+    font-size: 0.75rem;
+    /* Внутренние отступы */
+    padding: 4px 10px;
+    /* Скругление плашки */
+    border-radius: 6px;
+}
+
+/* Заголовок товара */
+.product-card-title {
+    /* Размер шрифта */
+    font-size: 1rem;
+    /* Полужирный */
+    font-weight: 700;
+    /* Межстрочный интервал для двух строк */
+    line-height: 1.3;
+    /* Отступ снизу от заголовка */
+    margin-bottom: 6px;
+}
+
+/* Ссылка внутри заголовка */
+.product-card-title a {
+    /* Основной цвет текста темы */
+    color: var(--text-primary);
+    /* Без подчёркивания */
+    text-decoration: none;
+}
+
+/* Ссылка заголовка при наведении */
+.product-card-title a:hover {
+    /* Акцентный цвет при наведении */
+    color: var(--accent);
+}
+
+/* Блок рейтинга (звёзды + счётчик отзывов) */
+.product-card-rating {
+    /* Отступ снизу от блока */
+    margin-bottom: 8px;
+    /* Размер шрифта */
+    font-size: 0.85rem;
+}
+
+/* Описание товара (обрезка длинного текста) */
+.product-card-desc {
+    /* Отступ снизу от описания */
+    margin-bottom: 6px;
+    /* Межстрочный интервал для читаемости */
+    line-height: 1.45;
+}
+
+/* Название категории товара */
+.product-card-cat {
+    /* Приглушённый цвет текста */
+    color: var(--text-muted);
+    /* Мелкий шрифт */
+    font-size: 0.8rem;
+    /* Заглавные буквы */
+    text-transform: uppercase;
+    /* Разрежённые буквы для аккуратного вида */
+    letter-spacing: 0.05em;
+}
+
+/* Ссылки на доп поля (GitHub, форум и т.п.) */
+.product-card-extra a {
+    /* Вторичный цвет текста темы */
+    color: var(--text-secondary);
+    /* Плавная смена цвета при наведении */
+    transition: color 0.15s;
+}
+
+/* Ссылки доп полей при наведении */
+.product-card-extra a:hover {
+    /* Акцентный цвет */
+    color: var(--accent);
+}
+
+/* Нижняя часть карточки (цена + владелец + кнопки) */
+.product-card-footer {
+    /* Разделительная линия сверху */
+    border-top: 1px solid var(--border-color);
+}
+
+/* Цена товара */
+.product-card-price {
+    /* Чуть крупнее обычного текста */
+    font-size: 1.1rem;
+    /* Акцентный цвет для выделения цены */
+    color: var(--accent);
+}
+
+/* Владелец товара (аватар + имя) */
+.product-card-owner {
+    /* Размер шрифта */
+    font-size: 0.85rem;
 }

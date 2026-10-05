@@ -97,9 +97,23 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleMenu();
   });
 
-  // Клик по пункту меню: активировать панель и закрыть меню
+  // Клик по пункту меню:
+  //   — если у пункта есть data-url и он отличается от текущего URL,
+  //     переходим на этот URL (страница перезагрузится, вкладка
+  //     восстановится автоматически из data-ext <body>);
+  //   — иначе просто переключаем панель (например, у пунктов
+  //     «plugins» и «elements» своего раздела нет).
   items.forEach((item) => {
     item.addEventListener('click', () => {
+      const url = item.dataset.url || '';
+
+      // Переход на раздел, если он задан и отличается от текущего.
+      if (url && url !== window.location.href) {
+        window.location.href = url;
+        return;
+      }
+
+      // Без URL или URL совпадает — только переключение панели.
       activateTab(item.dataset.tab);
       closeMenu();
     });

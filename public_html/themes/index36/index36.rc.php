@@ -10,13 +10,13 @@
  * Description: connection CSS & JS files, plugins, frameworks, libraries
  *              for the front-end (public) part of the site.
  * Created: 01 Feb 2026
- * Updated: 30 Sep 2026
+ * Updated: 05 Oct 2026
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  * Page in Marketplace: https://abuyfile.com/ru/market/cotonti/themes/index36
  *
  * @package index36
- * @version 2.1.0
+ * @version 2.1.1
  * @author webitproff
  * @copyright (c) 2026 webitproff | https://github.com/webitproff
  * @license BSD (Free using and distribution with saving copyrights)
@@ -246,36 +246,59 @@ $themeDir = Cot::$cfg['themes_dir'] . '/' . Cot::$usr['theme'];
 // (Modal, Toast, Dropdown и т.п.). Подключается первым, чтобы
 // дальнейшие CSS могли его переопределять.
 // $order = 10 — минимальный, идёт раньше всех остальных CSS.
-Resources::addFile('lib/bootstrap/css/bootstrap.min.css', 'css', 10);
+$bootstrapCss = 'lib/bootstrap/css/bootstrap.min.css';
+if (file_exists($bootstrapCss)) {
+    Resources::addFile($bootstrapCss, 'css', 10);
+}
 
 // FontAwesome — иконочный шрифт. Нужен до CSS темы, чтобы иконки
 // отрисовались сразу и не было мерцания «квадратиков».
 // $order = 20 — сразу после Bootstrap.
-Resources::addFile('lib/fontawesome/css/all.min.css', 'css', 20);
+$fontawesomeCss = 'lib/fontawesome/css/all.min.css';
+if (file_exists($fontawesomeCss)) {
+    Resources::addFile($fontawesomeCss, 'css', 20);
+}
 
 // Select2 CSS — стили выпадающих списков с поиском.
 // Требует Bootstrap-разметки, поэтому идёт после Bootstrap.
+// Внимание: используется алиас @select2.css, file_exists не применим —
+// алиас разрешается классом Resources, а не файловой системой.
 Resources::addFile('@select2.css', 'css', 40);
 
 // Select2 — стилевые дополнения/оверрайды под тему Index36.
 // Идут после базового CSS Select2, чтобы перекрыть его.
 // $order = 45 — сразу за базовым.
-Resources::addFile($themeDir . '/assets/select2/style-select2.css', 'css', 45);
+$select2StyleCss = $themeDir . '/assets/select2/style-select2.css';
+if (file_exists($select2StyleCss)) {
+    Resources::addFile($select2StyleCss, 'css', 45);
+}
 
 // Fancybox CSS — модальные окна/лайтбоксы. Подключается после
 // базовых библиотек, до темы. $order = 50 — по умолчанию.
-Resources::addFile($themeDir . '/assets/fancybox/fancybox.css', 'css', 50);
+$fancyboxCss = $themeDir . '/assets/fancybox/fancybox.css';
+if (file_exists($fancyboxCss)) {
+    Resources::addFile($fancyboxCss, 'css', 50);
+}
 
 // Perfect Scrollbar CSS — базовые стили кастомной полосы прокрутки.
-Resources::addFile($themeDir . '/assets/perfect-scrollbar/perfect-scrollbar.css', 'css', 60);
+$perfectScrollbarCss = $themeDir . '/assets/perfect-scrollbar/perfect-scrollbar.css';
+if (file_exists($perfectScrollbarCss)) {
+    Resources::addFile($perfectScrollbarCss, 'css', 60);
+}
 
 // Perfect Scrollbar — стилевые дополнения/оверрайды под тему Index36.
 // Идут после базового CSS, чтобы перекрыть его.
-Resources::addFile($themeDir . '/assets/perfect-scrollbar/styles-perfect-scrollbar.css', 'css', 65);
+$perfectScrollbarStylesCss = $themeDir . '/assets/perfect-scrollbar/styles-perfect-scrollbar.css';
+if (file_exists($perfectScrollbarStylesCss)) {
+    Resources::addFile($perfectScrollbarStylesCss, 'css', 65);
+}
 
 // default.css — вторичные стили темы: типографика, цвета,
 // оформление отдельных блоков. Подключается ДО основных стилей.
-Resources::addFile($themeDir . '/css/default.css', 'css', 800);
+$defaultCss = $themeDir . '/css/default.css';
+if (file_exists($defaultCss)) {
+    Resources::addFile($defaultCss, 'css', 800);
+}
 
 /*  
  * modalbox.css — стили окон с запросом подтверждения «опасных» действий
@@ -283,12 +306,18 @@ Resources::addFile($themeDir . '/css/default.css', 'css', 800);
  * на утверждение и т.п.). 
  * смотреть мой файл /themes/index36/css/modalbox.css
  */
-Resources::addFile($themeDir . '/css/modalbox.css', 'css', 800);
+$modalboxCss = $themeDir . '/css/modalbox.css';
+if (file_exists($modalboxCss)) {
+    Resources::addFile($modalboxCss, 'css', 800);
+}
 
 // header.last.css — главный стилевой файл темы. Самый высокий
 // $order (900), подключается ПОСЛЕ всех библиотек и плагинов,
 // поэтому может свободно их переопределять.
-Resources::addFile($themeDir . '/css/header.last.css', 'css', 900);
+$headerLastCss = $themeDir . '/css/header.last.css';
+if (file_exists($headerLastCss)) {
+    Resources::addFile($headerLastCss, 'css', 900);
+}
 
 /* =====================================================================
  * JS — ЗАГРУЖАЕТСЯ В <head> (только критичное для рендера)
@@ -299,10 +328,16 @@ Resources::addFile($themeDir . '/css/header.last.css', 'css', 900);
 // борется с FOUC (вспышкой неоформленного контента).
 // Единственный скрипт темы, которому действительно место в <head>.
 // $order = 40 — после Bootstrap-а, до всех футерных скриптов.
-Resources::addFile($themeDir . '/js/header.first.js', 'js', 40);
+$headerFirstJs = $themeDir . '/js/header.first.js';
+if (file_exists($headerFirstJs)) {
+    Resources::addFile($headerFirstJs, 'js', 40);
+}
 
 // Fancybox JS — модальные окна/лайтбоксы. 
-Resources::addFile($themeDir . '/assets/fancybox/fancybox.umd.js', 'js', 60);
+$fancyboxJs = $themeDir . '/assets/fancybox/fancybox.umd.js';
+if (file_exists($fancyboxJs)) {
+    Resources::addFile($fancyboxJs, 'js', 60);
+}
 
 /* =====================================================================
  * JS — ЗАГРУЖАЕТСЯ В ФУТЕР
@@ -316,15 +351,20 @@ Resources::addFile($themeDir . '/assets/fancybox/fancybox.umd.js', 'js', 60);
 // Если включена консолидация — кладём в <head> через addFile, чтобы
 // он мог быть склеен в общий assets-файл. Если консолидация
 // выключена — уходит в футер, чтобы не блокировать рендер.
-if (Cot::$cfg['headrc_consolidate']) {
-    Resources::addFile('lib/bootstrap/js/bootstrap.bundle.min.js', 'js', 30);
-} else {
-    Resources::linkFileFooter('lib/bootstrap/js/bootstrap.bundle.min.js', 'js', 30);
+$bootstrapBundleJs = 'lib/bootstrap/js/bootstrap.bundle.min.js';
+if (file_exists($bootstrapBundleJs)) {
+    if (Cot::$cfg['headrc_consolidate']) {
+        Resources::addFile($bootstrapBundleJs, 'js', 30);
+    } else {
+        Resources::linkFileFooter($bootstrapBundleJs, 'js', 30);
+    }
 }
 
 // Select2 JS — выпадающие списки с поиском. Зависит от jQuery,
 // который подключается через cot_rc_add_standard() в common.php
 // до вызова .rc.php. $order = 55 — сразу после Bootstrap.
+// Внимание: используется алиас @select2, file_exists не применим —
+// алиас разрешается классом Resources, а не файловой системой.
 Resources::linkFileFooter('@select2', 'js', 55);
 
 // Fancybox JS — модальные окна/лайтбоксы.
@@ -332,26 +372,56 @@ Resources::linkFileFooter('@select2', 'js', 55);
 // Resources::addFile($themeDir . '/assets/fancybox/fancybox.umd.js', 'js', 60);
 
 // Perfect Scrollbar — кастомная полоса прокрутки. Работает по DOM.
-Resources::linkFileFooter($themeDir . '/assets/perfect-scrollbar/perfect-scrollbar.min.js', 'js', 65);
+$perfectScrollbarJs = $themeDir . '/assets/perfect-scrollbar/perfect-scrollbar.min.js';
+if (file_exists($perfectScrollbarJs)) {
+    Resources::linkFileFooter($perfectScrollbarJs, 'js', 65);
+}
 
 // Perfect Scrollbar — инициализация/оверрайды под тему Index36.
 // Идёт после базового плагина, чтобы иметь доступ к его API.
-Resources::linkFileFooter($themeDir . '/assets/perfect-scrollbar/js-perfect-scrollbar.js', 'js', 70);
+$perfectScrollbarInitJs = $themeDir . '/assets/perfect-scrollbar/js-perfect-scrollbar.js';
+if (file_exists($perfectScrollbarInitJs)) {
+    Resources::linkFileFooter($perfectScrollbarInitJs, 'js', 70);
+}
 
 // theme.js — основной скрипт темы: общая логика фронта
 // (переключение темы, cookie, инициализация компонентов).
-Resources::linkFileFooter($themeDir . '/js/theme.js', 'js', 100);
+$themeJs = $themeDir . '/js/theme.js';
+if (file_exists($themeJs)) {
+    Resources::linkFileFooter($themeJs, 'js', 100);
+}
 
 // sidebar.js — поведение боковой панели (сворачивание, мобильный режим).
-Resources::linkFileFooter($themeDir . '/js/sidebar.js', 'js', 110);
+$sidebarJs = $themeDir . '/js/sidebar.js';
+if (file_exists($sidebarJs)) {
+    Resources::linkFileFooter($sidebarJs, 'js', 110);
+}
 
 // tabs.js — логика вкладок в интерфейсе.
-Resources::linkFileFooter($themeDir . '/js/tabs.js', 'js', 120);
+$tabsJs = $themeDir . '/js/tabs.js';
+if (file_exists($tabsJs)) {
+    Resources::linkFileFooter($tabsJs, 'js', 120);
+}
 
 // js.js — дополнительные утилиты и обработчики темы.
 // Самый высокий $order — идёт последним, чтобы видеть уже
 // инициализированные библиотеки и скрипты темы.
-Resources::linkFileFooter($themeDir . '/js/js.js', 'js', 130);
+$jsJs = $themeDir . '/js/js.js';
+if (file_exists($jsJs)) {
+    Resources::linkFileFooter($jsJs, 'js', 130);
+}
+
+
+// pagination-vertical.js — фолбэк-скрипт для пагинации:
+// перестраивает <ul class="pagination"> в блок prev / select / next.
+// Идёт последним, чтобы DOM уже был готов и все остальные скрипты
+// темы успели инициализироваться до подмены узлов.
+// $order = 140 — после js.js (130), не пересекается с другими.
+$paginationJs = $themeDir . '/js/pagination-vertical.js';
+if (file_exists($paginationJs)) {
+    Resources::linkFileFooter($paginationJs, 'js', 140);
+}
+
 
 /* =====================================================================
  * ПРИМЕЧАНИЯ

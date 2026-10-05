@@ -8,7 +8,7 @@
 	* 		 Bootstrap 5.3.+ (https://getbootstrap.com/);
 	* 		 Font Awesome Free 7.3 (https://fontawesome.com/)
 	* Theme: Index36
-	* Version: 2.1.0
+	* Version: 2.1.1
 	* Created: 01 Feb 2026
 	* Updated: 02 Oct 2026
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
@@ -36,23 +36,23 @@
 			<!-- Выпадающее меню: список доступных панелей -->
 			<ul class="sidebar-selector-menu" id="sidebarSelectorMenu" role="listbox">
 				<!-- IF {PHP|cot_module_active('market')} -->
-				<li class="sidebar-selector-item active" data-tab="market" role="option">
+				<li class="sidebar-selector-item active" data-tab="market" data-url="{PHP|cot_url('market')}" role="option">
 					<i class="fa-solid fa-store"></i>
 					<span>{PHP.L.market_title_general}</span>
 				</li>
 				<!-- ENDIF -->
-				<li class="sidebar-selector-item" data-tab="pages" role="option">
+				<li class="sidebar-selector-item" data-tab="pages" data-url="{PHP|cot_url('page','c=news')}" role="option">
 					<i class="fa-solid fa-pen-nib"></i>
 					<span>{PHP.L.langSkStr_tabPages}</span>
 				</li>
 				<!-- IF {PHP|cot_module_active('forums')} -->
-				<li class="sidebar-selector-item" data-tab="forums" role="option">
+				<li class="sidebar-selector-item" data-tab="forums" data-url="{PHP|cot_url('forums')}" role="option">
 					<i class="fa-solid fa-comments"></i>
 					<span>{PHP.L.Forums}</span>
 				</li>
 				<!-- ENDIF -->
 				<!-- IF {PHP|cot_module_active('users')} -->
-				<li class="sidebar-selector-item" data-tab="users" role="option">
+				<li class="sidebar-selector-item" data-tab="users" data-url="{PHP|cot_url('users')}" role="option">
 					<i class="fa-solid fa-users-gear"></i>
 					<span>{PHP.L.Users}</span>
 				</li>
@@ -360,7 +360,7 @@
 	<div class="row">
 		<div class="col-12 col-lg-4 mb-2">
 			<small>
-				<span class="fw-semibold" style="color: var(--accent);"> © 2012 - {PHP.sys.now|cot_date('d/m/Y', $this)} <!-- IF {PHP.cfg.maintitle} -->{PHP.cfg.maintitle}<!-- ELSE -->{PHP.cfg.market.marketlist_default_title}<!-- ENDIF --></span>
+				<span class="fw-semibold" style="color: var(--accent);"> © 2012 - {PHP.sys.now|cot_date('d.m.Y', $this)} <!-- IF {PHP.cfg.maintitle} -->{PHP.cfg.maintitle}<!-- ELSE -->{PHP.cfg.market.marketlist_default_title}<!-- ENDIF --></span>
 			</small>
 		</div>
 		<div class="col-12 col-lg-4">

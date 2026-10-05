@@ -1,35 +1,109 @@
 /* 0. Elements
 -------------------------------------------------- */
 
+/* ============================================
+   Code / pre / kbd — оформление под темы
+   Правила для code НЕ применяются внутри pre.
+   ============================================ */
 
-
-code, pre {
-	font-family: Monaco, Menlo, Consolas, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+/* Базовый моноширинный шрифт для кода.
+   'Courier New' первым — как приоритетный, остальные как fallback. */
+code,
+pre {
+  font-family: 'Courier New', Courier, monospace;
 }
 
-code, kbd {
-	margin: 0 2px;
-	padding: 2px 4px;
-	border-radius: 3px;
-	background-color: rgba(149, 119, 80, 0.06)
+/* Инлайн-код и клавиши: отступы, скругление, фон.
+   Селектор :not(pre) > code — исключает <code> внутри <pre>. */
+:not(pre) > code,
+kbd {
+  /* Небольшие горизонтальные отступы по бокам. */
+  margin: 0 2px;
+  /* Внутренние отступы вокруг текста. */
+  padding: 2px 4px;
+  /* Скругление углов плашки. */
+  border-radius: 3px;
+  /* Фон плашки — зеленоватый, 12% прозрачности. */
+  background-color: rgb(163 185 119 / 12%);
 }
 
-code {
-	color: #f17e32;
+
+/* ============================================
+   Светлая тема
+   ============================================ */
+
+[data-bs-theme="light"] :not(pre) > code {
+  /* Цвет текста инлайн-кода — приглушённый серый. */
+  color: #6c757d;
 }
+
+
+/* ============================================
+   Тёмная тема
+   ============================================ */
+
+[data-bs-theme="dark"] :not(pre) > code {
+  /* Цвет текста инлайн-кода — светло-серый. */
+  color: #aaa;
+}
+
+[data-bs-theme="dark"] :not(pre) > code,
+[data-bs-theme="dark"] kbd {
+  /* Фон плашки в тёмной теме — синеватый, 25% прозрачности. */
+  background-color: rgb(126 149 183 / 25%);
+}
+
+
+/* ============================================
+   pre — блок кода (в т.ч. без языка)
+   ============================================ */
 
 pre {
-	color: #333;
-	background: #fafafa;
-	padding: 6px 10px 8px;
-	line-height: normal;
-	overflow: auto;
-	margin: 5px;
-	border: 1px solid #eee;
-	border-left: .25em solid #d0d7de;
-	position: relative;
+  /* Цвет текста — из темы. */
+  color: var(--text-primary);
+  /* Фон блока — вторичный фон темы. */
+  background: var(--bg-secondary);
+  /* Внутренние отступы: сверху 6, по бокам 10, снизу 8. */
+  padding: 6px 10px 8px;
+  /* Межстрочный интервал — обычный, без раздутия. */
+  line-height: normal;
+  /* Горизонтальный скролл при длинных строках. */
+  overflow: auto;
+  /* Внешний отступ вокруг блока. */
+  margin: 5px;
+  /* Тонкая рамка по цвету границ темы. */
+  border: 1px solid var(--border-color);
+  /* Акцентная полоса слева. */
+  border-left: .25em solid var(--accent);
+  /* Контекст позиционирования. */
+  position: relative;
 }
 
+
+code[class*="language-"], pre[class*="language-"] {
+	color: #8d9fbb;
+	background: #282A36;
+}
+
+.ck.ck-editor__editable pre {
+  background: #282A36;
+}
+
+/* <code> внутри <pre> — снимаем все плашечные стили. */
+pre code {
+  /* Без фона — фон даёт сам <pre>. */
+  background: none;
+  /* Без внутренних отступов. */
+  padding: 0;
+  /* Без внешних отступов. */
+  margin: 0;
+  /* Без скругления. */
+  border-radius: 0;
+  /* Цвет наследуется от <pre>. */
+  color: inherit;
+  /* Размер шрифта — как у <pre>. */
+  font-size: inherit;
+}
 /* Tags
 -------------------------------------------------- */
 .tag_cloud	  { text-align:center; }
@@ -189,4 +263,205 @@ h6[id],
    свойства на корне. */
 html {
   scroll-padding-top: 36px;
+}
+
+/* ============================================
+   CKEditor — корректировки под тему
+   ============================================ */
+
+/* Липкая панель инструментов CKEditor при скролле. */
+.ck.ck-sticky-panel .ck-sticky-panel__content_sticky {
+  /* Сдвигаем вниз под шапку (56px), top задаётся инлайном — !important обязателен. */
+  top: 56px !important;
+  /* Ниже .header (1100), выше сайдбара (1000-1060) и мега-меню (1090). */
+  z-index: 1080 !important;
+}
+
+/* --- Полноэкранный режим --- */
+
+/* Обёртка панели инструментов внутри fullscreen — обнуляем возможные отступы. */
+.ck-fullscreen__toolbar {
+  /* Никаких внешних отступов сверху/снизу. */
+  margin: 0 !important;
+  /* Никаких внутренних отступов. */
+  padding: 0 !important;
+}
+
+/* Обёртка области редактирования и боковых панелей. */
+.ck-fullscreen__main-wrapper .ck-fullscreen__editable-wrapper {
+  /* block — чтобы editable не делил ширину с сайдбарами. */
+  display: block !important;
+  /* Контекст позиционирования. */
+  position: relative !important;
+  /* Растягиваем на весь остаток высоты после тулбара
+     (родитель — flex-колонка с height: 100%). */
+  flex: 1 1 auto !important;
+  /* Без min-height: 0 flex-элемент не даёт себя сжать
+     и скролл не появляется. */
+  min-height: 0 !important;
+  /* Отступы обнуляем — они давали зазор. */
+  margin: 0 !important;
+  padding: 0 !important;
+  /* Снимаем ограничение сверху, чтобы flex решал высоту. */
+  max-height: none !important;
+  /* Включаем вертикальный скролл на этом контейнере. */
+  overflow-y: auto !important;
+  /* Горизонтальный не нужен. */
+  overflow-x: hidden !important;
+}
+
+/* Левая боковая панель CKEditor (presence list, comments). */
+.ck-fullscreen__main-wrapper .ck-fullscreen__left-sidebar {
+  /* Убираем из потока — height:100% и sticky раздували область над editable. */
+  display: none !important;
+}
+
+/* Правая боковая панель CKEditor. */
+.ck-fullscreen__main-wrapper .ck-fullscreen__sidebar {
+  /* Убираем из потока по той же причине. */
+  display: none !important;
+}
+
+/* Обёртка белой страницы. */
+.ck-fullscreen__main-wrapper .ck-fullscreen__editable {
+  /* На всю доступную ширину. */
+  width: 100% !important;
+  /* Ограничение 1320px — как container-xxl в Bootstrap 5.3. */
+  max-width: 1320px !important;
+  /* Гасим инлайновое height:100% от CKEditor — оно растягивало обёртку. */
+  height: auto !important;
+  /* Убираем минимальную высоту, если она пришла из темы. */
+  min-height: 0 !important;
+  /* Сверху 28px до тулбара, по горизонтали центрируем. */
+  margin: 28px auto 0 !important;
+  /* По 20px воздуха слева и справа. */
+  padding: 0 20px !important;
+  /* Паддинги не расширяют блок сверх 100%. */
+  box-sizing: border-box !important;
+  /* Сбрасываем возможный сдвиг по вертикали от CKEditor. */
+  top: auto !important;
+}
+
+/* Сама белая страница с текстом. */
+.ck-fullscreen__main-wrapper .ck-fullscreen__editable .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+  /* Снимаем зашитую под A4 ширину ~795px. */
+  width: 100% !important;
+  /* И её max-width тоже. */
+  max-width: 100% !important;
+  /* Паддинги внутри не расширяют блок за 100% обёртки. */
+  box-sizing: border-box !important;
+}
+
+/* ============================================
+   Ссылки — оранжевый акцент (редактор + сайт)
+   ============================================ */
+
+/* --- Ссылки внутри редактора CKEditor ---
+   Применяется к .ck-editor__editable (в т.ч. в fullscreen)
+   и к .ck-content (готовый HTML CKEditor).
+   !important — перебивает инлайновый color, который CKEditor
+   вешает на <a> при вставке ссылки. */
+.ck.ck-editor__editable a,
+.ck-content a {
+  color: #ff5100 !important;
+  /* Лёгкое подчёркивание: 1px, полупрозрачное, с отступом от текста. */
+  text-decoration: underline !important;
+  text-decoration-color: rgba(255, 81, 0, 0.35) !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+/* Ховер ссылок в редакторе — подчёркивание становится плотнее. */
+.ck.ck-editor__editable a:hover,
+.ck-content a:hover {
+  color: #ff5100 !important;
+  text-decoration-color: rgba(255, 81, 0, 0.85) !important;
+}
+
+/* --- Ссылки внутри <p> в сохранённом контенте ---
+   Оформлены как псевдо-<mark>: фон + цвет ссылки.
+   Жирность 500, лёгкое подчёркивание с отступом от текста.
+   Цвета берём из code-стилей, перекрёстно между темами. */
+.text-content p a {
+  /* Полужирный — не меняется при ховере. */
+  font-weight: 500 !important;
+  /* Лёгкое подчёркивание: 1px, с отступом от текста. */
+  text-decoration: none !important;
+  letter-spacing: 0.07rem;
+  /* Небольшие горизонтальные отступы по бокам. */
+  margin: 0 2px;
+  /* Внутренние отступы вокруг текста. */
+  padding-top: 0px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  /* Скругление углов плашки. */
+  border-radius: 3px;
+}
+
+/* Светлая тема — значения из code для тёмной темы. */
+[data-bs-theme="light"] .text-content p a {
+  color:  #495057 !important;
+  background-color: #e9eef5 !important;
+
+}
+
+/* Тёмная тема — значения из code для светлой темы. */
+[data-bs-theme="dark"] .text-content p a {
+  color: #e9eef5 !important;
+  background-color: #495057 !important;
+}
+
+/* Светлая тема — ховер берёт значения, которые сейчас в тёмной теме. */
+[data-bs-theme="light"] .text-content p a:hover {
+  /* Цвет — как у ссылки в тёмной теме. */
+  /* color: #495057 !important; */
+  /* Фон — как у ссылки в тёмной теме. */
+  /* background-color: #e9eef5 !important; */
+  /* Полужирный при ховере. */
+  color: #315284 !important;
+  font-weight: 600 !important;
+}
+
+/* Тёмная тема — ховер берёт значения, которые сейчас в светлой теме. */
+[data-bs-theme="dark"] .text-content p a:hover {
+  /* Цвет — как у ссылки в светлой теме. */
+  /* color: #e9eef5 !important; */
+  /* Фон — как у ссылки в светлой теме. */
+  /* background-color: #495057 !important; */
+  /* Полужирный при ховере. */
+  color: #b9d6ff !important;
+  font-weight: 600 !important;
+}
+
+/* Значок-ссылка перед содержимым ссылок внутри <p>.
+   :::before с unicode-символом, отображается как эмодзи в браузере. */
+.text-content p a::before {
+  /* U+1F517 — 🔗 LINK SYMBOL. */
+  content: "\1F517";
+  /* Небольшой отступ справа между значком и текстом. */
+  margin-right: 3px;
+  /* Размер значка чуть меньше текста, чтобы не перетягивал внимание. */
+  font-size: 0.9em;
+  /* По вертикали выравниваем по базовой линии текста. */
+  vertical-align: baseline;
+  /* Наследуем цвет ссылки. */
+  color: inherit;
+  /* Снимаем подчёркивание со значка (оно идёт от ссылки). */
+  text-decoration: none;
+}
+
+/* ============================================
+   Пункты списка <ul><li> в сохранённом контенте
+   ============================================ */
+
+.text-content ul > li {
+  /* Сверху: отступ от предыдущего пункта. */
+  padding-top: 6px !important;
+  /* Справа: отступ от правого края блока. */
+  padding-right: 0 !important;
+  /* Снизу: отступ до следующего пункта. */
+  padding-bottom: 6px !important;
+  /* Слева: отступ от маркера списка до текста ссылки. */
+  padding-left: 8px !important;
 }
