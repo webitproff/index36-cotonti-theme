@@ -76,6 +76,9 @@
 			
 			<article class="card shadow-sm mb-4">
 				<div class="card-body">
+    <!-- IF {PAGE_TOC} -->
+    {PAGE_TOC}
+    <!-- ENDIF -->
 					<div class="text-content mb-4">
 						{PAGE_TEXT}
 					</div>
@@ -164,6 +167,9 @@
 	</div>
 </div>
 
+
+<!-- END: MAIN -->
+
 <script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -216,4 +222,3 @@
 		]
 	}
 </script>
-<!-- END: MAIN -->

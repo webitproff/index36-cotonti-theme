@@ -37,7 +37,7 @@
 						<input type="hidden" name="tab" value="pag" />
 						<input type="hidden" name="l" value="{PHP.lang}" />
 						<input type="text" name="sq" class="rounded-start-5 form-control" placeholder="{PHP.L.Search}..." />
-						<button type="submit" class="btn btn-primary rounded-end-5 " title="{PHP.L.Search}">
+						<button type="submit" class="btn btn-accent rounded-end-5 " title="{PHP.L.Search}">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
 					</div>
@@ -276,7 +276,7 @@
 		</div>
 		<!-- IF {PAGINATION} -->
 		<nav class="mt-5">
-			<ul class="pagination justify-content-center">
+			<ul class="no-vertical-pagination pagination justify-content-center">
 				{PREVIOUS_PAGE}
 				{PAGINATION}
 				{NEXT_PAGE}

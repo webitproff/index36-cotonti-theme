@@ -389,6 +389,9 @@
 	</div>
 </div>
 
+<!-- END: MAIN -->
+
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -441,4 +444,3 @@
   ]
 }
 </script>
-<!-- END: MAIN -->

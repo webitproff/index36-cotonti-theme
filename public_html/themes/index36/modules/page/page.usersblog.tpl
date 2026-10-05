@@ -269,7 +269,11 @@
 		<!-- SIDEBAR -->
 		<div class="col-12 col-lg-4">		
 			<div class="position-sticky" style="top: 2rem;">
-				
+				<!-- IF {PAGE_TOC} -->
+				<div>
+					{PAGE_TOC}
+				</div>
+				<!-- ENDIF -->				
 				<div class="card border-0 shadow-sm mb-5 overflow-hidden">
 					<img src="{PHP.R.page_default_image}" class="card-img-top" style="height:112px; object-fit:cover;" alt="{PAGE_OWNER_NICKNAME}">
 					<div class="card-body text-center pt-5 position-relative">
@@ -313,97 +317,13 @@
 						</div>
 					</div>
 				</div>
-				
-				<div>
-					<h6 class="border-bottom pb-2 mb-4 fw-semibold">More from <a href="{PAGE_OWNER_DETAILS_URL}" class="text-decoration-none fw-medium">{PAGE_OWNER_FULL_NAME}</a></h6>
-					<div class="card border-0 p-1 mb-4">
-						<div class="d-flex gap-3">
-							<div class="flex-grow-1">
-								<div class="small text-muted">06 Nov</div>
-								<a href="#" class="fw-semibold link-warning d-block mt-1">What is Cotonti CMF?</a>
-								<div class="d-flex justify-content-between align-items-center mt-2 small text-muted">
-									<span>2 min read</span>
-									<div class="dropdown">
-										<button class="btn btn-sm btn-outline-secondary rounded-circle p-0 border-0 shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:28px;height:28px;">
-											<i class="fas fa-ellipsis-v"></i>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg py-2 bg-white" style="min-width:280px;">
-											<li><a class="dropdown-item py-2 px-4" href="#">Action</a></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Another Action</a></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Something else</a></li>
-											<li><hr class="dropdown-divider my-1"></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Separated Link</a></li>
-										</ul>
-									</div>
-									<button class="btn btn-outline-danger rounded-circle p-0 d-flex align-items-center justify-content-center" 
-									style="width: 2rem; height: 2rem;">
-										<i class="fa-regular fa-bookmark"></i>
-									</button>
-								</div>
-							</div>
-							<img src="{PHP.R.page_default_image}" alt="" class="rounded" width="96" height="96" style="object-fit:cover;">
-						</div>
-					</div>
-					
-					<div class="card bg-transparent border-0 p-1 mb-4">
-						<div class="d-flex gap-3">
-							<div class="flex-grow-1">
-								<div class="small text-muted">06 Nov</div>
-								<a href="#" class="fw-medium d-block mt-1">25 Surprising Facts About Cotonti CMF</a>
-								<div class="d-flex justify-content-between align-items-center mt-2 small text-muted">
-									<span>2 min read</span>
-									<div class="dropdown">
-										<button class="btn btn-sm btn-outline-secondary rounded-circle p-0 border-0 shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:28px;height:28px;">
-											<i class="fas fa-ellipsis-v"></i>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-end border shadow-sm py-2 bg-white text-success-emphasis" style="min-width:180px;">
-											<li><a class="dropdown-item py-2 px-4" href="#">Action</a></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Another Action</a></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Something else</a></li>
-											<li><hr class="dropdown-divider my-1"></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Separated Link</a></li>
-										</ul>
-									</div>
-									<button class="btn btn-sm btn-outline-secondary rounded-circle" style="width:28px;height:28px;">
-										<i class="far fa-bookmark"></i>
-									</button>
-								</div>
-							</div>
-							<img src="{PHP.R.page_default_image}" alt="" class="rounded" width="96" height="96" style="object-fit:cover;">
-						</div>
-					</div>
-					<div class="card bg-warning-subtle text-warning-emphasis border-2 border-warning p-1 mb-4">
-						<div class="d-flex gap-3">
-							<div class="flex-grow-1">
-								<div class="small">06 Nov</div>
-								<a href="#" class="fw-medium d-block mt-1">Cotonti CMF Top System</a>
-								<div class="d-flex justify-content-between align-items-center mt-2 small">
-									<span>2 min read</span>
-									<div class="dropdown">
-										<button class="btn btn-sm btn-outline-secondary rounded-circle p-0 border-0 shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:28px;height:28px;">
-											<i class="fas fa-ellipsis-v"></i>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-end border shadow-sm py-2 bg-info-subtle text-info-emphasis" style="min-width:180px;">
-											<li><a class="dropdown-item py-2 px-4" href="#">Action</a></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Another Action</a></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Something else</a></li>
-											<li><hr class="dropdown-divider my-1"></li>
-											<li><a class="dropdown-item py-2 px-4" href="#">Separated Link</a></li>
-										</ul>
-									</div>
-									<button class="btn btn-sm btn-outline-secondary rounded-circle" style="width:28px;height:28px;">
-										<i class="far fa-bookmark"></i>
-									</button>
-								</div>
-							</div>
-							<img src="{PHP.R.page_default_image}" alt="" class="rounded" width="96" height="96" style="object-fit:cover;">
-						</div>
-					</div>
-				</div>
 			</div>				
 		</div>
 	</div>
 </div>
+
+<!-- END: MAIN -->
+
 
 <script type="application/ld+json">
 	{
@@ -457,4 +377,3 @@
 		]
 	}
 </script>
-<!-- END: MAIN -->
