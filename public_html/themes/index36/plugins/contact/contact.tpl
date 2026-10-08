@@ -9,9 +9,9 @@
  * 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
  * 		 Font Awesome Free 7.3[](https://fontawesome.com/)
  * Theme: Index36  
- * Version=2.0.1 
+ * Version=2.1.1 
  * Created: 01 Feb 2026 
- * Updated: 28 Sep 2026  
+ * Updated: 08 Oct 2026  
  * Copyright (c) 2026 webitproff | https://github.com/webitproff
  * Source: https://github.com/webitproff/index36-cotonti-theme
  * Demo : https://freelance-script.abuyfile.com 
@@ -24,7 +24,7 @@
 <div class="border-bottom py-3 px-3">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb d-flex mb-0 align-items-center">
-            <i class="fa-solid fa-envelope-open-text me-3 fs-4 text-primary"></i>
+            <i class="fa-solid fa-envelope-open-text me-3 fs-4"></i>
             <li class="breadcrumb-item active fw-bold">{CONTACT_TITLE}</li>
 		</ol>
 	</nav>
@@ -44,9 +44,14 @@
                 {PHP.cfg.plugin.contact.about}
 			</div>
 			<!-- ELSE -->
+			<!-- IF {PHP.usr.maingrp} == 5 -->
 			<div class="text-muted mb-4 mb-lg-5 lh-lg">
+				<a class="nav-link" href="{PHP|cot_url('admin', 'm=config&n=edit&o=plug&p=contact')}">
+					<i class="fa-solid fa-user-shield me-1"></i>{PHP.L.Adminpanel} / {PHP.L.cfg_about}
+				</a>
                 CONTENT for PHP.cfg.plugin.contact.about
 			</div>
+			<!-- ENDIF -->
 			<!-- ENDIF -->
 			
 			
@@ -55,9 +60,14 @@
                 {PHP.cfg.plugin.contact.map}
 			</div>
 			<!-- ELSE -->
+			<!-- IF {PHP.usr.maingrp} == 5 -->
 			<div class="text-muted mb-4 mb-lg-5 lh-lg">
+				<a class="nav-link" href="{PHP|cot_url('admin', 'm=config&n=edit&o=plug&p=contact')}">
+					<i class="fa-solid fa-user-shield me-1"></i>{PHP.L.Adminpanel} / {PHP.L.cfg_about}
+				</a>
                 CONTENT for cfg.plugin.contact.map 
 			</div>
+			<!-- ENDIF -->
             <!-- ENDIF -->
 			
 		</div>
@@ -74,21 +84,21 @@
                         <div class="row g-4">
 							
                             <div class="col-12 col-sm-4">
-                                <label class="form-label fw-bold text-muted small">{PHP.L.Username}:</label>
+                                <label class="form-label fw-bold">{PHP.L.Username}:</label>
 							</div>
                             <div class="col-12 col-sm-8">
-                                <div class="form-control-plaintext fw-medium">
+                                
                                     {CONTACT_FORM_AUTHOR}
-								</div>
+								
 							</div>
 							
                             <div class="col-12 col-sm-4">
-                                <label class="form-label fw-bold text-muted small">{PHP.L.Email}:</label>
+                                <label class="form-label fw-bold">{PHP.L.Email}:</label>
 							</div>
                             <div class="col-12 col-sm-8">
-                                <div class="form-control-plaintext fw-medium">
+                                
                                     {CONTACT_FORM_EMAIL}
-								</div>
+								
 							</div>
 							
                             <div class="col-12 col-sm-4">
@@ -128,7 +138,7 @@
                             <!-- END: CAPTCHA -->
 							
                             <div class="col-12 text-center text-sm-end mt-4 pt-4 border-top">
-                                <button type="submit" class="btn btn-primary btn-lg px-5 py-3">
+                                <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fa-solid fa-paper-plane me-2"></i>{PHP.L.Submit}
 								</button>
 							</div>
