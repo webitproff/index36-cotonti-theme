@@ -8,9 +8,9 @@
 	* 		 Bootstrap 5.3.+ (https://getbootstrap.com/);
 	* 		 Font Awesome Free 7.3 (https://fontawesome.com/)
 	* Theme: Index36
-	* Version: 2.1.1
+	* Version: 2.2.1
 	* Created: 01 Feb 2026
-	* Updated: 06 Oct 2026
+	* Updated: 09 Oct 2026
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Page in Marcetplace : https://abuyfile.com/ru/market/cotonti/themes/index36
@@ -95,15 +95,14 @@
 						<!-- Контакты: активна при ext == contact -->
 						<li<!-- IF {PHP.env.ext} == 'contact' --> class="active"<!-- ENDIF -->><a href="{PHP|cot_url('contact')}">{PHP.L.contact_contactUs}</a></li>
 						<!-- ENDIF -->
-
-						<!-- Кнопка «Ещё»: открывает мега-меню под шапкой -->
+<!-- Кнопка «Ещё»: открывает мега-меню под шапкой -->
 						<li class="nav-more-item">
 							<button type="button"
 									class="nav-more-btn"
 									id="navMoreBtn"
 									aria-expanded="false"
 									aria-controls="megaMenu">
-								«Ещё» <i class="fas fa-ellipsis-h"></i>
+								{PHP.L.langSkStr_nav_more_btn} <i class="fas fa-ellipsis-h"></i>
 							</button>
 						</li>
 					</ul>
@@ -121,51 +120,51 @@
 						<!-- Левая часть: список разделов -->
 						<div class="mega-menu-grid">
 							<div class="mega-menu-col">
-								<div class="mega-menu-title">{«Покупателям» — заголовок колонки}</div>
+								<div class="mega-menu-title">{PHP.L.langSkStr_title_buyers} </div>
 								<a class="mega-menu-item" href="#">
 									<span class="mega-menu-icon"><i class="fa-solid fa-tags"></i></span>
 									<span class="mega-menu-text">
-										<strong>Скидки и акции</strong>
-										<small>Специальные предложения</small>
+										<strong>{PHP.L.langSkStr_item_discounts_title}</strong>
+										<small>{PHP.L.langSkStr_item_discounts_desc}</small>
 									</span>
 								</a>
 								<a class="mega-menu-item" href="#">
 									<span class="mega-menu-icon"><i class="fa-solid fa-truck-fast"></i></span>
 									<span class="mega-menu-text">
-										<strong>Доставка и оплата</strong>
-										<small>Способы и сроки</small>
+										<strong>{PHP.L.langSkStr_item_delivery_title}</strong>
+										<small>{PHP.L.langSkStr_item_delivery_desc}</small>
 									</span>
 								</a>
 								<a class="mega-menu-item" href="#">
 									<span class="mega-menu-icon"><i class="fa-solid fa-shield-halved"></i></span>
 									<span class="mega-menu-text">
-										<strong>Гарантии</strong>
-										<small>Возврат и качество</small>
+										<strong>{PHP.L.langSkStr_item_guarantees_title}</strong>
+										<small>{PHP.L.langSkStr_item_guarantees_desc}</small>
 									</span>
 								</a>
 							</div>
 
 							<div class="mega-menu-col">
-								<div class="mega-menu-title">{«Компания» — заголовок колонки}</div>
+								<div class="mega-menu-title">{PHP.L.langSkStr_title_company}</div>
 								<a class="mega-menu-item" href="#">
 									<span class="mega-menu-icon"><i class="fa-solid fa-circle-info"></i></span>
 									<span class="mega-menu-text">
-										<strong>О нас</strong>
-										<small>Наша история</small>
+										<strong>{PHP.L.langSkStr_item_about_title}</strong>
+										<small>{PHP.L.langSkStr_item_about_desc}</small>
 									</span>
 								</a>
 								<a class="mega-menu-item" href="#">
 									<span class="mega-menu-icon"><i class="fa-solid fa-newspaper"></i></span>
 									<span class="mega-menu-text">
-										<strong>Блог</strong>
-										<small>Новости и статьи</small>
+										<strong>{PHP.L.langSkStr_item_blog_title}</strong>
+										<small>{PHP.L.langSkStr_item_blog_desc}</small>
 									</span>
 								</a>
 								<a class="mega-menu-item" href="#">
 									<span class="mega-menu-icon"><i class="fa-solid fa-briefcase"></i></span>
 									<span class="mega-menu-text">
-										<strong>Партнёрам</strong>
-										<small>Сотрудничество</small>
+										<strong>{PHP.L.langSkStr_item_partners_title}</strong>
+										<small>{PHP.L.langSkStr_item_partners_desc}</small>
 									</span>
 								</a>
 							</div>
@@ -173,13 +172,13 @@
 
 						<!-- Правая часть: акцентный блок -->
 						<div class="mega-menu-aside">
-							<div class="mega-menu-aside-badge">{«Рекомендуем» — плашка}</div>
-							<h3 class="mega-menu-aside-title">{«Популярное прямо сейчас»}</h3>
+							<div class="mega-menu-aside-badge">{PHP.L.langSkStr_aside_badge}</div>
+							<h3 class="mega-menu-aside-title">{PHP.L.langSkStr_aside_title}</h3>
 							<p class="mega-menu-aside-text">
-								{Короткий текст-приглашение — 1–2 строки про раздел, на который ведёт кнопка ниже.}
+								{PHP.L.langSkStr_aside_text}
 							</p>
 							<a href="#" class="mega-menu-aside-btn">
-								{Открыть} <i class="fas fa-arrow-right ms-1"></i>
+								{PHP.L.langSkStr_aside_btn} <i class="fas fa-arrow-right ms-1"></i>
 							</a>
 						</div>
 

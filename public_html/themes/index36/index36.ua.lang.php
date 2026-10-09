@@ -6,18 +6,34 @@
  * Placement: /themes/index36/index36.ua.lang.php 
  * Description: Файл локалізації теми для інтерфейсу українською мовою
  * Created: 01 Feb 2026  
- * Updated: 24 Feb 2026
+ * Updated: 09 Oct 2026
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  * 
  * @package index36 
- * @version 2.0.1  
+ * @version 2.2.1  
  * @author webitproff 
  * @copyright (c) 2026 webitproff | https://github.com/webitproff 
  * @license BSD (Безкоштовне використання та поширення з збереженням авторських прав)   
  */ 
 
 defined('COT_CODE') or die('Wrong URL.');
+
+/**
+ * перевизначаємо сетап конфігурації того, що у нас в адмінці
+ * Управління сайтом / Конфігурація / Заголовки та мета-теги 
+*/
+// global $cfg;
+$useCfgFromLang = true; // використовувати значення конфігурації з файлу локалізації // Use configuration values from the localization file
+if ($useCfgFromLang === true) {
+    // Заголовок (Назва сайту)
+    Cot::$cfg['maintitle'] = 'aBuyFile Market';
+    // Підзаголовок (Опис сайту)
+    Cot::$cfg['subtitle'] = 'Спільний онлайн ринок, кооперативний маркетплейс незалежних розробників і продавців цифрових товарів. Фрілансери та постачальники послуг розробки й модернізації веб-сайтів';
+	// $cfg['market']['title'] = '';
+	// $cfg['market']['description'] = '';
+}
+
 
 // USERS groups localization title
 if (isset($cot_groups['7']['name']) && is_array($cot_groups)) {
@@ -68,6 +84,31 @@ if ($ext === 'index') {
     $L['langSkStr_indexDwnApQ5'] = '<i class="fa-solid fa-book-atlas fa-xl me-3"></i> Керівництво користувача та документація по Cotonti CMF';
     $L['langSkStr_indexDwnApA5'] = '<p><i class="fa-solid fa-building-circle-arrow-right fa-xl me-3 text-success"></i>Оновлювана документація користувача <a href="https://abuyfile.com/ru/cotonti" target="_blank" class="fw-bold" title="Документація Cotonti">на сайті приватних розробників та ентузіастів, що підтримують Cotonti!</a></p><hr><i class="fa-solid fa-building-flag fa-xl me-3"></i><p>Офіційна документація <a href="https://www.cotonti.com/docs/" target="_blank" class="fw-bold" title="Форум і документація офіційного Cotonti">на офіційному сайті від перших розробників</a>, які не пов’язані з поточною командою.</p>';
 }
+
+/* Mega menu in header.tpl */
+
+$L['langSkStr_nav_more_btn'] = '«Ще»';
+
+$L['langSkStr_title_buyers'] = '«Покупцям»';
+$L['langSkStr_item_discounts_title'] = 'Знижки та акції';
+$L['langSkStr_item_discounts_desc'] = 'Спеціальні пропозиції';
+$L['langSkStr_item_delivery_title'] = 'Доставка та оплата';
+$L['langSkStr_item_delivery_desc'] = 'Способи та терміни';
+$L['langSkStr_item_guarantees_title'] = 'Гарантії';
+$L['langSkStr_item_guarantees_desc'] = 'Повернення та якість';
+
+$L['langSkStr_title_company'] = '«Компанія»';
+$L['langSkStr_item_about_title'] = 'Про нас';
+$L['langSkStr_item_about_desc'] = 'Наша історія';
+$L['langSkStr_item_blog_title'] = 'Блог';
+$L['langSkStr_item_blog_desc'] = 'Новини та статті';
+$L['langSkStr_item_partners_title'] = 'Партнерам';
+$L['langSkStr_item_partners_desc'] = 'Співпраця';
+
+$L['langSkStr_aside_badge'] = '«Рекомендуємо»';
+$L['langSkStr_aside_title'] = '«Популярне прямо зараз»';
+$L['langSkStr_aside_text'] = 'Короткий текст-запрошення — 1–2 рядки про розділ, на який веде кнопка нижче.';
+$L['langSkStr_aside_btn'] = 'Відкрити';
 
 // USERS, FORUMS, PAGES, FOOTER, etc. translation
 $L['langSkStr_Username'] = 'Нік користувача';
@@ -179,3 +220,8 @@ $L['langSkStr_blank_temporary_example_desc'] = '
 $L['msg404_title'] = 'Упс. Сторінку не знайдено (404)';
 $L['msg404_body'] = 'Сторінка, яку ви шукаєте, ймовірно застаріла і більше недоступна. Будь ласка, поверніться на головну або скористайтеся пошуком';
 $L['langSkStr_BackToHome'] = 'На головну';
+
+
+$L['langSkStr_debug_tpl_note_1'] = 'Функція з файлу';
+$L['langSkStr_debug_tpl_note_2'] = 'виводить абсолютну адресу шаблону та показує це повідомлення <strong>тільки супер адміністраторам.</strong>';
+$L['langSkStr_debug_tpl_note_3'] = 'Це дозволяє уникнути плутанини під час правок шаблонів.';

@@ -10,13 +10,13 @@
  * Description: connection CSS & JS files, plugins, frameworks, libraries
  *              for the front-end (public) part of the site.
  * Created: 01 Feb 2026
- * Updated: 05 Oct 2026
+ * Updated: 09 Oct 2026
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  * Page in Marketplace: https://abuyfile.com/ru/market/cotonti/themes/index36
  *
  * @package index36
- * @version 2.1.1
+ * @version 2.2.1
  * @author webitproff
  * @copyright (c) 2026 webitproff | https://github.com/webitproff
  * @license BSD (Free using and distribution with saving copyrights)
@@ -422,6 +422,11 @@ if (file_exists($paginationJs)) {
     Resources::linkFileFooter($paginationJs, 'js', 140);
 }
 
+// кастомизация в некоторых локациях
+$jsCustomSelect2 = $themeDir . '/assets/select2/js-select2.js';
+if (file_exists($jsCustomSelect2)) {
+    Resources::linkFileFooter($jsCustomSelect2, 'js', 150);
+}
 
 /* =====================================================================
  * ПРИМЕЧАНИЯ

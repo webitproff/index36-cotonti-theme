@@ -16,7 +16,7 @@
  * Page in Marketplace: https://abuyfile.com/ru/market/cotonti/themes/index36
  *
  * @package index36
- * @version 2.1.1
+ * @version 2.2.1
  * @author webitproff
  * @copyright (c) 2026 webitproff | https://github.com/webitproff
  * @license BSD (Free using and distribution with saving copyrights)

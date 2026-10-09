@@ -2376,3 +2376,138 @@ blockquote blockquote {
     /* Размер шрифта */
     font-size: 0.85rem;
 }
+/* gradient-border */
+.gradient-border {
+  position: relative;
+  border-radius: 24px;
+}
+
+/* gradient-border */
+.gradient-border-contain-bg {
+  background-color: var(--card-bg); padding: 5px; border-radius: 24px;
+}
+
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px;
+  background: linear-gradient(30deg, #ffe3d0 0, #ffdbfa 35%, #d3ceff 70%, #d3ceff 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.gradient-border-about {
+  position: relative;
+  border-radius: 24px;
+  background-color: #f6f6fe;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* градиентная рамка */
+.gradient-border-about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px;
+  background: linear-gradient(30deg, #ffe3d0 0, #ffdbfa 35%, #d3ceff 70%, #d3ceff 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* абстрактная фигура */
+.gradient-border-about::after {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  background: #dde5fa;
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 70%);
+/* Треугольник в углу */
+/* clip-path: polygon(100% 0, 100% 100%, 0 100%);
+ */
+/* Трапеция */
+/* clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+ */
+/* Ромб */
+/* clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+ */
+/* Кривая «капля» */
+/* clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 0 100%); */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* текст поверх фигуры */
+.gradient-border-about > * {
+  position: relative;
+  z-index: 1;
+}
+
+.gradient-border-about-figure {
+  background-color: #f6f6fe;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><polygon points='0,200 200,0 200,200' fill='%23dde5fa'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><circle cx='60' cy='60' r='60' fill='%23dde5fa'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right -40px top -40px, left -30px bottom -30px;
+  background-size: 260px 260px, 180px 180px;
+}
+
+.field-gradient {
+    padding: 4px;
+    border-radius: 12px;
+    background: linear-gradient(258deg, #fbd1b4, #f6ccf0, #cbc5f9);
+    transition: background 0.2s ease;
+}
+
+.field-gradient:focus-within {
+    background: linear-gradient(258deg, #cbc5f9, #f6ccf0, #fbd1b4);
+}
+
+.field-gradient .form-control,
+.field-gradient .form-select {
+    border: 0;
+    box-shadow: none;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.field-gradient .form-control:focus,
+.field-gradient .form-select:focus {
+    box-shadow: none;
+    background: #fff;
+}
+/* gradient-border */
+
+.gradient-border-about-figure a,
+.gradient-border-about-figure a:link,
+.gradient-border-about-figure a:visited,
+.gradient-border-about a,
+.gradient-border-about a:link,
+.gradient-border-about a:visited {
+    color: #052c65 !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.gradient-border-about-figure a:hover,
+.gradient-border-about-figure a:focus,
+.gradient-border-about-figure a:active,
+.gradient-border-about a:hover,
+.gradient-border-about a:focus,
+.gradient-border-about a:active {
+    color: #FF5722 !important;
+    text-decoration: none;
+}

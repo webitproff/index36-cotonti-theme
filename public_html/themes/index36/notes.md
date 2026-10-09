@@ -2,10 +2,10 @@
  * Index36 - Theme for Cotonti
  * Compatibility: [CMF/CMS Cotonti V.1](https://github.com/Cotonti/Cotonti); PHP-8.5 & MySQL-8.4 
  * Created: 01 Feb 2026  
- * Updated: 28 Sep 2026  
+ * Updated: 09 Oct 2026  
  * Support: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  * @package index36 
- * @version 2.0.1  
+ * @version 2.2.1  
  * @author webitproff 
  * @copyright (c) 2026 webitproff | https://github.com/webitproff/index36-cotonti-theme
  * @license BSD (Free using and distribution with saving copyrights)   

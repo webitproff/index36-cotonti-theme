@@ -2,7 +2,7 @@
 /* ====================
 [BEGIN_COT_THEME]
 Name=Index36
-Version=2.1.0
+Version=2.2.1
 Schemes=default:Default
 [END_COT_THEME]
 ==================== */
@@ -18,13 +18,13 @@ Schemes=default:Default
  *              string overrides of the Index36 theme. Consolidates all resource
  *              overrides in a single file.
  * Created: 01 Feb 2026
- * Updated: 01 Oct 2026
+ * Updated: 09 Oct 2026
  * Item on Cotonti Extensions Marketplace: https://abuyfile.com/ru/market/cotonti/themes/index36
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  *
  * @package index36
- * @version 2.1.0
+ * @version 2.2.1
  * @author webitproff
  * @copyright (c) 2026 webitproff | https://github.com/webitproff
  * @license BSD (Free using and distribution with saving copyrights)
@@ -174,7 +174,7 @@ Schemes=default:Default
  * Дата: 01 Oct 2026
  *
  * @package index36
- * @version 2.1.0
+ * @version 2.2.1
  * @author webitproff
  * @copyright (c) 2026 webitproff | https://github.com/webitproff
  * @license BSD
@@ -377,7 +377,7 @@ $R['userimg_selectfile'] = '{$form_input}';
 $R['userimg_html'] = '<div class="userimg_{$code}">{$existing}{$selectfile}</div>';
 
 // Кнопка удаления аватара с классом Bootstrap danger.
-$R['userimg_remove'] = '<a href="{$url}" class="button btn btn-danger">' . $L['Delete'] . '</a>';
+$R['userimg_remove'] = '<a href="{$url}" class="button btn btn-danger">' . Cot::$L['Delete'] . '</a>';
 
 // Разметка тега <img> для аватара. Соответствует Bootstrap 5 (rounded-3).
 // Используется в {AUTHOR_AVATAR}; альтернативно {AUTHOR_AVATAR_SRC}
@@ -406,28 +406,28 @@ $R['files_user_default_avatar'] = '<img src="images/blank-avatar.png" alt="' . C
  * ===================================================================== */
 
 // Суффикс номера страницы в заголовке страницы.
-$R['code_title_page_num'] = ' (' . $L['Page'] . ' {$num})';
+$R['code_title_page_num'] = ' (' . Cot::$L['Page'] . ' {$num})';
 
 // Текущая страница: активный элемент пагинации.
 $R['link_pagenav_current'] = '<li class="page-item active"><a class="page-link" href="{$url}"{$event}{$rel}>{$num}</a></li>';
 
 // Кнопка «Первая страница».
-$R['link_pagenav_first'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . $L['pagenav_first'] . '</a></li>';
+$R['link_pagenav_first'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . Cot::$L['pagenav_first'] . '</a></li>';
 
 // Пропуск в нумерации (например, 1 2 … 10 11).
 $R['link_pagenav_gap'] = '<li class="page-item disabled"><span class="page-link">...</span></li>';
 
 // Кнопка «Последняя страница».
-$R['link_pagenav_last'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . $L['pagenav_last'] . '</a></li>';
+$R['link_pagenav_last'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . Cot::$L['pagenav_last'] . '</a></li>';
 
 // Обычная страница в списке.
 $R['link_pagenav_main'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>{$num}</a></li>';
 
 // Кнопка «Следующая страница».
-$R['link_pagenav_next'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . $L['pagenav_next'] . '</a></li>';
+$R['link_pagenav_next'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . Cot::$L['pagenav_next'] . '</a></li>';
 
 // Кнопка «Предыдущая страница».
-$R['link_pagenav_prev'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . $L['pagenav_prev'] . '</a></li>';
+$R['link_pagenav_prev'] = '<li class="page-item"><a class="page-link" href="{$url}"{$event}{$rel}>' . Cot::$L['pagenav_prev'] . '</a></li>';
 
 // Пагинация в списке тем форума — компактная версия (pagination-sm).
 $R['forums_code_topic_pages'] = '<ul class="pagination pagination-sm">{$main}{$last}</ul>';
@@ -514,6 +514,8 @@ $R['input_radio_separator'] = ' ';
 // Универсальное текстовое поле.
 $R['input_text'] = '<input class="form-control form-control-lg rounded-5" type="text" name="{$name}" value="{$value}" {$attrs} />{$error}';
 
+$R['input_text_sq'] = '<input class="form-control form-control-lg" type="text" name="{$name}" id="{$name}" placeholder="' . Cot::$L['Search'] . '" value="{$value}" {$attrs} />{$error}';
+
 // Поле ввода по умолчанию (для нестандартных типов).
 $R['input_default'] = '<input class="form-control" type="{$type}" name="{$name}" value="{$value}"{$attrs} />{$error}';
 
@@ -567,13 +569,13 @@ $R['input_date_short'] = '<div class="row g-2">
  * ===================================================================== */
 
 // Текущий пароль при смене.
-$R['input_password_roldpass'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . $L['langSkStr_passCurrent'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_roldpass'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . Cot::$L['langSkStr_passCurrent'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Новый пароль.
-$R['input_password_rnewpass1'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . $L['langSkStr_passNew'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rnewpass1'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . Cot::$L['langSkStr_passNew'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Повтор нового пароля.
-$R['input_password_rnewpass2'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . $L['langSkStr_passNewRepeat'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rnewpass2'] = '<input class="form-control form-control-lg rounded-5" type="password" name="{$name}" placeholder="' . Cot::$L['langSkStr_passNewRepeat'] . '" value="{$value}" {$attrs} />{$error}';
 
 /* =====================================================================
  * ГОСТЬ: ФОРМА ВХОДА
@@ -585,32 +587,32 @@ $R['input_password_rnewpass2'] = '<input class="form-control form-control-lg rou
 $R['form_guest_remember_forced'] = '<input class="form-check-input" type="checkbox" name="rremember" checked="checked" disabled="disabled" />';
 
 // Обычное «запомнить меня» с чекбоксом и подписью.
-$R['form_guest_remember'] = '<input class="form-check-input " type="checkbox" id="rememberMe" name="rremember" /><div class="flex-grow-1"><label class="form-check-label ms-3 small" for="rememberMe">' . $L['users_rememberme'] . '</label></div>';
+$R['form_guest_remember'] = '<input class="form-check-input " type="checkbox" id="rememberMe" name="rremember" /><div class="flex-grow-1"><label class="form-check-label ms-3 small" for="rememberMe">' . Cot::$L['users_rememberme'] . '</label></div>';
 
 // Поле пароля для формы входа.
 $R['form_guest_password'] = '<input class="form-control form-control-lg rounded-5 ps-3" type="password" name="rpassword" size="12" maxlength="32" />';
 
 // Поле логина для формы входа (модальное окно или шапка).
-$R['input_text_rusername'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="text" name="rusername" placeholder="' . $L['langSkStr_Username'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_text_rusername'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="text" name="rusername" placeholder="' . Cot::$L['langSkStr_Username'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Поле пароля для формы входа (отдельный тег, отличный от form_guest_password).
-$R['input_password_rpassword'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword" placeholder="' . $L['langSkStr_passkey'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rpassword'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword" placeholder="' . Cot::$L['langSkStr_passkey'] . '" value="{$value}" {$attrs} />{$error}';
 
 /* =====================================================================
  * РЕГИСТРАЦИЯ
  * ===================================================================== */
 
 // Поле email при регистрации.
-$R['input_text_ruseremail'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="text" name="ruseremail" placeholder="' . $L['langSkStr_emailCurrentOnly'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_text_ruseremail'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="text" name="ruseremail" placeholder="' . Cot::$L['langSkStr_emailCurrentOnly'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Поле ответа на капчу.
-$R['input_text_rverify'] = '<input class="form-control form-control-lg rounded-5" type="text" name="rverify" placeholder="' . $L['langSkStr_captchaAnswer'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_text_rverify'] = '<input class="form-control form-control-lg rounded-5" type="text" name="rverify" placeholder="' . Cot::$L['langSkStr_captchaAnswer'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Пароль при регистрации.
-$R['input_password_rpassword1'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword1" placeholder="' . $L['Password'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rpassword1'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword1" placeholder="' . Cot::$L['Password'] . '" value="{$value}" {$attrs} />{$error}';
 
 // Подтверждение пароля при регистрации.
-$R['input_password_rpassword2'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword2" placeholder="' . $L['users_confirmpass'] . '" value="{$value}" {$attrs} />{$error}';
+$R['input_password_rpassword2'] = '<input class="form-control form-control-lg rounded-5 ps-5" type="password" name="rpassword2" placeholder="' . Cot::$L['users_confirmpass'] . '" value="{$value}" {$attrs} />{$error}';
 
 /* =====================================================================
  * ТЕГИ (TAGS)
@@ -660,7 +662,7 @@ $R['img_structure_cat'] = '{$icon}';
  * интерфейса. Раскомментировать при необходимости.
  * ===================================================================== */
 
-/*
+
 $R['users_code_grplist_begin'] = '<ul class="list-group list-group-flush">';
 $R['users_code_grplist_end'] = '</ul>';
 $R['users_code_grplist_item'] = '<li class="list-group-item bg-transparent">{$item}</li>';
@@ -672,7 +674,7 @@ $R['icon_down'] = '<i class="fa-regular fa-circle-down fa-lg"></i>';
 $R['icon_up'] = '<i class="fa-regular fa-circle-up fa-lg"></i>';
 $R['icon_order_asc'] = &$R['icon_up'];
 $R['icon_order_desc'] = $R['icon_down'];
-*/
+
 
 /* =====================================================================
  * СПИСКИ СТРАНИЦ: КНОПКА «ПОДРОБНЕЕ»
@@ -680,7 +682,7 @@ $R['icon_order_desc'] = $R['icon_down'];
 
 // Кнопка «Читать далее» в списках страниц.
 // Оформлена как Bootstrap 5 badge с полупрозрачным фоном.
-$R['list_more'] = ' <span class="badge rounded-pill bg-info bg-opacity-10 text-info"><a href="{$page_url}" title="' . $L['ReadMore'] . '">' . $L['ReadMore'] . '</a></span>';
+$R['list_more'] = ' <span class="badge rounded-pill bg-info bg-opacity-10 text-info"><a href="{$page_url}" title="' . Cot::$L['ReadMore'] . '">' . Cot::$L['ReadMore'] . '</a></span>';
 
 /* =====================================================================
  * ДИАПАЗОН ЛЕТ ДЛЯ ПОЛЕЙ ДАТЫ

@@ -6,12 +6,12 @@
  * Placement: /themes/index36/index36.ru.lang.php 
  * Description: Languages Skin Strings - Пользовательский файл локализации темы для интерфейса на русском языке 
  * Created: 01 Feb 2026  
- * Updated: 28 Sep 2026 
+ * Updated: 09 Oct 2026 
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  * 
  * @package index36 
- * @version 2.0.1  
+ * @version 2.2.1  
  * @author webitproff 
  * @copyright (c) 2026 webitproff | https://github.com/webitproff 
  * @license BSD (Free using and distribution with saving copyrights)   
@@ -19,6 +19,23 @@
 
 
 defined('COT_CODE') or die('Wrong URL.');
+
+/**
+ * переопределяем сетап конфигурации того, что у нас в админке
+ * Управление сайтом / Конфигурация / Заголовки и мета-теги 
+*/
+// global $cfg;
+$useCfgFromLang = true; // использовать значения конфигурации из файла локализации // Use configuration values from the localization file
+if ($useCfgFromLang === true) {
+    // Заголовок (Название сайта)
+    Cot::$cfg['maintitle'] = 'aBuyFile Market';
+    // Подзаголовок (Описание сайта)
+    Cot::$cfg['subtitle'] = 'Совместный онлайн рынок, кооперативный маркетплейс независимых разработчиков и продавцов цифровых товаров. Фрилансеры и поставщики услуг разработки и модернизации веб-сайтов';
+	// $cfg['market']['title'] = '';
+	// $cfg['market']['description'] = '';
+}
+
+
 // USERS groups localization title
 if (isset($cot_groups['7']['name']) && is_array($cot_groups)) {
 	$cot_groups['7']['name'] = 'Заказчики и участники';
@@ -69,7 +86,30 @@ if ($ext === 'index') {
     $L['langSkStr_indexDwnApA5'] = '<p><i class="fa-solid fa-building-circle-arrow-right fa-xl me-3 text-success"></i>Пользовательская обновляемая документация <a href="https://abuyfile.com/ru/cotonti" target="_blank" class="fw-bold" title="Документация Cotonti"> на сайте частных разработчиков и энтузиастов, активно поддерживающих Котонти!</a></p><hr><i class="fa-solid fa-building-flag fa-xl me-3"></i><p>Официальная документация <a href="https://www.cotonti.com/docs/" target="_blank" class="fw-bold" title="форум и документация официального Cotonti"> на официальном сайте от первых разработчиков</a>, которые никак не связаны с текущей командой!</p>';
 }
 
+/* Mega menu in header.tpl */
 
+$L['langSkStr_nav_more_btn'] = '«Ещё»';
+
+$L['langSkStr_title_buyers'] = '«Покупателям»';
+$L['langSkStr_item_discounts_title'] = 'Скидки и акции';
+$L['langSkStr_item_discounts_desc'] = 'Специальные предложения';
+$L['langSkStr_item_delivery_title'] = 'Доставка и оплата';
+$L['langSkStr_item_delivery_desc'] = 'Способы и сроки';
+$L['langSkStr_item_guarantees_title'] = 'Гарантии';
+$L['langSkStr_item_guarantees_desc'] = 'Возврат и качество';
+
+$L['langSkStr_title_company'] = '«Компания»';
+$L['langSkStr_item_about_title'] = 'О нас';
+$L['langSkStr_item_about_desc'] = 'Наша история';
+$L['langSkStr_item_blog_title'] = 'Блог';
+$L['langSkStr_item_blog_desc'] = 'Новости и статьи';
+$L['langSkStr_item_partners_title'] = 'Партнёрам';
+$L['langSkStr_item_partners_desc'] = 'Сотрудничество';
+
+$L['langSkStr_aside_badge'] = '«Рекомендуем» — плашка';
+$L['langSkStr_aside_title'] = '«Популярное прямо сейчас»';
+$L['langSkStr_aside_text'] = 'Короткий текст-приглашение — 1–2 строки про раздел, на который ведёт кнопка ниже.';
+$L['langSkStr_aside_btn'] = 'Открыть';
 
 $L['langSkStr_Username'] = 'Никнейм пользователя';  
 $L['langSkStr_Account'] = 'Аккаунт';
@@ -187,4 +227,8 @@ $L['msg404_title'] = 'Упс. Страница не найдена. (404)';
 $L['msg404_body'] = 'Страница, которую вы ищете, вероятно устарела и более недоступна. Пожалуйста, вернитесь на главную или воспользуйтесь поиском';
 $L['langSkStr_BackToHome'] = 'На Главную';
 
+
+$L['langSkStr_debug_tpl_note_1'] = 'Функция из файла';
+$L['langSkStr_debug_tpl_note_2'] = 'выводит абсолютный адрес шаблона и показывает это сообщение <strong>только супер администраторам.</strong>';
+$L['langSkStr_debug_tpl_note_3'] = 'Это позволяет избежать путаницы при правках шаблонов.';
 

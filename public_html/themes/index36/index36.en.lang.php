@@ -6,18 +6,33 @@
  * Placement: /themes/index36/index36.en.lang.php 
  * Description: Theme language strings - English localization file for the theme interface 
  * Created: 01 Feb 2026  
- * Updated: 24 Feb 2026
+ * Updated: 09 Oct 2026
  * Source code: https://github.com/webitproff/index36-cotonti-theme
  * Support & Help: https://abuyfile.com/ru/forums/cotonti/original/skins/index36
  * 
  * @package index36 
- * @version 2.0.1  
+ * @version 2.2.1  
  * @author webitproff 
  * @copyright (c) 2026 webitproff | https://github.com/webitproff 
  * @license BSD (Free using and distribution with saving copyrights)   
  */ 
 
 defined('COT_CODE') or die('Wrong URL.');
+
+/**
+ * Override the configuration setup for what is in the admin panel
+ * Site Management / Configuration / Titles and meta tags 
+*/
+// global $cfg;
+$useCfgFromLang = true; // use configuration values from the localization file // Use configuration values from the localization file
+if ($useCfgFromLang === true) {
+    // Title (Site name)
+    Cot::$cfg['maintitle'] = 'aBuyFile Market';
+    // Subtitle (Site description)
+    Cot::$cfg['subtitle'] = 'A collaborative online market, a cooperative marketplace of independent developers and sellers of digital goods. Freelancers and providers of website development and modernization services';
+	// $cfg['market']['title'] = '';
+	// $cfg['market']['description'] = '';
+}
 
 // USERS groups localization title
 if (isset($cot_groups['7']['name']) && is_array($cot_groups)) {
@@ -70,6 +85,34 @@ if ($ext === 'index') {
     $L['langSkStr_indexDwnApQ5'] = '<i class="fa-solid fa-book-atlas fa-xl me-3"></i> User Guide & Cotonti CMF Documentation';
     $L['langSkStr_indexDwnApA5'] = '<p><i class="fa-solid fa-building-circle-arrow-right fa-xl me-3 text-success"></i>Community-maintained up-to-date documentation <a href="https://abuyfile.com/ru/cotonti" target="_blank" class="fw-bold" title="Cotonti Documentation">on the site of independent developers and enthusiasts actively supporting Cotonti!</a></p><hr><i class="fa-solid fa-building-flag fa-xl me-3"></i><p>Official documentation <a href="https://www.cotonti.com/docs/" target="_blank" class="fw-bold" title="official Cotonti forum & documentation">on the original project website</a>, maintained by the initial developers (not related to the current community team).</p>';
 }
+
+
+/* Mega menu in header.tpl */
+
+$L['langSkStr_nav_more_btn'] = 'More';
+
+$L['langSkStr_title_buyers'] = 'For Buyers';
+$L['langSkStr_item_discounts_title'] = 'Discounts & Deals';
+$L['langSkStr_item_discounts_desc'] = 'Special offers';
+$L['langSkStr_item_delivery_title'] = 'Delivery & Payment';
+$L['langSkStr_item_delivery_desc'] = 'Methods and terms';
+$L['langSkStr_item_guarantees_title'] = 'Guarantees';
+$L['langSkStr_item_guarantees_desc'] = 'Returns and quality';
+
+$L['langSkStr_title_company'] = 'Company';
+$L['langSkStr_item_about_title'] = 'About Us';
+$L['langSkStr_item_about_desc'] = 'Our story';
+$L['langSkStr_item_blog_title'] = 'Blog';
+$L['langSkStr_item_blog_desc'] = 'News and articles';
+$L['langSkStr_item_partners_title'] = 'For Partners';
+$L['langSkStr_item_partners_desc'] = 'Cooperation';
+
+$L['langSkStr_aside_badge'] = 'Recommended';
+$L['langSkStr_aside_title'] = 'Popular right now';
+$L['langSkStr_aside_text'] = 'A short invitation text — 1–2 lines about the section the button below leads to.';
+$L['langSkStr_aside_btn'] = 'Open';
+
+
 
 $L['langSkStr_Username']             = 'Username';
 $L['langSkStr_Account']              = 'Account';
@@ -181,3 +224,8 @@ $L['langSkStr_blank_temporary_example_desc'] = '
 $L['msg404_title'] = 'Oops. Page not found. (404)';
 $L['msg404_body']  = 'The page you are looking for has probably been moved, deleted or is temporarily unavailable. Please return to the homepage or use the search.';
 $L['langSkStr_BackToHome'] = 'Back to Home';
+
+
+$L['langSkStr_debug_tpl_note_1'] = 'Function from file';
+$L['langSkStr_debug_tpl_note_2'] = 'outputs the absolute template path and shows this message <strong>only to super administrators.</strong>';
+$L['langSkStr_debug_tpl_note_3'] = 'This helps avoid confusion when editing templates.';

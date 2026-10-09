@@ -8,9 +8,9 @@
 	* 		 Bootstrap 5.3.+ (https://getbootstrap.com/);
 	* 		 Font Awesome Free 7.3 (https://fontawesome.com/)
 	* Theme: Index36
-	* Version: 2.1.1
+	* Version: 2.2.1
 	* Created: 01 Feb 2026
-	* Updated: 02 Oct 2026
+	* Updated: 09 Oct 2026
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Demo : https://freelance-script.abuyfile.com
@@ -74,7 +74,25 @@
 			<!-- IF {PHP|cot_module_active('market')} -->
 			<div id="panel-market" class="panel-content">
 				<div class="flex-grow-1 py-2 px-0">
-					<ul class="nav flex-column small">
+					<ul class="nav flex-column">
+						<li>
+							<a class="nav-link <!-- IF {PHP.env.location} == 'market' AND !{PHP.m} == 'vendors' --> active<!-- ENDIF -->" href="{PHP|cot_url('market')}" title="{PHP.L.market_title_general}">
+								<i class="fa-solid fa-store me-2"></i>
+								<span>{PHP.L.market_title_general}</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<hr class="my-1">
+				<div class="flex-grow-1">
+					<!-- IF {PHP|function_exists('cot_build_structure_market_tree')} AND {PHP|cot_auth('market', 'any', 'R')} -->
+					{PHP|cot_build_structure_market_tree('', '', 0, 'sidebar')}
+					<!-- ENDIF -->
+				</div>
+				<hr class="my-1">
+				<!-- IF {PHP|cot_plugin_active('marketreviews')} -->
+				<div class="flex-grow-1 py-1 px-0">
+					<ul class="nav flex-column">
 						<li>
 							<a class="nav-link <!-- IF {PHP.env.location} == 'market' AND {PHP.m} == 'vendors' --> active<!-- ENDIF -->" href="{PHP|cot_url('market' 'm=vendors')}" title="{PHP.L.market_seller_vendors_title}">
 								<span class="me-2">
@@ -83,23 +101,18 @@
 							</a>
 						</li>
 						<li>
-							<a class="nav-link <!-- IF {PHP.env.location} == 'market' AND !{PHP.m} == 'vendors' --> active<!-- ENDIF -->" href="{PHP|cot_url('market')}" title="{PHP.L.market_title_general}">
-								<i class="fa-solid fa-store me-2"></i>
-								<span>{PHP.L.market_title_general}</span>
+							<a class="nav-link <!-- IF {PHP.env.ext} == 'marketreviews' AND {PHP.m} == 'list' --> active<!-- ENDIF -->" href="{PHP|cot_url('marketreviews' 'm=list')}" title="{PHP.L.marketreviews_title}">
+								<span class="me-2">
+									<i class="fa-solid fa-star-half-stroke"></i>
+								</span>{PHP.L.marketreviews_title} 
 							</a>
 						</li>
-						
 					</ul>
 				</div>
-				<div class="flex-grow-1">
-					
-					
-					<!-- IF {PHP|function_exists('cot_build_structure_market_tree')} AND {PHP|cot_auth('market', 'any', 'R')} -->
-					{PHP|cot_build_structure_market_tree('', '', 0, 'sidebar')}
-					<!-- ENDIF -->
-					<hr class="my-2">
+				<!-- ENDIF -->
+				<!-- IF {PHP.usr.id} AND {PHP.usr.id|cot_auth('market', 'a', 'A')} -->
+				<div class="flex-grow-1 py-1 px-0">
 					<ul class="nav flex-column">
-						<!-- IF {PHP.usr.id} AND {PHP.usr.id|cot_auth('market', 'a', 'A')} -->
 						<li>
 							<a class="nav-link d-flex align-items-center" data-bs-toggle="collapse" href="#collapse-siteMarket" role="button" aria-expanded="false">
 								<i class="fa-solid fa-screwdriver-wrench me-2"></i>
@@ -117,9 +130,9 @@
 								</ul>
 							</div>
 						</li>
-						<!-- ENDIF -->
 					</ul>
 				</div>
+				<!-- ENDIF -->
 			</div>
 			<!-- ENDIF -->
 			
@@ -127,10 +140,11 @@
 				<div class="flex-grow-1">
 					<ul class="nav flex-column">
 						<li>
-							<a class="nav-link mt-2" href="{PHP|cot_url('search','tab=pag')}">
+							<a class="nav-link mt-2 <!-- IF {PHP.env.ext} == 'search' AND {PHP.tab} == 'pag' --> active<!-- ENDIF -->" href="{PHP|cot_url('search','tab=pag')}">
 								<i class="fa-solid fa-magnifying-glass me-2"></i>{PHP.L.langSkStr_pageSearch}
 							</a>
 						</li>
+						<!-- IF !{PHP|cot_plugin_active('treecatspage')} -->
 						<!-- IF {PHP.structure.page.news} -->
 						<!-- IF {PHP.structure.page.news.path} -->
 						<li>
@@ -158,6 +172,7 @@
 								<!-- IF {PHP.sys.pagesqueued} > 0 --><span class="badge rounded-pill border border-info text-info">{PHP.sys.pagesqueued}</span><!-- ENDIF -->
 							</a>
 						</li>
+						<!-- ENDIF -->
 						<!-- ENDIF -->
 						<!-- ENDIF -->
 						<!-- IF {PHP.usr.id} AND {PHP.usr.id|cot_auth('page', 'a', 'A')} -->
@@ -191,17 +206,23 @@
 			
 			<!-- IF {PHP|cot_module_active('forums')} -->
 			<div id="panel-forums" class="panel-content d-none">
-				<div class="p-2 border-bottom">
-					<h6 class="mb-0">
-						<a class="text-decoration-none" href="{PHP|cot_url('forums')}">
-							<i class="fa fa-home me-2"></i>{PHP.L.Forums}
-						</a>
-					</h6>
+				<div class="flex-grow-1 py-2 px-0 border-bottom">
+					<ul class="nav flex-column small">
+
+						<li>
+							<a class="nav-link <!-- IF {PHP.env.location} == 'forums' AND !{PHP.m} == '' --> active<!-- ENDIF -->" href="{PHP|cot_url('forums')}" title="{PHP.L.Forums}">
+								<i class="fa-solid fa-store me-2"></i>
+								<span>{PHP.L.Forums}</span>
+							</a>
+						</li>
+						
+					</ul>
 				</div>
+
 				<div class="flex-grow-1">
 					<ul class="nav flex-column">
 						<li>
-							<a class="nav-link mt-2" href="{PHP|cot_url('search','tab=frm')}">
+							<a class="nav-link mt-2 <!-- IF {PHP.env.ext} == 'search' AND {PHP.tab} == 'frm' --> active<!-- ENDIF -->" href="{PHP|cot_url('search','tab=frm')}">
 								<i class="fa-solid fa-magnifying-glass me-2"></i>{PHP.L.langSkStr_forumSearch}
 							</a>
 						</li>
@@ -241,13 +262,17 @@
 			
 			<!-- IF {PHP|cot_module_active('users')} -->
 			<div id="panel-users" class="panel-content d-none">
-				<div class="p-2 border-bottom">
-					<h6 class="mb-0">
-						<a class="text-decoration-none" href="{PHP|cot_url('users')}">
-							<i class="fa fa-home me-2"></i>{PHP.L.Users}
-						</a>
-					</h6>
+				<div class="flex-grow-1 py-2 px-0 border-bottom">
+					<ul class="nav flex-column">
+						<li>
+							<a class="nav-link <!-- IF {PHP.env.location} == 'users' AND {PHP.m} == 'main' --> active<!-- ENDIF -->" href="{PHP|cot_url('users')}" title="{PHP.L.Users}">
+								<i class="fa-solid fa-users-gear me-2"></i>
+								<span>{PHP.L.Users}</span>
+							</a>
+						</li>
+					</ul>
 				</div>
+
 				<div class="flex-grow-1">
 					<ul class="nav flex-column">
 						<li>
@@ -286,7 +311,9 @@
 			<!-- ENDIF -->
 			
 			<div id="panel-plugins" class="panel-content d-none">
-				<div class="p-2 border-bottom"><h6 class="mb-0">{PHP.L.langSkStr_tabPlgTolls}</h6></div>
+				<div class="mt-2 p-2 border-bottom">
+				<h6 class="mb-0">{PHP.L.langSkStr_tabPlgTolls}</h6>
+				</div>
 				<div class="flex-grow-1">
 					<ul class="nav flex-column small">
 						<!-- IF {PHP|cot_plugin_active('whosonline')} -->
