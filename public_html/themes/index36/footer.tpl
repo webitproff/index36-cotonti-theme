@@ -90,7 +90,7 @@
 					<!-- ENDIF -->
 				</div>
 				<hr class="my-1">
-				<!-- IF {PHP|cot_plugin_active('marketreviews')} -->
+				
 				<div class="flex-grow-1 py-1 px-0">
 					<ul class="nav flex-column">
 						<li>
@@ -100,6 +100,7 @@
 								</span>{PHP.L.market_seller_vendors_title} 
 							</a>
 						</li>
+						<!-- IF {PHP|cot_plugin_active('marketreviews')} -->
 						<li>
 							<a class="nav-link <!-- IF {PHP.env.ext} == 'marketreviews' AND {PHP.m} == 'list' --> active<!-- ENDIF -->" href="{PHP|cot_url('marketreviews' 'm=list')}" title="{PHP.L.marketreviews_title}">
 								<span class="me-2">
@@ -107,9 +108,10 @@
 								</span>{PHP.L.marketreviews_title} 
 							</a>
 						</li>
+						<!-- ENDIF -->
 					</ul>
 				</div>
-				<!-- ENDIF -->
+				
 				<!-- IF {PHP.usr.id} AND {PHP.usr.id|cot_auth('market', 'a', 'A')} -->
 				<div class="flex-grow-1 py-1 px-0">
 					<ul class="nav flex-column">
@@ -208,7 +210,7 @@
 			<div id="panel-forums" class="panel-content d-none">
 				<div class="flex-grow-1 py-2 px-0 border-bottom">
 					<ul class="nav flex-column small">
-
+						
 						<li>
 							<a class="nav-link <!-- IF {PHP.env.location} == 'forums' AND !{PHP.m} == '' --> active<!-- ENDIF -->" href="{PHP|cot_url('forums')}" title="{PHP.L.Forums}">
 								<i class="fa-solid fa-store me-2"></i>
@@ -218,7 +220,7 @@
 						
 					</ul>
 				</div>
-
+				
 				<div class="flex-grow-1">
 					<ul class="nav flex-column">
 						<li>
@@ -272,7 +274,7 @@
 						</li>
 					</ul>
 				</div>
-
+				
 				<div class="flex-grow-1">
 					<ul class="nav flex-column">
 						<li>
@@ -312,7 +314,7 @@
 			
 			<div id="panel-plugins" class="panel-content d-none">
 				<div class="mt-2 p-2 border-bottom">
-				<h6 class="mb-0">{PHP.L.langSkStr_tabPlgTolls}</h6>
+					<h6 class="mb-0">{PHP.L.langSkStr_tabPlgTolls}</h6>
 				</div>
 				<div class="flex-grow-1">
 					<ul class="nav flex-column small">
