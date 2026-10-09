@@ -69,7 +69,7 @@
 	* ReadMeMore:          https://abuyfile.com/ru/market/cotonti/plugs/marketpro
 	* Support:             https://abuyfile.com/ru/forums/cotonti/custom/marketpro
 	*
-	* Date: Sep 23, 2026
+	* Date: Oct 09, 2026
 	*
 	* @package market
 	* @version 5.7.9
@@ -86,14 +86,14 @@
 			{PHP.L.market_user_products}
 			<!-- IF {MARKET_ADD_SHOWBUTTON} -->
 			<a href="{MARKET_ADD_URL}" class="btn btn-success ms-auto">
-				{PHP.L.market_add_product}
+				{PHP.L.market_goto_add_new_item_title}
 			</a>
 			<!-- ENDIF -->
 		</h4>
 		
 		<ul class="nav nav-tabs mb-4">
 			<li class="nav-item">
-				<a class="nav-link" href="{PHP.urr.user_id|cot_url('users', 'm=details&id=$this&tab=market')}">
+				<a class="nav-link" href="{MARKET_TAB_URL}">
 					{PHP.L.All}
 				</a>
 			</li>
@@ -112,94 +112,164 @@
 		
 	</div>
 </div>
-<div class="row row-cols-1 row-cols-xl-3 row-cols-lg-2 row-cols-md-1 g-3 g-lg-4" id="market-items-container">
+<div class="row row-cols-1 row-cols-xxl-3 row-cols-lg-2 row-cols-md-1 g-3 g-lg-4" id="market-items-container">
 	<!-- BEGIN: MARKET_ROWS -->
 	<div class="col">
-		<div class="card h-100 border-0 shadow-sm overflow-hidden blog-card">
-			<div class="row g-0 flex-lg-row">
-				<div class="col-12">
-					<div class="ratio ratio-4x3 ratio-lg-1x1 image-container">
-						<!-- IF {PHP|cot_plugin_active('attacher')} -->
-						<!-- IF {MARKET_ROW_ID|att_count('market', $this, '', 'images')} > 0 --> 
-						{MARKET_ROW_ID|att_display('market',$this,'','attacher.display.marketlistfirst','images',1)}
-						<!-- ELSE -->
-						<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{PAGE_TITLE}">
+		<article class="card product-card h-100 shadow-sm">
+			<!-- Изображение -->
+			<a href="{MARKET_ROW_URL}" class="product-card-img-link" title="{MARKET_ROW_TITLE}">
+				<!-- IF {PHP|cot_plugin_active('attacher')} -->
+				<!-- IF {MARKET_ROW_ID|att_count('market', $this, '', 'images')} > 0 -->
+				{MARKET_ROW_ID|att_display('market', $this, '', 'attacher.display.marketlist', 'images', 1)}
+				<!-- ELSE -->
+				<img src="{PHP.R.page_default_image}" alt="{MARKET_ROW_TITLE}" class="product-card-img">
+				<!-- ENDIF -->
+				<!-- ELSE -->
+				<img src="{PHP.R.page_default_image}" alt="{MARKET_ROW_TITLE}" class="product-card-img">
+				<!-- ENDIF -->
+				
+				<!-- Бейдж статуса поверх изображения -->
+				<!-- IF {PHP.usr.isadmin} OR {PHP.usr.id} == {MARKET_ROW_OWNER_ID} -->
+				<!-- IF {MARKET_ROW_STATE} == '2' -->
+				<span class="product-card-status badge bg-warning text-dark">{MARKET_ROW_LOCAL_STATUS}</span>
+				<!-- ENDIF -->
+				<!-- IF {MARKET_ROW_STATE} == '1' -->
+				<span class="product-card-status badge bg-danger text-white">{MARKET_ROW_LOCAL_STATUS}</span>
+				<!-- ENDIF -->
+				<!-- ENDIF -->
+			</a>
+			
+			<div class="card-body d-flex flex-column">
+				
+				<!-- Заголовок -->
+				<h3 class="product-card-title">
+					<a href="{MARKET_ROW_URL}" title="{MARKET_ROW_TITLE}">{MARKET_ROW_TITLE}</a>
+				</h3>
+				<div class="d-flex justify-content-between align-items-center mb-2">					
+					<!-- Рейтинг -->
+					<!-- IF {PHP|cot_plugin_active('marketreviews')} -->
+					<div class="product-card-rating">
+						<span class="review-stars" title="{PHP.L.marketreviews_pageRatingValue}">{MARKET_ROW_REVIEWS_AVG_STARS_HTML}</span>
+						<!-- IF {MARKET_ROW_REVIEWS_TOTAL_COUNT} > 0 -->
+						<span class="text-muted small ms-1">
+							<i class="fa-solid fa-comment-dots"></i> {MARKET_ROW_REVIEWS_TOTAL_COUNT}
+						</span>
 						<!-- ENDIF -->
-						<!-- ELSE -->
-						<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{PAGE_TITLE}">
-						<!-- ENDIF --> 
 					</div>
+					<!-- ENDIF -->
+					<!-- IF {PHP.usr.isadmin} OR {PHP.usr.id} === {MARKET_ROW_OWNER_ID} -->
+					<div class="dropdown">
+						<button class="btn btn-outline-warning btn-lg rounded-circle d-flex align-items-center justify-content-center shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:32px;height:32px;">
+							<i class="fa-solid fa-ellipsis-v"></i>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-end border shadow-sm py-3" style="min-width:280px;">
+							<!-- IF {MARKET_ROW_ADMIN_EDIT} -->
+							<li>
+								<a class="dropdown-item py-2 px-4" 
+								href="{MARKET_ROW_ADMIN_EDIT_URL}">
+									{PHP.L.Edit}
+								</a>
+							</li>
+							<!-- ENDIF -->
+							<!-- IF {MARKET_ROW_ADMIN_DELETE} -->
+							<li>
+								<a class="dropdown-item py-2 px-4" 
+								href="{MARKET_ROW_ADMIN_DELETE_URL}">
+									{PHP.L.Delete}
+								</a>
+							</li>
+							<!-- ENDIF -->
+							<!-- IF {MARKET_ROW_ADMIN_UNVALIDATE} -->
+							<li>
+								<a class="dropdown-item py-2 px-4" 
+								href="{MARKET_ROW_ADMIN_UNVALIDATE_URL}">
+									{PHP.L.Putinvalidationqueue}
+								</a>
+							</li>
+							<!-- ENDIF -->
+						</ul>
+					</div>
+					<!-- ENDIF -->
 				</div>
-				<div class="col-12">
-					<div class="card-body d-flex flex-column h-100 p-4">
-						<div class="d-flex justify-content-between align-items-center mb-2">
-							<span class="badge bg-info-subtle text-info px-2 py-1">{MARKET_ROW_HITS}</span><span class="badge bg-info-subtle text-info px-2 py-1">{MARKET_ROW_CREATED}</span>
-							<!-- IF {PHP.usr.isadmin} OR {PHP.usr.id} === {MARKET_ROW_OWNER_ID} -->
-							<div class="dropdown">
-								<button class="btn btn-outline-warning btn-lg rounded-circle d-flex align-items-center justify-content-center shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:32px;height:32px;">
-									<i class="fa-solid fa-ellipsis-v"></i>
-								</button>
-								<ul class="dropdown-menu dropdown-menu-end border shadow-sm py-2" style="min-width:280px;">
-									<!-- IF {MARKET_ROW_ADMIN_EDIT} -->
-									<li>
-										<a class="dropdown-item py-2 px-4" 
-										href="{MARKET_ROW_ADMIN_EDIT_URL}">
-											{PHP.L.Edit}
-										</a>
-									</li>
-									<!-- ENDIF -->
-									<!-- IF {MARKET_ROW_ADMIN_DELETE} -->
-									<li>
-										<a class="dropdown-item py-2 px-4" 
-										href="{MARKET_ROW_ADMIN_DELETE_URL}">
-											{PHP.L.Delete}
-										</a>
-									</li>
-									<!-- ENDIF -->
-									<!-- IF {MARKET_ROW_ADMIN_UNVALIDATE} -->
-									<li>
-										<a class="dropdown-item py-2 px-4" 
-										href="{MARKET_ROW_ADMIN_UNVALIDATE_URL}">
-											{PHP.L.Putinvalidationqueue}
-										</a>
-									</li>
-									<!-- ENDIF -->
-								</ul>
-							</div>
-							<!-- ENDIF -->
-						</div>
-						<h5 class="card-title mb-2">
-							<a href="{MARKET_ROW_URL}" class="text-decoration-none">{MARKET_ROW_TITLE}</a>
-						</h5>
-						<!-- IF {MARKET_ROW_DESCRIPTION} -->
-						<div class="card-text text-muted small flex-grow-1">
-							{MARKET_ROW_DESCRIPTION}
-						</div>
+				
+				<!-- Описание -->
+				<!-- IF {MARKET_ROW_DESCRIPTION} -->
+				<p class="product-card-desc text-muted small">{MARKET_ROW_DESCRIPTION|strip_tags($this)|mb_substr($this,0,120,'UTF-8')}...</p>
+				<!-- ELSE -->
+				<p class="product-card-desc text-muted small">{MARKET_ROW_TEXT_CUT|strip_tags($this)|mb_substr($this,0,120,'UTF-8')}...</p>
+				<!-- ENDIF -->
+				
+				<!-- Категория -->
+				<!-- IF {LIST_CAT_CODE} == '' -->
+				<div class="product-card-cat small">{MARKET_ROW_CAT_TITLE}</div>
+				<!-- ENDIF -->
+				
+				<!-- Доп поля -->
+				<!-- IF {PHP|cot_plugin_active('xtradbrowmarket')} -->
+				<div class="product-card-extra d-flex gap-3 mt-2">
+					<!-- IF {MARKET_ROW_XTRADBROWMARKET_011_GITHUB_RC} -->
+					<a target="_blank" rel="nofollow noreferrer noopener" href="{MARKET_ROW_XTRADBROWMARKET_011_GITHUB_RC}"
+					data-bs-toggle="tooltip" data-bs-html="true"
+					data-bs-title="{MARKET_ROW_XTRADBROWMARKET_011_GITHUB_RC_TITLE} {PHP.L.xtradbrowmarket_github_rc_tooltip}">
+						<i class="fa-brands fa-github fa-lg"></i>
+					</a>
+					<!-- ENDIF -->
+					<!-- IF {MARKET_ROW_XTRA_010_FORUM_LINK} -->
+					<a target="_blank" rel="nofollow noreferrer noopener" href="{MARKET_ROW_XTRA_010_FORUM_LINK}"
+					data-bs-toggle="tooltip" data-bs-html="true"
+					data-bs-title="{MARKET_ROW_XTRA_010_FORUM_LINK_TITLE}. {PHP.L.xtradbrowmarket_forum_link_tooltip}">
+						<i class="fa-solid fa-person-circle-question fa-lg"></i>
+					</a>
+					<!-- ENDIF -->
+				</div>
+				<!-- ENDIF -->
+				
+				<!-- Цена + владелец + кнопки (внизу карточки) -->
+				<div class="product-card-footer mt-auto pt-3">
+					
+					<!-- Цена -->
+					<!-- IF {PHP|cot_plugin_active('marketcurrencyswitcher')} -->
+					<!-- IF {MARKET_ROW_COSTDFLT} > 0 -->
+					<div class="product-card-price">
+						<span class="price-label text-muted small">{PHP.L.market_price}</span>
+						<span class="market-price fw-bold" data-base-price="{MARKET_ROW_COST_RAW}">
+							{MARKET_ROW_COSTDFLT} {PHP.cfg.payments.valuta}
+						</span>
+					</div>
+					<!-- ENDIF -->
+					<!-- ELSE -->
+					<!-- IF {MARKET_ROW_COSTDFLT} > 0 -->
+					<div class="product-card-price fw-bold">
+						{MARKET_ROW_COSTDFLT}
+						<!-- IF {PHP.cfg.payments.valuta} -->{PHP.cfg.payments.valuta}<!-- ELSE -->{PHP.cfg.market.market_currency}<!-- ENDIF -->
+					</div>
+					<!-- ENDIF -->
+					<!-- ENDIF -->
+					
+					
+					
+					<!-- Кнопки -->
+					<div class="product-card-actions d-flex gap-2 mt-3">
+						<!-- IF {PHP|cot_plugin_active('payordersmarket')} AND {PHP.usr.id} -->
+						<!-- IF !{MARKET_ROW_ORDER_IN_CART} -->
+						<a href="javascript:void(0)" class="btn btn-sm btn-success add-to-cart flex-grow-1" data-id="{MARKET_ROW_ID}">
+							<i class="fa-solid fa-cart-plus me-1"></i>{PHP.L.payordersmarket_add_to_cart}
+						</a>
+						<span class="cart-added-msg text-success small" style="display:none;">{PHP.L.payordersmarket_added_to_cart}</span>
 						<!-- ELSE -->
-						<div class="card-text text-muted small flex-grow-1">
-							{MARKET_ROW_TEXT_SHORT}
-						</div>
+						<span class="btn btn-sm btn-outline-info flex-grow-1">{PHP.L.payordersmarket_in_cart} ✅</span>
 						<!-- ENDIF -->
-						<!-- IF {MARKET_ROW_COMMENTS_COUNT} > 0 -->
-						<div class="position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="tooltip" data-bs-title="{PHP.L.2wd_Comments}">
-							<span class="badge bg-primary">{MARKET_ROW_COMMENTS_COUNT}</span>
-						</div>
-						<!-- ENDIF -->								
-						<div class="d-flex align-items-center small text-muted mt-3">
-							
-							<!-- IF {MARKET_ROW_COSTDFLT} > 0 -->
-							<span class="ms-2 text-success fw-bold">{MARKET_ROW_COSTDFLT} {PHP.cfg.market.currency}</span>
-							<!-- ENDIF -->
-							<span class="mx-2">{MARKET_ROW_CAT_TITLE}</span>
-						</div>
-						<div class="mt-3 text-end">
-							<a href="{MARKET_ROW_URL}" class="btn btn-sm btn-outline-primary text-uppercase">{PHP.L.ReadMore}</a>
-						</div>
+						<!-- ENDIF -->
+						<!-- IF {PHP|cot_plugin_active('payordersmarket')} AND {PHP|cot_auth('plug', 'payordersmarket', 'R')} AND {PHP.usr.id} == 0 -->
+						<a class="btn btn-sm btn-outline-secondary flex-grow-1" data-bs-toggle="modal" data-bs-target="#authModal">
+							<i class="fa-solid fa-cart-plus me-1"></i>{PHP.L.payordersmarket_add_to_cart}
+						</a>
+						<!-- ENDIF -->
 					</div>
 				</div>
 			</div>
-		</div>
-	</div> 
+		</article>
+	</div>
 	<!-- END: MARKET_ROWS -->
 </div>
 
@@ -295,4 +365,12 @@
 		});
 	});
 </script>
+<!-- IF {PHP|function_exists('cot_debug_tpl_url')} AND {PHP.usr.maingrp} == 5 -->
+<div class="alert alert-warning mt-4">
+	<p> {PHP.L.langSkStr_debug_tpl_note_1} <code>system/functions.custom.php</code></p> 
+	<p> {PHP.L.langSkStr_debug_tpl_note_2} </p> 
+	<p> {PHP.L.langSkStr_debug_tpl_note_3} </p> 
+	<div class="text-danger fw-semibold">{PHP|cot_debug_tpl_url()}</div>
+</div>
+<!-- ENDIF -->
 <!-- END: MAIN -->

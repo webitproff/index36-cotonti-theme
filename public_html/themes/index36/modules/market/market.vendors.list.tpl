@@ -53,7 +53,7 @@
 	* ReadMeMore:          https://abuyfile.com/ru/market/cotonti/plugs/marketpro
 	* Support:             https://abuyfile.com/ru/forums/cotonti/custom/marketpro
 	*
-	* Date: Sep 23, 2026
+	* Updated: 09 Oct 2026 
 	*
 	* @package market
 	* @version 5.7.9
@@ -138,70 +138,91 @@
 	
     <!-- Сетка карточек продавцов -->
     <div class="row g-4">
-		
-        <!-- BEGIN: VENDOR_ROW -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
-					<div class="text-center">
-						<div class="mb-3">
-							{VENDOR_ROW_USER_AVATAR}
-						</div>
-						<h5 class="card-title">
-							<a href="{VENDOR_ROW_SHOWCASE_URL}" class="text-decoration-none">
-								{VENDOR_ROW_USERNAME}
-							</a>
-						</h5>
-						<p class="card-text mb-3">
-							<!-- IF {VENDOR_ROW_PRODUCTS_COUNT} -->
-							<span class="badge text-bg-primary">
-								{VENDOR_ROW_PRODUCTS_COUNT} {PHP.L.market_vendors_items}
-							</span>
-							<!-- ENDIF -->
-							<!-- IF {VENDOR_ROW_CATEGORIES_COUNT} -->
-							<span class="badge text-bg-secondary">
-								{VENDOR_ROW_CATEGORIES_COUNT} {PHP.L.market_vendors_categories}
-							</span>
-							<!-- ENDIF -->
-						</p>
+		<!-- BEGIN: VENDOR_ROW -->
+		<div class="col-md-6 col-lg-4">
+			<div class="card h-100 border-0 shadow-sm overflow-hidden">
+				
+				<!-- IF {VENDOR_ROW_USER_BACKGROUND_SRC} -->
+				<img src="{VENDOR_ROW_USER_BACKGROUND_SRC}"
+				class="card-img-top"
+				style="height:152px; object-fit:cover;"
+				alt="{VENDOR_ROW_USERNAME}">
+				<!-- ELSE -->
+				<img src="{PHP.R.userimg_default_background}"
+				class="card-img-top"
+				style="height:152px; object-fit:cover;"
+				alt="{VENDOR_ROW_USERNAME}">
+				<!-- ENDIF -->
+				
+				<div class="card-body text-center pt-5 position-relative">
+					
+					<div class="position-absolute top-0 start-50 translate-middle-x" style="margin-top:-50px;">
+						<!-- IF {VENDOR_ROW_USER_AVATAR_SRC} -->
+						<img src="{VENDOR_ROW_USER_AVATAR_SRC}"
+						alt="{VENDOR_ROW_USERNAME}"
+						class="rounded-circle user-details-img"
+						width="80" height="80">
+						<!-- ELSE -->
+						<img src="{PHP.R.userimg_default_avatar}"
+						alt="{VENDOR_ROW_USERNAME}"
+						class="rounded-circle user-details-img"
+						width="80" height="80">
+						<!-- ENDIF -->
 					</div>
-                    <!-- IF {VENDOR_ROW_DESCRIPTION} -->
-                    <p class="card-text small text-muted">{VENDOR_ROW_DESCRIPTION}</p>
-					это пока заготовка. вместо этого использовать лучше экстраполя плагина 'xtradbrowusers'
-                    <!-- ENDIF -->
+					
+					<h5 class="card-title mb-1 mt-4">
+						<a href="{VENDOR_ROW_SHOWCASE_URL}" class="text-uppercase fw-medium" title="{PHP.L.market_owner_vendor_link}">
+							{VENDOR_ROW_USERNAME}
+						</a>
+					</h5>
+					
+					<p class="card-text mb-3">
+						<!-- IF {VENDOR_ROW_PRODUCTS_COUNT} -->
+						<span class="badge text-bg-primary">
+							{VENDOR_ROW_PRODUCTS_COUNT} {PHP.L.market_vendors_items}
+						</span>
+						<!-- ENDIF -->
+						<!-- IF {VENDOR_ROW_CATEGORIES_COUNT} -->
+						<span class="badge text-bg-secondary">
+							{VENDOR_ROW_CATEGORIES_COUNT} {PHP.L.market_vendors_categories}
+						</span>
+						<!-- ENDIF -->
+					</p>
 					
 					<!-- IF {PHP|cot_plugin_active('xtradbrowusers')} -->
 					<!-- IF {VENDOR_ROW_USER_XTRA_X020_ABOUT_VENDOR_TEXT} -->
 					<div class="mb-3">
-						<div>
-							<div class="contact-label text-center">{VENDOR_ROW_USER_XTRA_X020_ABOUT_VENDOR_TEXT_TITLE}</div>
-							<div class="contact-value">{VENDOR_ROW_USER_XTRA_X020_ABOUT_VENDOR_TEXT}</div>
-						</div>
+						<div class="contact-label text-center">{VENDOR_ROW_USER_XTRA_X020_ABOUT_VENDOR_TEXT_TITLE}</div>
+						<div class="contact-value" style="text-align: justify; word-break: break-word;">{VENDOR_ROW_USER_XTRA_X020_ABOUT_VENDOR_TEXT}</div>
 					</div>
 					<!-- ENDIF -->
 					<!-- ENDIF -->
 					
-                    <!-- IF {VENDOR_ROW_CATEGORIES} -->
+					<!-- IF {VENDOR_ROW_CATEGORIES} -->
 					<div class="text-center text-uppercase"><small>{PHP.L.market_vendor_categories_of}</small></div>
-                    <p class="small">{VENDOR_ROW_CATEGORIES}</p>
-                    <!-- ENDIF -->
+					<p class="small">{VENDOR_ROW_CATEGORIES}</p>
+					<!-- ENDIF -->
+					
 					<!-- IF {VENDOR_ROW_REGDATE} -->
-                    <p class="small text-muted mb-1">
-                        {PHP.L.market_vendors_registered}: {VENDOR_ROW_REGDATE}
+					<p class="small text-muted mb-1">
+						{PHP.L.market_vendors_registered}: {VENDOR_ROW_REGDATE}
 					</p>
 					<!-- ENDIF -->
+					
 				</div>
-                <div class="card-footer bg-transparent d-flex justify-content-between">
-                    <a href="{VENDOR_ROW_SHOWCASE_URL}" class="btn btn-sm btn-primary">
-                        {PHP.L.market_vendors_goto_showcase}
+				
+				<div class="card-footer bg-transparent d-flex justify-content-between">
+					<a href="{VENDOR_ROW_SHOWCASE_URL}" class="btn btn-sm btn-primary" title="{PHP.L.market_owner_vendor_link}">
+						{PHP.L.market_vendors_goto_showcase}
 					</a>
-                    <a href="{VENDOR_ROW_PROFILE_URL}" class="btn btn-sm btn-outline-secondary">
-                        {PHP.L.market_vendors_profile}
+					<a href="{VENDOR_ROW_PROFILE_URL}" class="btn btn-sm btn-outline-secondary" title="{PHP.L.market_vendors_profile}">
+						{PHP.L.market_vendors_profile}
 					</a>
 				</div>
+				
 			</div>
 		</div>
-        <!-- END: VENDOR_ROW -->
+		<!-- END: VENDOR_ROW -->		
 		
         <!-- BEGIN: VENDOR_EMPTY -->
         <div class="col-12">
@@ -228,6 +249,16 @@
 	<!-- ENDIF -->	
 	
 </div>
+<style>
+	.user-details-img {
+	border: 5px solid;
+	border-color: #ff8809;
+	background-color: #f8f9fa;
+	padding: 3px;
+	inline-size: 120px;
+	box-sizing: border-box;
+	}
+</style>
 <!-- IF {PHP.usr.isadmin} AND {TPL_PATH} --> 
 <div class="container-fluid px-3 px-lg-5 py-5">
 	<div class="alert alert-info" role="alert">

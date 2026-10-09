@@ -9,7 +9,7 @@
 	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
 	* 		 Font Awesome Free 7.3[](https://fontawesome.com/)
 	* Theme: Index36  
-	* Version=2.0.1 
+	* Version=2.2.1 
 	* Created: 01 Feb 2026 
 	* Updated: 18 Feb 2026 
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
@@ -175,6 +175,16 @@
 		</nav>
 	</div>
 	<!-- ENDIF -->
+	
+<!-- IF {PHP|function_exists('cot_debug_tpl_url')} AND {PHP.usr.maingrp} == 5 -->
+	<div class="alert alert-warning mt-4">
+		<p> {PHP.L.langSkStr_debug_tpl_note_1} <code>system/functions.custom.php</code></p> 
+		<p> {PHP.L.langSkStr_debug_tpl_note_2} </p> 
+		<p> {PHP.L.langSkStr_debug_tpl_note_3} </p> 
+		<div class="text-danger fw-semibold">{PHP|cot_debug_tpl_url()}</div>
+	</div>
+<!-- ENDIF -->	
+	
 </div>
 
 

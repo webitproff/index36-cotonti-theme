@@ -8,7 +8,7 @@
 	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
 	* 		 Font Awesome Free 7.3[](https://fontawesome.com/)
 	* Theme: Index36  
-	* Version=2.0.1 
+	* Version=2.2.1 
 	* Created: 01 Feb 2026 
 	* Updated: 24 Feb 2026 
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
@@ -73,7 +73,25 @@
 	box-shadow: none;
 	}
 </style>
-
+<div class="border-bottom border-secondary py-3 px-3">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{PHP.cfg.mainurl}">{PHP.L.Home}</a>
+			</li>
+			<li class="breadcrumb-item">
+				<a href="{PHP|cot_url('users')}">
+					{PHP.L.Users}
+				</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">
+				<!-- IF {USERS_DETAILS_FULL_NAME} -->{USERS_DETAILS_FULL_NAME}
+				<!-- ELSE -->[{USERS_DETAILS_NICKNAME}]
+				<!-- ENDIF -->
+			</li>
+		</ol>
+	</nav>
+</div>
 <div class="container-xxl flex-grow-1 py-4">
 	<div class="row">
 		<div class="col-12">
@@ -129,20 +147,36 @@
 										<i class="fas fa-map-pin me-2 icon-24px"></i><span class="fw-medium">Vatican City</span>
 									</li>
 									<li class="list-inline-item">
-										<i class="fas fa-calendar me-2 icon-24px"></i><span class="fw-medium">{PHP.L.langSkStr_usersJoined} {USERS_DETAILS_REGDATE|cot_date('F Y', $this)}</span>
+										<i class="fas fa-calendar me-2 icon-24px"></i><span class="fw-medium">{PHP.L.langSkStr_usersJoined} {USERS_DETAILS_REGDATE_STAMP|cot_date('F Y', $this)}</span>
 									</li>
 								</ul>
 							</div>
-							<a href="javascript:void(0)" class="btn btn-primary">
-								<i class="fas fa-user-check icon-16px me-2"></i>Connected
+							<!-- IF {PHP|cot_module_active('pm')} -->
+							
+							<!-- IF {PHP.usr.id} > 0 AND {PHP.usr.id} != {USERS_DETAILS_ID} -->
+							<a class="btn btn-primary" href="{USERS_DETAILS_ID|cot_url('pm','m=send&to=$this', '', 1)}">
+								<span class="mb-3 me-1"><i class="fa-solid fa-paper-plane fa-xl"></i></span>
+								<span class="mb-2"><small>{PHP.L.users_sendpm}</small></span>
 							</a>
+							<!-- ENDIF -->
+							
+							<!-- IF {PHP.usr.id} == '0' -->
+							<button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#guestOffCanvas" aria-controls="guestOffCanvas" title="{PHP.L.users_sendpm}">
+								<span class="mb-3 me-1"><i class="fa-solid fa-paper-plane fa-xl"></i></span>
+								<small>{PHP.L.users_sendpm}</small>
+							</button>
+							<!-- ENDIF -->
+							
+							<!-- ENDIF -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Навигация вкладками (pills) просто подстройте под себя -->
+	
+	
+	<!-- Навигация вкладками (pills) -->
 	<ul class="nav nav-pills flex-column flex-sm-row mb-4 gap-2" id="pills-tab" role="tablist">
 		<li class="nav-item" role="presentation">
 			<button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">
@@ -174,7 +208,7 @@
 				<div class="card-body">
 					<!-- BEGIN: USERS_DETAILS_ADMIN -->  [ {USERS_DETAILS_ADMIN_EDIT} ]<!-- END: USERS_DETAILS_ADMIN -->
 					<div class="table-responsive">
-						<table class="table table-striped table-hover">
+						<table class="cells">
 							<!-- IF {PHP|cot_module_active('pm')} -->
 							<tr>
 								<td>{PHP.L.users_sendpm}:</td>
@@ -189,10 +223,12 @@
 								<td>{PHP.L.Groupsmembership}:</td>
 								<td>{PHP.L.Maingroup}:<br/>&nbsp;{PHP.out.img_down}<br/>{USERS_DETAILS_GROUPS}</td>
 							</tr>
+							<!-- IF {USERS_DETAILS_COUNTRY} -->
 							<tr>
 								<td>{PHP.L.Country}:</td>
 								<td>{USERS_DETAILS_COUNTRY_FLAG} {USERS_DETAILS_COUNTRY}</td>
 							</tr>
+							<!-- ENDIF -->
 							<tr>
 								<td>{PHP.L.Timezone}:</td>
 								<td>{USERS_DETAILS_TIMEZONE}</td>
@@ -205,10 +241,12 @@
 								<td>{PHP.L.Age}:</td>
 								<td>{USERS_DETAILS_AGE}</td>
 							</tr>
+							<!-- IF {USERS_DETAILS_GENDER} -->
 							<tr>
 								<td>{PHP.L.Gender}:</td>
 								<td>{USERS_DETAILS_GENDER}</td>
 							</tr>
+							<!-- ENDIF -->
 							<tr>
 								<td>{PHP.L.Signature}:</td>
 								<td>{USERS_DETAILS_TEXT}</td>
@@ -285,7 +323,465 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	<!-- User Profile Content -->
+	<div class="row">
+		<div class="col-xl-4 col-lg-5 col-md-5">
+			<!-- About User -->
+			<div class="card mb-4">
+				<div class="card-body">
+					<small class="card-text text-uppercase text-body-secondary small">About</small>
+					<ul class="list-unstyled my-3 py-1">
+						<li class="d-flex align-items-center mb-3">
+							<i class="fas fa-user icon-24px"></i><span class="fw-medium mx-2">Full Name:</span> <span>John Doe</span>
+						</li>
+						<li class="d-flex align-items-center mb-3">
+							<i class="fas fa-check icon-24px"></i><span class="fw-medium mx-2">Status:</span> <span>Active</span>
+						</li>
+						<li class="d-flex align-items-center mb-3">
+							<i class="fas fa-star icon-24px"></i><span class="fw-medium mx-2">Role:</span> <span>Developer</span>
+						</li>
+						<!-- IF {USERS_DETAILS_COUNTRY} !== '' -->
+						<li class="d-flex align-items-center mb-3">
+							<i class="fas fa-flag icon-24px"></i><span class="fw-medium mx-2">{PHP.L.Country}:</span> <span class="fw-medium mx-2">{USERS_DETAILS_COUNTRY_FLAG}</span><span> {USERS_DETAILS_COUNTRY}</span>
+						</li>
+						<!-- ENDIF -->
+						
+						<!-- IF {USERS_DETAILS_LANG} -->
+						<li class="d-flex align-items-center mb-2">
+							<i class="fas fa-language icon-24px"></i><span class="fw-medium mx-2">{PHP.L.Language}:</span> <span>{USERS_DETAILS_LANG}</span>
+						</li>
+						<!-- ENDIF -->
+						
+					</ul>
+					<small class="card-text text-uppercase text-body-secondary small">Contacts</small>
+					<ul class="list-unstyled my-3 py-1">
+						<li class="d-flex align-items-center mb-3">
+							<i class="fas fa-phone icon-24px"></i><span class="fw-medium mx-2">Contact:</span> <span>(123) 456-7890</span>
+						</li>
+						<li class="d-flex align-items-center mb-3">
+							<i class="fab fa-skype icon-24px"></i><span class="fw-medium mx-2">Skype:</span> <span>john.doe</span>
+						</li>
+						<li class="d-flex align-items-center mb-2">
+							<i class="fas fa-envelope-open icon-24px"></i><span class="fw-medium mx-2">Email:</span> <span>john.doe@example.com</span>
+						</li>
+					</ul>
+					<small class="card-text text-uppercase text-body-secondary small">Teams</small>
+					<ul class="list-unstyled mb-0 mt-3 pt-1">
+						<li class="d-flex align-items-center mb-3">
+							<i class="fab fa-github icon-24px text-body me-2"></i>
+							<div class="d-flex flex-wrap">
+								<span class="fw-medium me-2">Backend Developer</span><span>(126 Members)</span>
+							</div>
+						</li>
+						<li class="d-flex align-items-center">
+							<i class="fab fa-react icon-24px text-body me-2"></i>
+							<div class="d-flex flex-wrap">
+								<span class="fw-medium me-2">React Developer</span><span>(98 Members)</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--/ About User -->
+			<!-- Profile Overview -->
+			<div class="card mb-4">
+				<div class="card-body">
+					<small class="card-text text-uppercase text-body-secondary small">Overview</small>
+					<ul class="list-unstyled mb-0 mt-3 pt-1">
+						<li class="d-flex align-items-center mb-3">
+							<i class="fas fa-check icon-24px"></i><span class="fw-medium mx-2">Task Compiled:</span> <span>13.5k</span>
+						</li>
+						<li class="d-flex align-items-center mb-3">
+							<i class="fas fa-user icon-24px"></i><span class="fw-medium mx-2">Projects Compiled:</span> <span>146</span>
+						</li>
+						<li class="d-flex align-items-center">
+							<i class="fas fa-star icon-24px"></i><span class="fw-medium mx-2">Connections:</span> <span>897</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--/ Profile Overview -->
+		</div>
+		<div class="col-xl-8 col-lg-7 col-md-7">
+			<!-- Activity Timeline -->
+			<div class="card mb-4">
+				<div class="card-header d-flex align-items-center">
+					<h5 class="card-title mb-0">
+						<i class="fas fa-chart-bar icon-24px text-body me-2"></i>Activity Timeline
+					</h5>
+				</div>
+				<div class="card-body pt-3">
+					<ul class="card-timeline mb-0 list-unstyled">
+						<li class="timeline-item">
+							<span class="timeline-point timeline-point-primary"></span>
+							<div class="timeline-event">
+								<div class="d-flex justify-content-between mb-2">
+									<h6 class="mb-0">12 Invoices have been paid</h6>
+									<small class="text-body-secondary">12 min ago</small>
+								</div>
+								<p class="mb-2">Invoices have been paid to the company</p>
+								<div class="d-flex align-items-center">
+									<div class="badge bg-lighter rounded-pill">
+										<img src="../../assets//img/icons/misc/pdf.png" alt="img" width="20" class="me-2" />
+										<span class="h6 mb-0 text-body">invoices.pdf</span>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-item">
+							<span class="timeline-point timeline-point-success"></span>
+							<div class="timeline-event">
+								<div class="d-flex justify-content-between mb-2">
+									<h6 class="mb-0">Client Meeting</h6>
+									<small class="text-body-secondary">45 min ago</small>
+								</div>
+								<p class="mb-2">Project meeting with john @10:15am</p>
+								<div class="d-flex justify-content-between flex-wrap gap-2">
+									<div class="d-flex flex-wrap align-items-center">
+										<div class="avatar avatar-sm me-2">
+											<img src="{PHP.R.userimg_default_avatar}" width="36" height="36" alt="Avatar" class="rounded-circle" />
+										</div>
+										<div>
+											<p class="mb-0 small fw-medium">Lester McCarthy (Client)</p>
+											<small>CEO of Pixinvent</small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-item">
+							<span class="timeline-point timeline-point-info"></span>
+							<div class="timeline-event">
+								<div class="d-flex justify-content-between mb-2">
+									<h6 class="mb-0">Create a new project for client</h6>
+									<small class="text-body-secondary">2 Day Ago</small>
+								</div>
+								<p class="mb-2">6 team members in a project</p>
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap p-0">
+										<div class="d-flex flex-wrap align-items-center">
+											<ul class="list-unstyled d-flex align-items-center avatar-group m-0 me-2">
+												<li
+												data-bs-toggle="tooltip"
+												data-bs-placement="top"
+												title="Vinnie Mostowy"
+												class="avatar">
+													<img class="rounded-circle" width="36" height="36" src="{PHP.R.userimg_default_avatar}" alt="Avatar" />
+												</li>
+												<li
+												data-bs-toggle="tooltip"
+												data-bs-placement="top"
+												title="Allen Rieske"
+												class="avatar">
+													<img class="rounded-circle"  width="36" height="36" src="{PHP.R.userimg_default_avatar}" alt="Avatar" />
+												</li>
+												<li
+												data-bs-toggle="tooltip"
+												data-bs-placement="top"
+												title="Julee Rossignol"
+												class="avatar">
+													<img class="rounded-circle"  width="36" height="36" src="{PHP.R.userimg_default_avatar}" alt="Avatar" />
+												</li>
+												<li class="avatar">
+													<span
+													class="avatar-initial rounded-circle text-body"
+													data-bs-toggle="tooltip"
+													data-bs-placement="bottom"
+													title="3 more"
+													>+3</span
+													>
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--/ Activity Timeline -->
+			<div class="row">
+				<!-- Connections -->
+				<div class="col-lg-12 col-xl-6">
+					<div class="card mb-4">
+						<div class="card-header d-flex align-items-center justify-content-between">
+							<h5 class="card-title mb-0">Connections</h5>
+							<div class="dropdown">
+								<button
+								type="button"
+								class="btn dropdown-toggle hide-arrow p-0"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+									<i class="fas fa-ellipsis icon-22px text-body-secondary"></i>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end">
+									<li><a class="dropdown-item" href="javascript:void(0);">Share connections</a></li>
+									<li><a class="dropdown-item" href="javascript:void(0);">Suggest edits</a></li>
+									<li><hr class="dropdown-divider" /></li>
+									<li><a class="dropdown-item" href="javascript:void(0);">Report bug</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled mb-0">
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img src="{PHP.R.userimg_default_avatar}"  width="36" height="36" alt="Avatar" class="rounded-circle" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Cecilia Payne</h6>
+												<small>45 Connections</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<button class="btn btn-outline-primary btn-icon">
+												<i class="fas fa-user-plus icon-22px"></i>
+											</button>
+										</div>
+									</div>
+								</li>
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img src="{PHP.R.userimg_default_avatar}"  width="36" height="36" alt="Avatar" class="rounded-circle" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Curtis Fletcher</h6>
+												<small>1.32k Connections</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<button class="btn btn-primary btn-icon">
+												<i class="fas fa-user icon-22px"></i>
+											</button>
+										</div>
+									</div>
+								</li>
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img src="{PHP.R.userimg_default_avatar}"  width="36" height="36" alt="Avatar" class="rounded-circle" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Alice Stone</h6>
+												<small>125 Connections</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<button class="btn btn-primary btn-icon">
+												<i class="fas fa-user icon-22px"></i>
+											</button>
+										</div>
+									</div>
+								</li>
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img src="{PHP.R.userimg_default_avatar}"  width="36" height="36" alt="Avatar" class="rounded-circle" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Darrell Barnes</h6>
+												<small>456 Connections</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<button class="btn btn-outline-primary btn-icon">
+												<i class="fas fa-user-plus icon-22px"></i>
+											</button>
+										</div>
+									</div>
+								</li>
+								<li class="mb-4">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img src="{PHP.R.userimg_default_avatar}"  width="36" height="36" alt="Avatar" class="rounded-circle" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Eugenia Moore</h6>
+												<small>1.2k Connections</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<button class="btn btn-outline-primary btn-icon">
+												<i class="fas fa-user-plus icon-22px"></i>
+											</button>
+										</div>
+									</div>
+								</li>
+								<li class="text-center">
+									<a href="javascript:;">View all connections</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--/ Connections -->
+				<!-- Teams -->
+				<div class="col-lg-12 col-xl-6">
+					<div class="card mb-4">
+						<div class="card-header d-flex align-items-center justify-content-between">
+							<h5 class="card-title mb-0">Teams</h5>
+							<div class="dropdown">
+								<button
+								type="button"
+								class="btn dropdown-toggle hide-arrow p-0"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+									<i class="fas fa-ellipsis icon-22px text-body-secondary"></i>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end">
+									<li><a class="dropdown-item" href="javascript:void(0);">Share teams</a></li>
+									<li><a class="dropdown-item" href="javascript:void(0);">Suggest edits</a></li>
+									<li><hr class="dropdown-divider" /></li>
+									<li><a class="dropdown-item" href="javascript:void(0);">Report bug</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="card-body">
+							<ul class="list-unstyled mb-0">
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img
+												src="{PHP.R.userimg_default_avatar}"
+												alt="Avatar"
+												class="rounded-circle"  width="36" height="36" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">React Developers</h6>
+												<small>72 Members</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<a href="javascript:;"><span class="badge bg-label-danger rounded-pill">Developer</span></a>
+										</div>
+									</div>
+								</li>
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img
+												src="{PHP.R.userimg_default_avatar}"
+												alt="Avatar"
+												class="rounded-circle"  width="36" height="36" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Support Team</h6>
+												<small>122 Members</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<a href="javascript:;"><span class="badge bg-label-primary rounded-pill">Support</span></a>
+										</div>
+									</div>
+								</li>
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img
+												src="{PHP.R.userimg_default_avatar}"
+												alt="Avatar"
+												class="rounded-circle"  width="36" height="36" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">UI Designers</h6>
+												<small>7 Members</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<a href="javascript:;"><span class="badge bg-label-info rounded-pill">Designer</span></a>
+										</div>
+									</div>
+								</li>
+								<li class="mb-3">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img
+												src="{PHP.R.userimg_default_avatar}"
+												alt="Avatar"
+												class="rounded-circle"  width="36" height="36" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Vue.js Developers</h6>
+												<small>289 Members</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<a href="javascript:;"><span class="badge bg-label-danger rounded-pill">Developer</span></a>
+										</div>
+									</div>
+								</li>
+								<li class="mb-4">
+									<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center">
+											<div class="avatar me-2">
+												<img
+												src="../../assets/img/icons/brands/twitter-label.png"
+												alt="Avatar"
+												class="rounded-circle"  width="36" height="36" />
+											</div>
+											<div class="me-2">
+												<h6 class="mb-1">Digital Marketing</h6>
+												<small>24 Members</small>
+											</div>
+										</div>
+										<div class="ms-auto">
+											<a href="javascript:;"><span class="badge bg-label-secondary rounded-pill">Marketing</span></a>
+										</div>
+									</div>
+								</li>
+								<li class="text-center">
+									<a href="javascript:;">View all teams</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="card mb-4">
+				<div class="table-responsive pb-0 mb-n4">
+					<table class="table table-border-bottom-0">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th>Project</th>
+								<th>leader</th>
+								<th>teams</th>
+								<th>Progress</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- IF {PHP|function_exists('cot_debug_tpl_url')} AND {PHP.usr.maingrp} == 5 -->
+	<div class="alert alert-warning mt-4">
+		<p> {PHP.L.langSkStr_debug_tpl_note_1} <code>system/functions.custom.php</code></p> 
+		<p> {PHP.L.langSkStr_debug_tpl_note_2} </p> 
+		<p> {PHP.L.langSkStr_debug_tpl_note_3} </p> 
+		<div class="text-danger fw-semibold">{PHP|cot_debug_tpl_url()}</div>
+	</div>
+	<!-- ENDIF -->		
+	
 </div>
 
 

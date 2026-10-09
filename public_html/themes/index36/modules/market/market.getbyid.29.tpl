@@ -93,7 +93,7 @@
 	* ReadMeMore:          https://abuyfile.com/ru/market/cotonti/plugs/marketpro
 	* Support:             https://abuyfile.com/ru/forums/cotonti/custom/marketpro
 	*
-	* Date: Sep 23, 2026
+	* Updated: 09 Oct 2026 
 	*
 	* @package market
 	* @version 5.7.9
@@ -107,11 +107,13 @@
 	
     <!-- IF {MARKET_CHECK_29_ID} -->
 
-		<div class="gradient-border p-4"> 
+		<div class="gradient-border p-0"> 
+		<div class="gradient-border-contain-bg p-4 w-100"> 
 		<p class="text-danger fw-semibold">You may have been looking for this for a long time</p>
 			<a href="{MARKET_CHECK_29_URL}" title="{MARKET_CHECK_29_TITLE}">
 				{MARKET_CHECK_29_TITLE}
 			</a>
+			</div>
 		</div>
 
     <!-- ENDIF -->

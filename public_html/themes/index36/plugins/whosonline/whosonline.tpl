@@ -8,9 +8,9 @@
  * 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
  * 		 Font Awesome Free 7.3[](https://fontawesome.com/)
  * Theme: Index36  
- * Version=2.0.1 
+ * Version=2.1.1 
  * Created: 01 Feb 2026 
- * Updated: 28 Sep 2026  
+ * Updated: 09 Oct 2026   
  * Copyright (c) 2026 webitproff | https://github.com/webitproff
  * Source: https://github.com/webitproff/index36-cotonti-theme
  * Demo : https://freelance-script.abuyfile.com 
@@ -19,12 +19,15 @@
  ********************************************************************************/
 -->
 <!-- BEGIN: MAIN -->
+<div class="border-bottom py-3 px-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb d-flex mb-0 align-items-center">
+            <i class="fa-solid fa-users me-3 fs-4"></i>
+            <li class="breadcrumb-item active fw-bold">{PHP.L.WhosOnline}</li>
+		</ol>
+	</nav>
+</div>
 <div class="container my-4">
-  <h5 class="mb-3">
-    <a href="{PHP|cot_url('plug','e=whosonline')}" class="text-decoration-none">
-      <i class="fa-solid fa-users me-2"></i>{PHP.L.WhosOnline}
-    </a>
-  </h5>
 
   <div class="card shadow border-0 rounded-3">
     <div class="card-body p-0">

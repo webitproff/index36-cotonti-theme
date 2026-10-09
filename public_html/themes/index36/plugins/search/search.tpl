@@ -8,9 +8,9 @@
 	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
 	* 		 Font Awesome Free 7.3[](https://fontawesome.com/)
 	* Theme: Index36  
-	* Version=2.0.1 
+	* Version=2.1.1 
 	* Created: 01 Feb 2026 
-	* Updated: 28 Sep 2026  
+    * Updated: 09 Oct 2026  
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Demo : https://freelance-script.abuyfile.com 
@@ -20,11 +20,17 @@
 -->
 
 <!-- BEGIN: MAIN -->
-
+<div class="border-bottom border-secondary py-3 px-3">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			{PLUGIN_BREADCRUMBS}
+		</ol>
+	</nav>
+</div>
 <div class="container py-4">
 	
     <div class="mb-4">
-        <h2 class="mb-3">{PLUGIN_BREADCRUMBS}</h2>
+
 		
         <ul class="nav nav-tabs mb-4 flex-wrap">
             <li class="nav-item">
@@ -78,7 +84,7 @@
 					</div>
 				</div>
 				<div class="col-12 mb-5 mt-3">
-					<div class="input-group input-group-lg">
+					<div class="input-group">
 						{PLUGIN_SEARCH_TEXT}
 						<button type="submit" class="btn btn-primary">
 							{PHP.L.plu_search_key}

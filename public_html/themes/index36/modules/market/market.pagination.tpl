@@ -79,7 +79,7 @@
 	* ReadMeMore:          https://abuyfile.com/ru/market/cotonti/plugs/marketpro
 	* Support:             https://abuyfile.com/ru/forums/cotonti/custom/marketpro
 	*
-	* Date: Sep 23, 2026
+	* Updated: 09 Oct 2026 
 	*
 	* @package market
 	* @version 5.7.9

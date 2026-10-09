@@ -102,7 +102,7 @@
 	* Support:             https://abuyfile.com/ru/forums/cotonti/custom/marketpro
 	* API Extrafields:     https://github.com/Cotonti/Cotonti/blob/master/system/extrafields.php
 	*
-	* Date: Sep 23, 2026
+	* Updated: 09 Oct 2026 
 	*
 	* @package market
 	* @version 5.7.9

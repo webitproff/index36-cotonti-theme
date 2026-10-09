@@ -104,7 +104,7 @@
 	* ReadMeMore:          https://abuyfile.com/ru/market/cotonti/plugs/marketpro
 	* Support:             https://abuyfile.com/ru/forums/cotonti/custom/marketpro
 	*
-	* Date: Sep 23, 2026
+	* Date: 09 Oct, 2026
 	*
 	* @package market
 	* @version 5.7.9
@@ -127,21 +127,112 @@
 <div class="container-fluid px-3 px-lg-5 py-5">
     {FILE "{PHP.cfg.themes_dir}/{PHP.cfg.defaulttheme}/warnings.tpl"}
 	
+	<div class="gradient-border w-100 shadow mb-5">
+		<!-- Внутренний контейнер, который примет фон -->
+		<div class="gradient-border-contain-bg w-100 d-flex align-items-center py-4 px-3">
+			<h1 class="h6 mb-1">
+				<span class="ms-0"><i class="fa-solid fa-shop fa-2xl"></i></span>
+				<span class="text-uppercase fw-semibold ms-2">{VENDOR_USER_NICKNAME}</span> 
+				- {PHP.L.market_vendor_page_title_h1} 
+			<span class="text-uppercase fw-light">{PHP.cfg.maintitle}</span></h1>
+		</div>
+	</div>
 	
-    <!-- ==================== ШАПКА ВИТРИНЫ ==================== -->
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body d-flex flex-wrap align-items-center">
-            <div class="me-4 mb-2">{VENDOR_USER_AVATAR}</div>
-            <div class="flex-grow-1">
-                <h1 class="h3 mb-1">
-                    {VENDOR_USERNAME}
-                    <a href="{VENDOR_PROFILE_URL}" class="text-decoration-none text-muted small">
-                        ({PHP.L.market_vendor_profile_link})
+	<div class="card border-0 shadow mb-5">
+		<div class="user-details-header-background">
+			<!-- IF {VENDOR_USER_BACKGROUND_SRC} -->
+			<img src="{VENDOR_USER_BACKGROUND_SRC}"
+			alt="{VENDOR_USER_NICKNAME}"
+			class="img-fluid rounded-top details-background" loading="lazy" />
+			<!-- ELSE -->
+			<img src="{PHP.R.userimg_default_background}"
+			alt="{VENDOR_USER_NICKNAME}"
+			class="img-fluid rounded-top details-background" loading="lazy" />
+			<!-- ENDIF -->
+			
+		</div>
+		<div data-user-id="{VENDOR_USER_ID}" class="user-details-header d-flex flex-column flex-sm-row text-sm-start text-center mb-3">
+			<div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+				<!-- IF {VENDOR_USER_AVATAR_SRC} -->
+				<img src="{VENDOR_USER_AVATAR_SRC}"
+				alt="{VENDOR_USER_NICKNAME}"
+				class="d-block h-auto ms-0 ms-sm-3 rounded-4 user-details-img"
+				width="96"
+				height="96" loading="lazy" />
+				<!-- ELSE -->
+				<img src="{PHP.R.userimg_default_avatar}"
+				alt="{VENDOR_USER_NICKNAME}"
+				class="d-block h-auto ms-0 ms-sm-3 rounded-4 user-details-img"
+				width="96"
+				height="96" />
+				<!-- ENDIF -->
+			</div>
+			<div class="flex-grow-1 mt-3 mt-sm-5">
+				<div
+				class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-3 flex-md-row flex-column gap-4">
+					<div class="user-details-info">
+						<a href="{VENDOR_PROFILE_URL}" class="text-decoration-none" title="{PHP.L.market_vendor_profile_link}">
+							<!-- IF {VENDOR_USER_FIRSTNAME} -->
+							<span class="fw-medium"><small>{VENDOR_USERNAME}</small></span>
+							<h4 class="mb-2">
+								<!-- IF {VENDOR_USER_FIRSTNAME} -->{VENDOR_USER_FIRSTNAME}<!-- ENDIF --> 
+								<!-- IF {VENDOR_USER_LASTNAME} -->{VENDOR_USER_LASTNAME}<!-- ENDIF -->
+							</h4>
+							
+							<!-- ELSE -->
+							<h4 class="mb-2">
+								{VENDOR_USER_NICKNAME}
+							</h4>
+							<!-- ENDIF -->
+						</a>
+						<ul
+						class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-4">
+							<li class="list-inline-item">
+								<span>
+									<i class="bi bi-box-seam"></i>
+									{PHP.L.market_vendor_products}:
+									<strong>{VENDOR_PRODUCTS_PUBLISHED}</strong>
+								</span>
+							</li>
+							<li class="list-inline-item">
+								<span>
+									<i class="bi bi-folder"></i>
+									{PHP.L.market_vendor_categories}:
+									<strong>{VENDOR_CATEGORIES_COUNT}</strong>
+								</span>
+							</li>
+							<li class="list-inline-item">
+								<i class="fas fa-calendar me-2 icon-24px"></i><span class="fw-medium">{PHP.L.langSkStr_usersJoined} {VENDOR_USER_REGDATE_STAMP|cot_date('F Y', $this)}</span>
+							</li>
+						</ul>
+					</div>
+					<!-- IF {MARKET_VENDOR_SHOWCASE_URL} -->
+					<a href="{MARKET_VENDOR_SHOWCASE_URL}" class="btn btn-success ms-auto">
+						{PHP.L.market_owner_vendor_link}
 					</a>
-				</h1>
-                <!-- IF {VENDOR_LAST_SEEN} -->
-                <p class="mb-2 text-muted">{PHP.L.Lastlogged}: {VENDOR_LAST_SEEN}</p>
-                <!-- ENDIF -->
+					<!-- ENDIF -->
+					<!-- IF {PHP|cot_module_active('pm')} -->
+					
+					<!-- IF {PHP.usr.id} > 0 AND {PHP.usr.id} != {VENDOR_USER_ID} -->
+					<a class="btn btn-primary" href="{VENDOR_USER_ID|cot_url('pm','m=send&to=$this', '', 1)}">
+						<span class="mb-3 me-1"><i class="fa-solid fa-paper-plane fa-xl"></i></span>
+						<span class="fw-medium mb-2">{PHP.L.users_sendpm}</span>
+					</a>
+					<!-- ENDIF -->
+					
+					<!-- IF {PHP.usr.id} == '0' -->
+					<button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#guestOffCanvas" aria-controls="guestOffCanvas" title="{PHP.L.users_sendpm}">
+						<span class="mb-3 me-1"><i class="fa-solid fa-paper-plane fa-xl"></i></span>
+						<span class="fw-medium mb-2">{PHP.L.users_sendpm}</span>
+					</button>
+					<!-- ENDIF -->
+					
+					<!-- ENDIF -->	
+				</div>
+			</div>
+		</div>
+        <div class="card-body d-flex flex-wrap align-items-center">
+            <div class="flex-grow-1">
 				<!-- IF {PHP|cot_plugin_active('xtradbrowusers')} -->
 				<!-- IF {VENDOR_USER_XTRA_X020_ABOUT_VENDOR_TEXT} -->
 				<div class="mb-3">
@@ -152,53 +243,42 @@
 				</div>
 				<!-- ENDIF -->
 				<!-- ENDIF -->
-                <div class="d-flex flex-wrap gap-3 small">
-                    <span>
-                        <i class="bi bi-box-seam"></i>
-                        {PHP.L.market_vendor_products}:
-                        <strong>{VENDOR_PRODUCTS_PUBLISHED}</strong>
-					</span>
-                    <span>
-                        <i class="bi bi-folder"></i>
-                        {PHP.L.market_vendor_categories}:
-                        <strong>{VENDOR_CATEGORIES_COUNT}</strong>
-					</span>
-                    <span>
-                        <i class="bi bi-calendar"></i>
-                        {PHP.L.market_vendor_registered}: {VENDOR_REGDATE}
-					</span>
-				</div>
+                <!-- IF {VENDOR_LAST_SEEN} -->
+                <div class="mb-2 text-muted"><small>{PHP.L.Lastlogged}: {VENDOR_LAST_SEEN}</small></div>
+                <!-- ENDIF -->
 			</div>
 		</div>
-	</div>
+	</div>	
+    <!-- ==================== ШАПКА ВИТРИНЫ ==================== -->
+	
 	
     <div class="row">
-			<div class="card card-body mb-4">
-				<!-- Форма поиска -->
-				<form method="get" action="{VENDOR_SEARCH_ACTION_URL}" class="row g-2">
-					<div class="col-lg-5">{VENDOR_SEARCH_SQ}</div>
-					<div class="col-lg-3">{VENDOR_SEARCH_IN_SELECT}</div>
-					<div class="col-lg-2">
-						<div class="row g-1">
-							<div class="col-6">
-								<button type="submit" class="btn btn-primary w-100" title="{PHP.L.Search}">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-							</div>
-							<div class="col-6">
-								<a class="btn btn-outline-danger w-100"
-								title="{PHP.L.marketprofilter_reset}"
-								href="{VENDOR_MAIN_URL}">
-									<i class="fa-solid fa-filter-circle-xmark"></i>
-								</a>
-							</div>
+		<div class="card card-body mb-4">
+			<!-- Форма поиска -->
+			<form method="get" action="{VENDOR_SEARCH_ACTION_URL}" class="row g-2">
+				<div class="col-lg-5">{VENDOR_SEARCH_SQ}</div>
+				<div class="col-lg-3">{VENDOR_SEARCH_IN_SELECT}</div>
+				<div class="col-lg-2">
+					<div class="row g-1">
+						<div class="col-6">
+							<button type="submit" class="btn btn-primary w-100" title="{PHP.L.Search}">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</div>
+						<div class="col-6">
+							<a class="btn btn-outline-danger w-100"
+							title="{PHP.L.marketprofilter_reset}"
+							href="{VENDOR_MAIN_URL}">
+								<i class="fa-solid fa-filter-circle-xmark"></i>
+							</a>
 						</div>
 					</div>
-				</form>
-			</div>		
+				</div>
+			</form>
+		</div>		
         <!-- ==================== ЛЕВАЯ КОЛОНКА: КАТЕГОРИИ ==================== -->
 		
-		<aside class="col-md-3">
+		<aside class="col-md-3 mb-5">
 			<h5>{PHP.L.market_vendor_categories_of}</h5>
 			<div class="market-vendor-categories">
 				<!-- IF {VENDOR_CATEGORIES_TREE} -->
@@ -212,39 +292,168 @@
 		
         <!-- ==================== ПРАВАЯ КОЛОНКА: ТОВАРЫ ==================== -->
         <div class="col-md-9">
-
+			
             <!-- Сетка товаров -->
-			<div class="row row-cols-1 row-cols-xxl-3 row-cols-lg-2 row-cols-md-2 g-3 g-lg-4">
+			<div class="row row-cols-1 row-cols-xxl-3 row-cols-lg-2 row-cols-md-1 g-3 g-lg-4" id="market-items-container">
 				<!-- BEGIN: LIST_ROW -->
 				<div class="col">
-					<div class="card h-100 border-0 shadow-sm overflow-hidden blog-card">
-						<div class="row g-0 flex-lg-row">
-							<div class="col-12">
-								<!-- IF {PHP|cot_plugin_active('attacher')} -->
-								<!-- IF {LIST_ROW_ID|att_count('market', $this, '', 'images')} > 0 --> 
-								{LIST_ROW_ID|att_display('market',$this,'','attacher.display.marketlist','images',1)}
-								<!-- ELSE -->
-								<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{LIST_ROW_TITLE}">
+					<article class="card product-card h-100 shadow-sm">
+						<!-- Изображение -->
+						<a href="{LIST_ROW_URL}" class="product-card-img-link" title="{LIST_ROW_TITLE}">
+							<!-- IF {PHP|cot_plugin_active('attacher')} -->
+							<!-- IF {LIST_ROW_ID|att_count('market', $this, '', 'images')} > 0 -->
+							{LIST_ROW_ID|att_display('market', $this, '', 'attacher.display.marketlist', 'images', 1)}
+							<!-- ELSE -->
+							<img src="{PHP.R.page_default_image}" alt="{LIST_ROW_TITLE}" class="product-card-img">
+							<!-- ENDIF -->
+							<!-- ELSE -->
+							<img src="{PHP.R.page_default_image}" alt="{LIST_ROW_TITLE}" class="product-card-img">
+							<!-- ENDIF -->
+							
+							<!-- Бейдж статуса поверх изображения -->
+							<!-- IF {PHP.usr.isadmin} OR {PHP.usr.id} == {LIST_ROW_OWNER_ID} -->
+							<!-- IF {LIST_ROW_STATE} == '2' -->
+							<span class="product-card-status badge bg-warning text-dark">{LIST_ROW_LOCAL_STATUS}</span>
+							<!-- ENDIF -->
+							<!-- IF {LIST_ROW_STATE} == '1' -->
+							<span class="product-card-status badge bg-danger text-white">{LIST_ROW_LOCAL_STATUS}</span>
+							<!-- ENDIF -->
+							<!-- ENDIF -->
+						</a>
+						
+						<div class="card-body d-flex flex-column">
+							
+							<!-- Заголовок -->
+							<h3 class="product-card-title">
+								<a href="{LIST_ROW_URL}" title="{LIST_ROW_TITLE}">{LIST_ROW_TITLE}</a>
+							</h3>
+							<div class="d-flex justify-content-between align-items-center mb-2">					
+								<!-- Рейтинг -->
+								<!-- IF {PHP|cot_plugin_active('marketreviews')} -->
+								<div class="product-card-rating">
+									<span class="review-stars" title="{PHP.L.marketreviews_pageRatingValue}">{LIST_ROW_REVIEWS_AVG_STARS_HTML}</span>
+									<!-- IF {LIST_ROW_REVIEWS_TOTAL_COUNT} > 0 -->
+									<span class="text-muted small ms-1">
+										<i class="fa-solid fa-comment-dots"></i> {LIST_ROW_REVIEWS_TOTAL_COUNT}
+									</span>
+									<!-- ENDIF -->
+								</div>
+								<!-- ENDIF -->
+								<!-- IF {PHP.usr.isadmin} OR {PHP.usr.id} === {LIST_ROW_OWNER_ID} -->
+								<div class="dropdown">
+									<button class="btn btn-outline-warning btn-lg rounded-circle d-flex align-items-center justify-content-center shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:32px;height:32px;">
+										<i class="fa-solid fa-ellipsis-v"></i>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-end border shadow-sm py-3" style="min-width:280px;">
+										<!-- IF {LIST_ROW_ADMIN_EDIT} -->
+										<li>
+											<a class="dropdown-item py-2 px-4" 
+											href="{LIST_ROW_ADMIN_EDIT_URL}">
+												{PHP.L.Edit}
+											</a>
+										</li>
+										<!-- ENDIF -->
+										<!-- IF {LIST_ROW_ADMIN_DELETE} -->
+										<li>
+											<a class="dropdown-item py-2 px-4" 
+											href="{LIST_ROW_ADMIN_DELETE_URL}">
+												{PHP.L.Delete}
+											</a>
+										</li>
+										<!-- ENDIF -->
+										<!-- IF {LIST_ROW_ADMIN_UNVALIDATE} -->
+										<li>
+											<a class="dropdown-item py-2 px-4" 
+											href="{LIST_ROW_ADMIN_UNVALIDATE_URL}">
+												{PHP.L.Putinvalidationqueue}
+											</a>
+										</li>
+										<!-- ENDIF -->
+									</ul>
+								</div>
+								<!-- ENDIF -->
+							</div>
+							
+							<!-- Описание -->
+							<!-- IF {LIST_ROW_DESCRIPTION} -->
+							<p class="product-card-desc text-muted small">{LIST_ROW_DESCRIPTION|strip_tags($this)|mb_substr($this,0,120,'UTF-8')}...</p>
+							<!-- ELSE -->
+							<p class="product-card-desc text-muted small">{LIST_ROW_TEXT_CUT|strip_tags($this)|mb_substr($this,0,120,'UTF-8')}...</p>
+							<!-- ENDIF -->
+							
+							<!-- Категория -->
+							<!-- IF {LIST_CAT_CODE} == '' -->
+							<div class="product-card-cat small">{LIST_ROW_CAT_TITLE}</div>
+							<!-- ENDIF -->
+							
+							<!-- Доп поля -->
+							<!-- IF {PHP|cot_plugin_active('xtradbrowmarket')} -->
+							<div class="product-card-extra d-flex gap-3 mt-2">
+								<!-- IF {LIST_ROW_XTRADBROWMARKET_011_GITHUB_RC} -->
+								<a target="_blank" rel="nofollow noreferrer noopener" href="{LIST_ROW_XTRADBROWMARKET_011_GITHUB_RC}"
+								data-bs-toggle="tooltip" data-bs-html="true"
+								data-bs-title="{LIST_ROW_XTRADBROWMARKET_011_GITHUB_RC_TITLE} {PHP.L.xtradbrowmarket_github_rc_tooltip}">
+									<i class="fa-brands fa-github fa-lg"></i>
+								</a>
+								<!-- ENDIF -->
+								<!-- IF {LIST_ROW_XTRA_010_FORUM_LINK} -->
+								<a target="_blank" rel="nofollow noreferrer noopener" href="{LIST_ROW_XTRA_010_FORUM_LINK}"
+								data-bs-toggle="tooltip" data-bs-html="true"
+								data-bs-title="{LIST_ROW_XTRA_010_FORUM_LINK_TITLE}. {PHP.L.xtradbrowmarket_forum_link_tooltip}">
+									<i class="fa-solid fa-person-circle-question fa-lg"></i>
+								</a>
+								<!-- ENDIF -->
+							</div>
+							<!-- ENDIF -->
+							
+							<!-- Цена + владелец + кнопки (внизу карточки) -->
+							<div class="product-card-footer mt-auto pt-3">
+								
+								<!-- Цена -->
+								<!-- IF {PHP|cot_plugin_active('marketcurrencyswitcher')} -->
+								<!-- IF {LIST_ROW_COSTDFLT} > 0 -->
+								<div class="product-card-price">
+									<span class="price-label text-muted small">{PHP.L.market_price}</span>
+									<span class="market-price fw-bold" data-base-price="{LIST_ROW_COST_RAW}">
+										{LIST_ROW_COSTDFLT} {PHP.cfg.payments.valuta}
+									</span>
+								</div>
 								<!-- ENDIF -->
 								<!-- ELSE -->
-								<img src="{PHP.R.page_default_image}" class="card-img object-fit-cover" alt="{LIST_ROW_TITLE}">
-								<!-- ENDIF --> 
-							</div>
-							<div class="col-12">
-								<div class="card-body d-flex flex-column h-100 p-4">
-									<div class="card-title">
-										<a href="{LIST_ROW_URL}" title="{LIST_ROW_TITLE}">{LIST_ROW_TITLE}</a>
-									</div>
-									<p class="small text-muted">{LIST_ROW_DESCRIPTION_OR_TEXT_CUT}</p>
-									<div class="fw-bold">{LIST_ROW_COSTDFLT}</div>
-									
+								<!-- IF {LIST_ROW_COSTDFLT} > 0 -->
+								<div class="product-card-price fw-bold">
+									{LIST_ROW_COSTDFLT}
+									<!-- IF {PHP.cfg.payments.valuta} -->{PHP.cfg.payments.valuta}<!-- ELSE -->{PHP.cfg.market.market_currency}<!-- ENDIF -->
+								</div>
+								<!-- ENDIF -->
+								<!-- ENDIF -->
+								
+								
+								
+								<!-- Кнопки -->
+								<div class="product-card-actions d-flex gap-2 mt-3">
+									<!-- IF {PHP|cot_plugin_active('payordersmarket')} AND {PHP.usr.id} -->
+									<!-- IF !{LIST_ROW_ORDER_IN_CART} -->
+									<a href="javascript:void(0)" class="btn btn-sm btn-success add-to-cart flex-grow-1" data-id="{LIST_ROW_ID}">
+										<i class="fa-solid fa-cart-plus me-1"></i>{PHP.L.payordersmarket_add_to_cart}
+									</a>
+									<span class="cart-added-msg text-success small" style="display:none;">{PHP.L.payordersmarket_added_to_cart}</span>
+									<!-- ELSE -->
+									<span class="btn btn-sm btn-outline-info flex-grow-1">{PHP.L.payordersmarket_in_cart} ✅</span>
+									<!-- ENDIF -->
+									<!-- ENDIF -->
+									<!-- IF {PHP|cot_plugin_active('payordersmarket')} AND {PHP|cot_auth('plug', 'payordersmarket', 'R')} AND {PHP.usr.id} == 0 -->
+									<a class="btn btn-sm btn-outline-secondary flex-grow-1" data-bs-toggle="modal" data-bs-target="#authModal">
+										<i class="fa-solid fa-cart-plus me-1"></i>{PHP.L.payordersmarket_add_to_cart}
+									</a>
+									<!-- ENDIF -->
 								</div>
 							</div>
 						</div>
-					</div>
-				</div> 
+					</article>
+				</div>
 				<!-- END: LIST_ROW -->
-			</div>			
+			</div>		
 			
 			<!-- BEGIN: LIST_EMPTY -->
 			<div class="col-12">
@@ -278,4 +487,39 @@
 	</div>
 </div>
 <!-- ENDIF -->
+
+<!-- Custom minimal styles for users.details.tpl -->
+<style>
+	/* Minimal custom styles for easy integration */
+	.user-details-header-background img {
+	block-size: 250px;
+	inline-size: 100%;
+	object-fit: cover;
+	}
+	
+	.user-details-header {
+	margin-block-start: -2rem;
+	}
+	.user-details-header .user-details-img {
+	border: 5px solid;
+	border-color: #ff8809;
+	background-color: #f8f9fa;
+    padding: 3px;
+	inline-size: 120px;
+	}
+	
+	/* Responsive style */
+	@media (max-width: 767.98px) {
+	.user-details-header-background img {
+    block-size: 150px;
+	}
+	.user-details-header .user-details-img {
+    inline-size: 100px;
+	}
+	}
+	
+    .details-background { height: 200px; object-fit: cover; }
+	
+</style>
+
 <!-- END: MAIN -->

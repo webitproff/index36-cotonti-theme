@@ -9,9 +9,9 @@
 	* 		 Bootstrap 5.3.+[](https://getbootstrap.com/); 
 	* 		 Font Awesome Free 7.3[](https://fontawesome.com/)
 	* Theme: Index36  
-	* Version=2.0.1 
+	* Version=2.1.1 
 	* Created: 01 Feb 2026 
-	* Updated: 18 Feb 2026 
+	* Updated: 09 Oct 2026  
 	* Copyright (c) 2026 webitproff | https://github.com/webitproff
 	* Source: https://github.com/webitproff/index36-cotonti-theme
 	* Demo : https://freelance-script.abuyfile.com 
@@ -30,58 +30,64 @@
 
 <div class="container py-5">
 	<h2 class="fs-4 mb-4">{PHP.L.Filters}</h2>
-            <h1 class="uk-heading-bullet uk-text-large uk-text-bold uk-link-text">
-                 <!-- IF {PHP.cat} --> <!-- если мы в категории пользователей -->
-                 ({PHP.cot_groups.4.name}) «{PHP.catTitle}» <!-- выводим (имя группы ID = 4) + «имя категории» -->
-                 <!-- ELSE --> <!-- иначе -->
-                 {PHP.cot_groups.4.name} <!-- выводим имя группы без названия категории -->
-                 {USERS_TITLE} <!-- сборочный тег локализованного именни группы 'TITLE' => $cot_groups[$user_data['user_maingrp']]['title'] -->
-                 <!-- ENDIF -->
-            </h1>	
+
 	<!-- IF {USERS_ACTIVE_FILTERS} -->
 	<div class="alert alert-secondary"> 
 		{USERS_ACTIVE_FILTERS}
 	</div>
 	<!-- ENDIF -->
-	
-	<div class="card border-0 shadow-sm mb-5 p-4">
-		<form id="filter-form" action="{USERS_FILTERS_ACTION}" method="GET">
-			{USERS_FILTERS_PARAMS}	
-			<div class="col-12">
-				<label class="form-label">{PHP.L.Filter_search}:</label>
-				<div class="row">
-					<div class="col-md-4 mb-3">{USERS_FILTERS_COUNTRY}</div>
-					<div class="col-md-4 mb-3"> {USERS_FILTERS_MAIN_GROUP}</div>
-					<div class="col-md-4 mb-3">{USERS_FILTERS_GROUP}</div>
-				</div>
-			</div>
-			<div class="col-12 mb-3">
-				<div class="row">
-					<div class="col-md-5  mb-3">
-						<label class="form-label">{PHP.L.Username_search}:</label>
-						{USERS_FILTERS_SEARCH}
+
+			<!-- Название и описание категории -->
+			<!-- IF {PHP|cot_plugin_active('usercategories')} AND {USERS_CHOSEN_CATEGORY} -->
+			{USERS_CHOSEN_CATEGORY}
+			<!-- ENDIF -->
+			
+			<!-- Блок фильтров -->
+			<div class="p-3 mb-4 rounded-2" style="border: 5px var(--bs-dark-border-subtle) solid">
+				<form action="{USERS_FILTERS_ACTION}" method="GET" class="d-flex flex-column gap-3"> {USERS_FILTERS_PARAMS}
+					<!-- Поле поиска -->
+					<div class="row align-items-center">
+						<label class="col-12 col-sm-3 mb-2 mb-sm-0">{PHP.L.Search}:</label>
+						<div class="col-12 col-sm-9"> {USERS_FILTERS_SEARCH} </div>
 					</div>
-					<div class="col-md-7 mb-3">
-						<label class="form-label">{PHP.L.OrderBy}:</label>
-						<div class="d-flex gap-2">
-							{USERS_FILTERS_SORT}
-							{USERS_FILTERS_SORT_WAY}
+					<!-- IF {PHP|cot_plugin_active('locationselector')} -->
+					<!-- Поле локации -->
+					<div class="row align-items-center">
+						<label class="col-12 col-sm-3 mb-2 mb-sm-0">{PHP.L.Location}:</label>
+						<div class="col-12 col-sm-9">{SEARCH_LOCATION}</div>
+					</div>
+					<!-- ENDIF -->
+					<!-- Поле категории -->
+					<!-- IF {PHP.usr.isadmin} -->
+					<div class="row align-items-center">
+						<label class="col-12 col-sm-3 mb-2 mb-sm-0">{PHP.L.OrderBy}: {USERS_FILTERS_SORT_WAY} </label>
+						<div class="col-12 col-sm-9">{USERS_FILTERS_SORT}</div>
+					</div>
+					<!-- ENDIF -->
+					<!-- IF {PHP|cot_plugin_active('usercategories')} -->
+					<div class="row align-items-center">
+						<label class="col-12 col-sm-3 mb-2 mb-sm-0">{PHP.L.Category}:</label>
+						<div class="col-12 col-sm-9">{USERCATEGORIES_SEARCH_CAT}</div>
+					</div>
+					<!-- ENDIF -->
+					<!-- Кнопка отправки -->
+					<div class="row">
+						<div class="col-12 col-sm-3 d-none d-sm-block"></div>
+						<div class="col-12 col-sm-9">
+							<div class="row g-3 justify-content-md-end justify-content-center">
+								<div class="col-md-6 col-12 text-center">
+									<button type="submit" class="w-100 w-md-auto btn btn-outline-primary">{PHP.L.Search}</button>
+								</div>
+								<div class="col-md-6 col-12 text-center">
+									<a class="btn btn-outline-danger w-100 " href="{PHP.cot_groups.4.alias|cot_url('users', 'group=$this')}">{PHP.L.Reset}</a>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
-			<div class="col-12">
-				<div class="row">
-					<div class="col-md-6 col-12 text-center mb-3">
-						<button type="submit" class="w-100 w-md-auto btn btn-outline-primary">{PHP.L.Search}</button>
-					</div>
-					<div class="col-md-6 col-12 text-center mb-3">
-						<a class="btn btn-outline-danger w-100 " href="{PHP|cot_url('users')}">{PHP.L.Reset}</a>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
+
+
 	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 		<!-- BEGIN: USERS_ROW -->
 		<div class="col">
@@ -124,12 +130,11 @@
 					</div>
 					
 					
+									<!-- IF {PHP|cot_plugin_active('usercategories')} -->
+									<div class="text-center mb-2">{USERS_ROW_CATS|cot_usercategories_tree($this, '', 'listlev1')}</div>
+									<!-- ENDIF -->
+
 					
-					<div class="text-center mb-2">
-						<span class="badge bg-primary-subtle text-primary px-2 py-1 me-1">PHP</span>
-						<span class="badge bg-warning-subtle text-warning-emphasis px-2 py-1 me-1">HTML</span>
-						<span class="badge bg-success-subtle text-success px-2 py-1 me-1">JavaScript</span>
-					</div>
 					<div class="row text-center mb-3">
 						<div class="col-6 ">
 							<span class="badge bg-primary rounded-pill px-3 py-2 fs-6 shadow"
@@ -182,6 +187,16 @@
 		</nav>
 	</div>
 	<!-- ENDIF -->
+	
+<!-- IF {PHP|function_exists('cot_debug_tpl_url')} AND {PHP.usr.maingrp} == 5 -->
+	<div class="alert alert-warning mt-4">
+		<p> {PHP.L.langSkStr_debug_tpl_note_1} <code>system/functions.custom.php</code></p> 
+		<p> {PHP.L.langSkStr_debug_tpl_note_2} </p> 
+		<p> {PHP.L.langSkStr_debug_tpl_note_3} </p> 
+		<div class="text-danger fw-semibold">{PHP|cot_debug_tpl_url()}</div>
+	</div>
+<!-- ENDIF -->	
+	
 </div>
 
 
@@ -231,15 +246,15 @@
 	transform: scale(1.07);
 	}
 	
-/* ===============================
+	/* ===============================
 	AVATAR. DO NOT TOUCH !!!
-================================= */
+	================================= */
 	
-.avatar-circle img {
+	.avatar-circle img {
 	border-radius: 50%;
 	border: 5px solid;
 	box-sizing: border-box;
-}
+	}
 	
 	/* ===============================
 	TYPOGRAPHY
@@ -413,3 +428,42 @@
 </script>
 
 <!-- END: MAIN -->
+
+	<div class="card border-0 shadow-sm mb-5 p-4">
+		<form id="filter-form" action="{USERS_FILTERS_ACTION}" method="GET">
+			{USERS_FILTERS_PARAMS}	
+			<div class="col-12">
+				<label class="form-label">{PHP.L.Filter_search}:</label>
+				<div class="row">
+					<div class="col-md-4 mb-3">{USERS_FILTERS_COUNTRY}</div>
+					<div class="col-md-4 mb-3"> {USERS_FILTERS_MAIN_GROUP}</div>
+					<div class="col-md-4 mb-3">{USERS_FILTERS_GROUP}</div>
+				</div>
+			</div>
+			<div class="col-12 mb-3">
+				<div class="row">
+					<div class="col-md-5  mb-3">
+						<label class="form-label">{PHP.L.Username_search}:</label>
+						{USERS_FILTERS_SEARCH}
+					</div>
+					<div class="col-md-7 mb-3">
+						<label class="form-label">{PHP.L.OrderBy}:</label>
+						<div class="d-flex gap-2">
+							{USERS_FILTERS_SORT}
+							{USERS_FILTERS_SORT_WAY}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="row">
+					<div class="col-md-6 col-12 text-center mb-3">
+						<button type="submit" class="w-100 w-md-auto btn btn-outline-primary">{PHP.L.Search}</button>
+					</div>
+					<div class="col-md-6 col-12 text-center mb-3">
+						<a class="btn btn-outline-danger w-100 " href="{PHP|cot_url('users')}">{PHP.L.Reset}</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>

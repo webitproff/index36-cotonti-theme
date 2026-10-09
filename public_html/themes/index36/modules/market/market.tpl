@@ -121,7 +121,7 @@
 	* ReadMeMore:          https://abuyfile.com/ru/market/cotonti/plugs/marketpro
 	* Support:             https://abuyfile.com/ru/forums/cotonti/custom/marketpro
 	*
-	* Date: Sep 23, 2026
+	* Updated: 09 Oct 2026 
 	*
 	* @package market
 	* @version 5.7.9
@@ -333,10 +333,10 @@
 		</div>
 	</div>
 	
-	<div class="row text-center mb-3 gy-3">
+	<div class="row text-center mb-3 gy-3 row-cols-auto">
 		
 		<!-- IF {MARKET_LOCAL_STATUS} -->
-		<div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
+		<div class="col d-flex align-items-center justify-content-center">
 			<p class="mb-0">
 				<strong>{PHP.L.Status}:</strong>
 				<span class="badge bg-warning text-black">{MARKET_LOCAL_STATUS}</span>
@@ -345,7 +345,7 @@
 		<!-- ENDIF -->
 		
 		<!-- IF {MARKET_HITS} -->
-		<div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
+		<div class="col d-flex align-items-center justify-content-center">
 			<span class="badge bg-primary rounded-pill px-3 py-2 fs-6 shadow"
 			title="{PHP.L.Views}"
 			data-bs-toggle="tooltip">
@@ -356,7 +356,7 @@
 		<!-- ENDIF -->
 		
 		<!-- IF {MARKET_PCOD} -->
-		<div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
+		<div class="col d-flex align-items-center justify-content-center">
 			<p class="mb-0">{PHP.L.Code}
 				<span class="badge bg-warning text-black">{MARKET_PCOD}</span>
 			</p>
@@ -370,7 +370,7 @@
 			https://github.com/webitproff/xtradbrowmarket-cotonti
 		-->
 		<!-- ENDIF -->
-		<div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center"
+		<div class="col d-flex align-items-center justify-content-center"
 		data-bs-toggle="tooltip" data-bs-html="true"
 		data-bs-title="{PHP.L.xtradbrowmarket_github_rc_tooltip}" title="{PHP.L.xtradbrowmarket_github_rc_tooltip}">
 			<a target="_blank" rel="nofollow noreferrer noopener"
@@ -380,6 +380,32 @@
 				<span>{MARKET_XTRA_011_GITHUB_RC_TITLE}</span>
 			</a>
 		</div>
+		<!-- ENDIF -->
+		<!-- IF {MARKET_XTRA_020_LIVEDEMO_LINK} -->
+		<!-- IF {PHP.usr.isadmin} --> 
+		<!-- 
+			Плагин добавляет экстраполя для модуля «Market PRO v.5» в собственную таблицу базы данных
+			https://github.com/webitproff/xtradbrowmarket-cotonti
+		-->
+		<!-- ENDIF -->
+		<div class="col d-flex"
+		data-bs-toggle="tooltip" 
+		data-bs-html="true"
+		data-bs-title="{PHP.L.xtradbrowmarket_020_livedemo_link_tooltip}" 
+		title="{PHP.L.xtradbrowmarket_020_livedemo_link_tooltip}">
+			<div class="gradient-border w-100">
+				<!-- Внутренний контейнер, который примет фон -->
+				<div class="gradient-border-contain-bg w-100 d-flex align-items-center justify-content-center">
+					<a target="_blank" rel="nofollow noreferrer noopener"
+					href="{MARKET_XTRA_020_LIVEDEMO_LINK}"
+					class="btn btn-common btn-github btn-lg w-100">
+						<i class="fa-solid fa-gamepad mx-2 fa-2xl"></i>
+						<span>{MARKET_XTRA_020_LIVEDEMO_LINK_TITLE}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
 		<!-- ENDIF -->
 	</div>
 	
@@ -428,8 +454,17 @@
 			-->
 			<!-- ENDIF -->
 			
-			<div class="gradient-border gradient-border-about-figure p-4">
-				<h3>{PHP.L.marketfilter_paramsItem}</h3>
+			<div class="gradient-border gradient-border-about-figure p-4 text-dark">
+				<div class="d-flex align-items-center mb-3">
+					<div class="me-3 d-flex align-items-center">
+						<i class="fa-solid fa-sliders fa-2xl text-warning"></i>
+					</div>
+					<div class="text-dark">
+						<p class="fs-5 fw-light mb-0">{PHP.L.marketprofilter_market_paramsItem}</p>
+					</div>
+				</div>
+				
+				
 				<dl class="row">
 					<!-- BEGIN: MARKET_FILTER_PARAMS -->
 					<dt class="col-sm-4">{PARAM_TITLE}</dt>
@@ -790,19 +825,50 @@
 			<!-- END: MARKET_MULTICATS_LIST -->	
 			
 			<!-- ENDIF --> 
-			<div class="card mb-4">
-				<div class="h5 card-header">{PHP.L.market_seller}</div>
-				<div class="card-body message-body">
+			
+			<div class="card border-0 shadow-sm overflow-hidden mb-5">
+				
+				<!-- IF {MARKET_OWNER_BACKGROUND_SRC} -->
+				<img src="{MARKET_OWNER_BACKGROUND_SRC}"
+				class="card-img-top"
+				style="height:152px; object-fit:cover;"
+				alt="{MARKET_OWNER_USERNAME}">
+				<!-- ELSE -->
+				<img src="{PHP.R.userimg_default_background}"
+				class="card-img-top"
+				style="height:152px; object-fit:cover;"
+				alt="{MARKET_OWNER_USERNAME}">
+				<!-- ENDIF -->
+				
+				<div class="card-body message-body pt-5 position-relative">
+					<div class="text-center">
+						<div class="position-absolute top-0 start-50 translate-middle-x" style="margin-top:-50px;">
+							<!-- IF {MARKET_OWNER_AVATAR_SRC} -->
+							<img src="{MARKET_OWNER_AVATAR_SRC}"
+							alt="{MARKET_OWNER_NICKNAME}"
+							class="rounded-circle user-details-img"
+							width="80" height="80">
+							<!-- ELSE -->
+							<img src="{PHP.R.userimg_default_avatar}"
+							alt="{MARKET_OWNER_NICKNAME}"
+							class="rounded-circle user-details-img"
+							width="80" height="80">
+							<!-- ENDIF -->
+						</div>
+						
+						<h5 class="card-title mb-2 mt-4 text-uppercase fw-medium">
+							{PHP.L.market_seller}: {MARKET_OWNER_NICKNAME}
+						</h5>
+					</div>
+					<!-- IF {MARKET_OWNER_VENDOR_URL} -->
+					<a href="{MARKET_OWNER_VENDOR_URL}" class="btn btn-success w-100 rounded-0" title="{PHP.L.market_vendor_page_title_h1} ">
+						{PHP.L.market_owner_vendor_link}
+					</a>
+					<!-- ENDIF -->
+					
 					<div class="row justify-content-between">
 						<div class="col-md-auto text-center text-md-start">
 							
-							<!-- IF {PHP|cot_plugin_active('userimages')} -->
-							<!-- IF {MARKET_OWNER_AVATAR_SRC} -->
-							<img src="{MARKET_OWNER_AVATAR_SRC}" alt="{MARKET_OWNER_NICKNAME}" class="rounded-circle" width="50" height="50">
-							<!-- ELSE -->
-							<img src="{PHP.R.userimg_default_avatar}" alt="{MARKET_OWNER_NICKNAME}" class="rounded-circle" width="50" height="50">
-							<!-- ENDIF -->
-							<!-- ENDIF -->
 							
 							<!-- IF {PHP|cot_plugin_active('whosonline')} -->
 							<!-- IF {MARKET_OWNER_ONLINE} -->
@@ -817,9 +883,7 @@
 							<!-- ENDIF -->
 						</div>
 						<div class="col-md-auto text-center text-md-end">
-							<h4 class="h5 mb-0">
-								{MARKET_OWNER}
-							</h4>
+							
 							<p class="small">{PHP.L.Lastlogged}: {MARKET_OWNER_LASTLOG}</p>
 						</div>
 					</div>
@@ -902,6 +966,12 @@
 					<!-- ENDIF -->
 					
 					<!-- ENDIF -->	<!-- конец экстраполя пользователей cot_plugin_active('xtradbrowusers') -->
+					
+					<!-- IF {MARKET_OWNER_DETAILS_URL} -->
+					<a href="{MARKET_OWNER_DETAILS_URL}" class="btn btn-accent w-100 rounded-0 border border-secondary" title="{PHP.L.market_seller_profile_page_hint}">
+						{PHP.L.market_seller_profile_page}
+					</a>
+					<!-- ENDIF -->		
 					
 					<ul class="list-group list-group-flush">
 						
@@ -1020,7 +1090,16 @@
 		});
 	});
 </script>
-
+<style>
+	.user-details-img {
+	border: 5px solid;
+	border-color: #ff8809;
+	background-color: #f8f9fa;
+	padding: 3px;
+	inline-size: 120px;
+	box-sizing: border-box;
+	}
+</style>
 <!-- IF {PHP.usr.isadmin} AND {TPL_PATH} --> 
 <div class="container-fluid px-3 px-lg-5 py-5">
 	<div class="alert alert-info" role="alert">
